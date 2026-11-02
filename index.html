@@ -8,7 +8,7 @@
 <meta name="description" content="Mahnoor and Tahir invite you to their Barat on Sunday, 29 November 2026 from 11:00 AM at Divine Marque, East Canal, Lahore.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Amiri&family=Aref+Ruqaa:wght@400;700&family=Cormorant+SC:wght@500;600&family=Great+Vibes&family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Amiri&family=Aref+Ruqaa:wght@400;700&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Cormorant+SC:wght@500;600&family=Great+Vibes&family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 <style>
   /* Layout: gate screen, then one long scrolling invitation with a floating bar, sections, RSVP and share. */
   :root{
@@ -154,6 +154,9 @@
   .ec-addr i{font-size:4cqw;display:inline-block;margin-bottom:.6cqw}
   .ec-foot{display:flex;flex-direction:column;align-items:center;width:46cqw;margin-right:24cqw;gap:3cqw}
   .ec-foot .ec-orn{margin:0}
+  .ec-dl{background:none;border:1px solid var(--ec-gold);color:var(--ec);border-radius:999px;font:600 2.3cqw 'Cormorant SC',Georgia,serif;letter-spacing:.16em;text-transform:uppercase;padding:2cqw 4cqw;cursor:pointer;width:100%;transition:background .2s}
+  .ec-dl:hover,.ec-dl:focus-visible{background:rgba(106,20,36,.08)}
+  .ec-dl:disabled{opacity:.6;cursor:wait}
   .ec-foot .btn{font-size:2.4cqw;padding:3cqw 4cqw;min-height:0;letter-spacing:.2em;width:100%;text-align:center;white-space:normal}
 
   /* ---------- Floating bar ---------- */
@@ -451,6 +454,7 @@
         <div class="ec-foot">
           <svg class="ec-orn" aria-hidden="true"><use href="#flourish"/></svg>
           <button class="btn primary" id="openInvite" type="button">Open Our Invitation</button>
+          <button class="ec-dl" id="dlCard" type="button">Download card</button>
         </div>
       </div>
     </section>
@@ -700,6 +704,7 @@
         <div class="share-actions">
           <button class="btn primary" type="button" id="shareWa">Share on WhatsApp</button>
           <button class="btn" type="button" id="shareAny">Share invitation</button>
+          <button class="btn" type="button" id="dlCard2" style="grid-column:1/-1">Download invitation card</button>
         </div>
         <p class="status" id="shareStatus" aria-live="polite"></p>
       </div>
@@ -802,6 +807,7 @@
 
   /* opening sequence: doors -> cover -> invitation */
   function setGuest(name){
+    guest=name;
     $('coverName').textContent=name;
     $('dear').textContent=name;
     $('rName').value=name;
@@ -853,6 +859,145 @@
   document.addEventListener('click',function(e){if(!menu.hidden&&!e.target.closest('#nav'))closeMenu()});
   document.addEventListener('keydown',function(e){if(e.key==='Escape')closeMenu()});
   $('toTop').addEventListener('click',function(){window.scrollTo({top:0,behavior:'smooth'})});
+
+  /* download the main card as a PNG, drawn on a canvas so the fonts and the guest's name are kept */
+  var guest='';
+  function drawCard(name){
+    var W=1080,H=2100,U=W/100,cv=document.createElement('canvas');cv.width=W;cv.height=H;
+    var c=cv.getContext('2d'),RAD=Math.PI/180,INK='#6a1424',SOFT='#8a4a52',GOLD='#b8924f';
+    function px(n){return n*U}
+    /* background: ivory silk */
+    var g=c.createLinearGradient(0,0,W*.5,H);g.addColorStop(0,'#f8ede4');g.addColorStop(.55,'#ead6cd');g.addColorStop(1,'#f5e8df');c.fillStyle=g;c.fillRect(0,0,W,H);
+    var r1=c.createRadialGradient(W*.3,H*.12,0,W*.3,H*.12,W*.9);r1.addColorStop(0,'rgba(255,250,244,.95)');r1.addColorStop(1,'rgba(255,250,244,0)');c.fillStyle=r1;c.fillRect(0,0,W,H);
+    var r2=c.createRadialGradient(W*.78,H*.6,0,W*.78,H*.6,W*.8);r2.addColorStop(0,'rgba(244,227,218,.9)');r2.addColorStop(1,'rgba(244,227,218,0)');c.fillStyle=r2;c.fillRect(0,0,W,H);
+    var nz=document.createElement('canvas');nz.width=27;nz.height=50;var nc=nz.getContext('2d'),id=nc.createImageData(27,50);
+    for(var i=0;i<id.data.length;i+=4){id.data[i]=110;id.data[i+1]=60;id.data[i+2]=66;id.data[i+3]=Math.random()*16}
+    nc.putImageData(id,0,0);c.imageSmoothingEnabled=true;c.imageSmoothingQuality='high';c.drawImage(nz,0,0,W,H);
+
+    /* roses, leaves, baby's breath */
+    var PET=new Path2D('M0 0C-30 -8 -38 -36 -14 -46C-4 -50 10 -50 18 -44C40 -34 30 -6 0 0Z');
+    var LEAF=new Path2D('M0 -28C13 -14 13 12 0 28C-13 12 -13 -14 0 -28Z');
+    function rg(a,b,d){var q=c.createRadialGradient(-6,-12,2,-2,-10,52);q.addColorStop(0,a);q.addColorStop(.6,b);q.addColorStop(1,d);return q}
+    function rose(x,y,w){
+      c.save();c.translate(x+w/2,y+w/2);c.scale(w/100,w/100);
+      c.fillStyle='#4a0711';c.beginPath();c.arc(0,0,47,0,7);c.fill();
+      c.strokeStyle='#3b050d';c.lineWidth=.7;
+      [[1,0,'#d03545','#a21a2b','#6a0b18'],[.72,36,'#e04b5a','#b92234','#7c1020'],[.46,10,'#ef6874','#c72a3c','#8a1424']].forEach(function(r){
+        for(var k=0;k<5;k++){c.save();c.scale(r[0],r[0]);c.rotate((r[1]+72*k)*RAD);c.fillStyle=rg(r[2],r[3],r[4]);c.fill(PET);c.stroke(PET);c.restore()}
+      });
+      c.save();c.translate(-14,-22);c.rotate(-30*RAD);c.fillStyle='rgba(255,255,255,.14)';c.beginPath();c.ellipse(0,0,12,5,0,0,7);c.fill();c.restore();
+      c.fillStyle='rgba(255,255,255,.5)';[[18,-14,1.2],[-24,10,1],[8,26,1.1]].forEach(function(d){c.beginPath();c.arc(d[0],d[1],d[2],0,7);c.fill()});
+      c.restore();
+    }
+    function leaf(x,y,w,h){c.save();c.translate(x,y);c.scale(w/24,h/60);c.translate(12,30);c.fillStyle='#2d3b29';c.fill(LEAF);c.strokeStyle='#4d6445';c.lineWidth=.9;c.beginPath();c.moveTo(0,-24);c.lineTo(0,24);c.stroke();c.restore()}
+    function gyp(x,y,w,h){
+      c.save();c.translate(x,y);c.scale(w/60,h/60);
+      c.strokeStyle='#c8a766';c.lineWidth=.7;
+      ['M4 56C16 40 22 24 30 6','M14 44C26 40 38 38 52 28','M20 32C30 22 36 14 38 4'].forEach(function(d){c.stroke(new Path2D(d))});
+      c.fillStyle='#f6e7c8';[[30,6,2.2],[52,28,2],[38,4,1.8],[22,20,1.6],[40,36,1.7],[12,40,1.6],[46,16,1.5]].forEach(function(d){c.beginPath();c.arc(d[0],d[1],d[2],0,7);c.fill()});
+      c.restore();
+    }
+    function cluster(bx,by,size,items){
+      items.forEach(function(it){
+        c.save();c.translate(bx,by);c.scale(size/200,size/200);
+        if(it.rot){c.translate(it.rot[1],it.rot[2]);c.rotate(it.rot[0]*RAD);c.translate(-it.rot[1],-it.rot[2])}
+        if(it.t==='rose')rose(it.x,it.y,it.w);else if(it.t==='leaf')leaf(it.x,it.y,it.w,it.h);else gyp(it.x,it.y,it.w,it.h);
+        c.restore();
+      });
+    }
+    cluster(px(-3),px(-3),px(40),[
+      {t:'gyp',x:92,y:-6,w:80,h:80,rot:[25,132,34]},{t:'leaf',x:120,y:52,w:30,h:62,rot:[48,135,83]},{t:'leaf',x:60,y:104,w:26,h:54,rot:[-18,73,131]},{t:'leaf',x:150,y:28,w:26,h:54,rot:[86,163,55]},
+      {t:'rose',x:-6,y:-6,w:128},{t:'rose',x:106,y:-12,w:76},{t:'rose',x:-12,y:108,w:66},{t:'rose',x:82,y:92,w:50}]);
+    cluster(px(63),px(-3),px(40),[
+      {t:'gyp',x:2,y:-4,w:84,h:84,rot:[-20,44,38]},{t:'leaf',x:46,y:60,w:28,h:58,rot:[-50,60,89]},{t:'leaf',x:150,y:108,w:26,h:54,rot:[20,163,135]},
+      {t:'rose',x:64,y:-2,w:138},{t:'rose',x:2,y:-10,w:80},{t:'rose',x:132,y:112,w:64}]);
+    cluster(px(-4),H-px(42)+px(4),px(42),[
+      {t:'gyp',x:86,y:86,w:84,h:84,rot:[8,128,128]},{t:'leaf',x:108,y:62,w:28,h:58,rot:[64,122,91]},{t:'leaf',x:96,y:150,w:26,h:54,rot:[-70,109,177]},
+      {t:'rose',x:-14,y:62,w:152},{t:'rose',x:92,y:130,w:82},{t:'rose',x:-8,y:2,w:76},{t:'rose',x:64,y:52,w:48}]);
+
+    /* bride and groom */
+    (function(){
+      var k=px(22)/120;c.save();c.translate(W-px(24),H-px(3)-190*k);c.scale(k,k);
+      function P(d){return new Path2D(d)}
+      c.fillStyle='rgba(0,0,0,.16)';c.beginPath();c.ellipse(62,186,58,4,0,0,7);c.fill();
+      c.fillStyle='#171214';c.fill(P('M84 30 L112 30 L116 72 L114 122 L82 122 L80 72Z'));
+      c.strokeStyle='#2c2428';c.lineWidth=1;c.stroke(P('M96 30 L100 122'));
+      c.fillStyle='#1b1517';c.beginPath();c.arc(98,17,9,0,7);c.fill();
+      c.fillStyle='#d9a98a';c.fillRect(94,24,8,7);
+      c.fillStyle='#171214';c.fill(P('M84 120H98V178H84ZM100 120H114V178H100Z'));
+      c.fillStyle='#0c090a';c.fill(P('M82 178H98V183H80ZM100 178H116V183H102Z'));
+      var gw=c.createLinearGradient(4,30,118,186);gw.addColorStop(0,'#8d1630');gw.addColorStop(1,'#4a0918');
+      c.fillStyle=gw;c.fill(P('M46 30 C34 36 30 62 32 92 C26 126 16 154 4 176 C14 182 40 186 64 186 C90 186 110 182 118 172 C100 150 78 122 66 92 C68 60 64 36 52 30Z'));
+      c.strokeStyle='#d6a95b';c.lineWidth=1.4;c.stroke(P('M32 92 C26 126 16 154 4 176 M66 92 C78 122 100 150 118 172'));
+      c.lineWidth=2.2;c.stroke(P('M4 176 C14 182 40 186 64 186 C90 186 110 182 118 172'));
+      c.fillStyle='rgba(224,181,101,.85)';[[30,150,1.4],[46,162,1.4],[70,170,1.4],[92,166,1.4],[56,140,1.3],[80,150,1.3],[40,118,1.2],[58,110,1.2]].forEach(function(d){c.beginPath();c.arc(d[0],d[1],d[2],0,7);c.fill()});
+      c.fillStyle='rgba(125,18,40,.92)';c.fill(P('M40 32 C30 42 30 66 34 90 L64 90 C68 66 68 42 58 32Z'));
+      c.strokeStyle='#d6a95b';c.lineWidth=1.2;c.stroke(P('M40 32 C30 42 30 66 34 90 M58 32 C68 42 68 66 64 90'));
+      c.fillStyle='#7d1228';c.beginPath();c.arc(49,22,10.5,0,7);c.fill();
+      c.lineWidth=1.6;c.lineCap='round';c.stroke(P('M39 24C41 12 57 12 59 24'));
+      c.fillStyle='#d9a98a';c.fillRect(45,30,8,6);
+      c.strokeStyle='#d9a98a';c.lineWidth=3;c.stroke(P('M60 70 C70 78 76 84 82 82'));
+      c.restore();
+    })();
+
+    /* text */
+    var CX=W/2;
+    function caps(text,y,size,sp,color){
+      c.font='600 '+px(size)+'px "Cormorant SC","Cormorant Garamond",Georgia,serif';c.textAlign='left';c.textBaseline='alphabetic';c.direction='ltr';c.fillStyle=color||INK;
+      var t=text.toUpperCase(),chars=Array.from(t),ws=chars.map(function(ch){return c.measureText(ch).width}),tot=ws.reduce(function(a,b){return a+b},0)+px(sp)*(chars.length-1),x=CX-tot/2;
+      chars.forEach(function(ch,i){c.fillText(ch,x,px(y));x+=ws[i]+px(sp)});
+    }
+    function center(text,y,font,color){c.font=font;c.textAlign='center';c.textBaseline='alphabetic';c.fillStyle=color||INK;c.fillText(text,CX,px(y))}
+    c.direction='rtl';center('بِسْمِ ٱللَّهِ ٱلرَّحْمَٰنِ ٱلرَّحِيمِ',22.5,'700 '+px(6.4)+'px "Aref Ruqaa","Amiri","Noto Naskh Arabic",serif');c.direction='ltr';
+    function flourish(cx,y,wc,color){
+      var w=px(wc),k=w/120;c.save();c.translate(cx-w/2,px(y)-7*k);c.scale(k,k);c.strokeStyle=color;c.fillStyle=color;c.lineWidth=1.1;c.lineCap='round';
+      c.stroke(new Path2D('M2 7H44M76 7H118'));c.stroke(new Path2D('M44 7C48 0 55 0 60 7C65 14 72 14 76 7'));c.beginPath();c.arc(60,7,2,0,7);c.fill();c.restore();
+    }
+    flourish(CX,27.5,32,GOLD);
+    var dear='Dear '+name+',',ds=6.4;c.font=px(ds)+'px "Great Vibes","Snell Roundhand",cursive';
+    while(c.measureText(dear).width>px(78)&&ds>3){ds-=.3;c.font=px(ds)+'px "Great Vibes","Snell Roundhand",cursive'}
+    center(dear,38,px(ds)+'px "Great Vibes","Snell Roundhand",cursive');
+    caps('With the blessings of Allah,',47,3.0,.3);
+    caps('we joyfully invite you to the',51.4,3.0,.3);
+    caps('Barat ceremony of',55.8,3.0,.3);
+    center('Mahnoor',81,px(14)+'px "Great Vibes","Snell Roundhand",cursive');
+    center('&',90,'italic '+px(7)+'px "Cormorant Garamond",Georgia,serif');
+    center('Tahir',104.5,px(14)+'px "Great Vibes","Snell Roundhand",cursive');
+    caps('D/o Mr & Mrs Sheikh Aurangzeb Iqbal',114.5,2.5,.2,SOFT);
+    caps('S/o Mr & Mrs Ghulam Muhammad Hussain',118.5,2.5,.2,SOFT);
+    caps('Your presence and blessings will make',130,2.9,.3);
+    caps('this occasion even more special',134.4,2.9,.3);
+    /* date row */
+    var yc=148;c.strokeStyle=GOLD;c.lineWidth=2;
+    function hl(x1,x2,y){c.beginPath();c.moveTo(px(x1),px(y));c.lineTo(px(x2),px(y));c.stroke()}
+    hl(10.4,31.85,yc-4.6);hl(10.4,31.85,yc+4.6);hl(68.15,89.6,yc-4.6);hl(68.15,89.6,yc+4.6);
+    c.beginPath();c.moveTo(px(34.25),px(yc-10));c.lineTo(px(34.25),px(yc+10));c.moveTo(px(65.75),px(yc-10));c.lineTo(px(65.75),px(yc+10));c.stroke();
+    (function(){var save=CX;CX=px(21.1);caps('Sunday',yc+1.2,3.4,.35);CX=px(78.9);caps('At 11 AM',yc+1.2,3.4,.35);CX=save})();
+    center('29',yc-1,'600 '+px(9.5)+'px "Cormorant Garamond",Georgia,serif');
+    caps('November,',yc+4.2,3.3,.3);caps('2026',yc+8.2,3.3,.3);
+    caps('Kindly grace the occasion with',168,2.6,.22);
+    caps('your presence and duas',172.4,2.6,.22);
+    center('Address:',180,'italic '+px(4.2)+'px "Cormorant Garamond",Georgia,serif');
+    center('Divine Marque,',185.6,px(4.6)+'px "Cormorant Garamond",Georgia,serif');
+    center('East Canal, Lahore',191.2,px(4.6)+'px "Cormorant Garamond",Georgia,serif');
+    return cv;
+  }
+  function saveCard(btn){
+    var label=btn.textContent;btn.disabled=true;btn.textContent='Preparing…';
+    var fonts=['700 40px "Aref Ruqaa"','40px "Great Vibes"','600 40px "Cormorant SC"','400 40px "Cormorant Garamond"','italic 400 40px "Cormorant Garamond"','600 40px "Cormorant Garamond"'];
+    Promise.all(fonts.map(function(f){return document.fonts.load(f,'Aa')})).catch(function(){}).then(function(){
+      var cv=drawCard(guest||'Guest');
+      cv.toBlob(function(b){
+        btn.disabled=false;btn.textContent=label;
+        if(!b)return;
+        var url=URL.createObjectURL(b),a=document.createElement('a');
+        a.href=url;a.download='Mahnoor-Tahir-Barat-'+(guest||'Invitation').replace(/[^\w-]+/g,'-')+'.png';
+        document.body.appendChild(a);a.click();a.remove();setTimeout(function(){URL.revokeObjectURL(url)},5000);
+      },'image/png');
+    });
+  }
+  $('dlCard').addEventListener('click',function(){saveCard(this)});
+  $('dlCard2').addEventListener('click',function(){saveCard(this)});
 
   /* RSVP -> WhatsApp message */
   var rForm=$('rsvpForm'), rErr=$('rErr'), rDone=$('rDone');
