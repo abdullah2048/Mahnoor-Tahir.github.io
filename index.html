@@ -73,12 +73,16 @@
   @keyframes fade{to{opacity:0;transform:scale(.98)}}
 
   .stage{
-    position:fixed;inset:0;z-index:50;overflow:hidden;display:grid;place-items:center;
+    position:fixed;inset:0;z-index:50;overflow:auto;display:flex;
     background:radial-gradient(circle at 50% 38%,color-mix(in srgb,var(--maroon) 40%,transparent),transparent 62%),var(--bg);
     padding:max(24px,env(safe-area-inset-top)) max(14px,env(safe-area-inset-right)) max(24px,env(safe-area-inset-bottom)) max(14px,env(safe-area-inset-left));
   }
   .stage.leaving{animation:fade .45s ease forwards}
-  .box{position:relative;width:min(440px,100%,calc((100svh - 48px) / 1.85));height:min(760px,100%)}
+  .col{margin:auto;display:flex;flex-direction:column;align-items:center;gap:14px;width:100%}
+  .box{position:relative;width:clamp(300px,calc((100svh - 150px) / 1.75),440px);max-width:100%;aspect-ratio:1/1.75}
+  .acts{display:none;gap:10px;flex-wrap:wrap;justify-content:center;width:100%}
+  .stage.opening .acts{display:flex}
+  .acts .btn{flex:1 1 150px;max-width:210px;font-size:.66rem;letter-spacing:.14em;padding:14px 10px;white-space:nowrap}
 
   .doors{position:absolute;inset:0;z-index:2;border:2px solid var(--maroon-hi);border-radius:34px;overflow:hidden;background:#050304;box-shadow:0 20px 60px var(--shadow)}
   .door{
@@ -130,39 +134,31 @@
   }
   .stage.opening .cover{visibility:visible;opacity:1}
   .rc{position:absolute;pointer-events:none;overflow:visible}
-  .rc.tl{top:-3cqw;left:-3cqw;width:40cqw;height:40cqw}
-  .rc.tr{top:-3cqw;right:-3cqw;width:40cqw;height:40cqw}
-  .rc.bl{bottom:-4cqw;left:-4cqw;width:31cqw;height:31cqw}
-  .couple{position:absolute;right:0;bottom:0;width:34cqw;height:auto;pointer-events:none;z-index:1}
-  .ec-body{position:relative;z-index:2;height:100%;display:flex;flex-direction:column;justify-content:space-between;align-items:center;text-align:center;padding:9cqw 9cqw 4cqw}
-  .ec-top,.ec-mid{display:flex;flex-direction:column;align-items:center;width:100%}
-  .ec-bw{display:flex;align-items:center;justify-content:center;gap:2.5cqw;width:100%;margin-top:3cqw}
-  .ec-bw .lf{width:6cqw;height:6cqw;color:var(--ec-gold);flex:none}
+  .rc.tl{top:-3cqw;left:-3cqw;width:35cqw;height:35cqw}
+  .rc.tr{top:-3cqw;right:-3cqw;width:35cqw;height:35cqw}
+  .rc.bl{bottom:-4cqw;left:-4cqw;width:36cqw;height:36cqw}
+  .couple{position:absolute;right:-1cqw;bottom:-1cqw;width:41cqw;height:auto;pointer-events:none;z-index:1}
+  .ec-body{position:relative;z-index:2;height:100%;display:flex;flex-direction:column;justify-content:space-between;align-items:center;text-align:center;padding:9cqw 5cqw 7cqw}
+  .ec-top,.ec-mid,.ec-low{display:flex;flex-direction:column;align-items:center;width:100%}
+  .ec-bw{display:flex;align-items:center;justify-content:center;gap:2.5cqw;width:100%}
+  .ec-bw .lf{width:5cqw;height:5cqw;color:var(--ec-gold);flex:none}
   .ec-bw .lf.r{transform:scaleX(-1)}
-  .ec-bism{font:700 6.6cqw/1.3 'Aref Ruqaa','Amiri','Noto Naskh Arabic',serif;color:var(--ec);direction:rtl;margin-top:3cqw}
-  .ec-orn{width:32cqw;height:3.6cqw;color:var(--ec-gold);margin:1cqw 0 2cqw}
-  .ec-dear{font:400 6cqw/1.1 'Satisfy','Snell Roundhand',cursive;color:var(--ec);margin-bottom:2cqw;overflow-wrap:anywhere}
-  .ec-caps{font:600 2.8cqw/1.65 'Cormorant SC','Cormorant Garamond',Georgia,serif;letter-spacing:.09em;text-transform:uppercase;color:var(--ec)}
-  .ec-names{font-weight:400;font-family:'Satisfy','Snell Roundhand',cursive;color:var(--ec);line-height:.9;margin:2cqw 0 0}
-  .ec-names span{display:block;font-size:12cqw;line-height:1}
-  .ec-names i{display:block;font-family:'Satisfy','Snell Roundhand',cursive;font-style:normal;font-size:6.5cqw;line-height:.8;margin:0}
-  .ec-par{font:500 2.6cqw/1.5 'Cormorant SC',Georgia,serif;letter-spacing:.07em;text-transform:uppercase;color:var(--ec-soft);margin-top:2cqw}
-  
-  .ec-date{display:grid;grid-template-columns:1fr 1.2fr 1fr;align-items:center;width:84cqw;margin:3cqw 0}
-  .ec-date .dl,.ec-date .dr{font:600 3.5cqw 'Cormorant SC',Georgia,serif;letter-spacing:.1em;text-transform:uppercase;text-align:center;padding:2cqw 0;margin:0 2.4cqw;border-top:1px solid var(--ec-gold);border-bottom:1px solid var(--ec-gold)}
-  .ec-date .dm{text-align:center;padding:1cqw 2cqw;border-left:1px solid var(--ec-gold);border-right:1px solid var(--ec-gold)}
+  .ec-bism{font:700 6cqw/1.3 'Aref Ruqaa','Amiri','Noto Naskh Arabic',serif;color:var(--ec);direction:rtl}
+  .ec-orn{width:32cqw;height:3.6cqw;color:var(--ec-gold);margin:1cqw 0 3.5cqw}
+  .ec-caps{font:600 2.4cqw/1.85 'Cormorant SC','Cormorant Garamond',Georgia,serif;letter-spacing:.07em;text-transform:uppercase;color:var(--ec)}
+  .ec-names{font-weight:400;font-family:'Satisfy','Snell Roundhand',cursive;color:var(--ec);line-height:1;margin:0}
+  .ec-names span{display:block;font-size:14cqw;line-height:1}
+  .ec-names i{display:block;font-family:'Satisfy','Snell Roundhand',cursive;font-style:normal;font-size:7cqw;line-height:.9;margin:.5cqw 0}
+  .ec-date{display:grid;grid-template-columns:1fr 1.05fr 1fr;align-items:center;width:66cqw;margin:3.5cqw 0 0}
+  .ec-date .dl,.ec-date .dr{font:600 3.2cqw 'Cormorant SC',Georgia,serif;letter-spacing:.1em;text-transform:uppercase;text-align:center;padding:1.8cqw 0;margin:0 1.6cqw;border-top:1px solid var(--ec-gold);border-bottom:1px solid var(--ec-gold)}
+  .ec-date .dm{text-align:center;padding:1cqw 1.5cqw;border-left:1px solid var(--ec-gold);border-right:1px solid var(--ec-gold)}
   .ec-date .dm b{display:block;font:600 8cqw/1 'Cormorant Garamond',Georgia,serif}
-  .ec-date .dm em{display:block;font:600 3.3cqw 'Cormorant SC',Georgia,serif;font-style:normal;letter-spacing:.1em;text-transform:uppercase;margin-top:1cqw}
-  .ec-low .ec-caps{font-size:2.5cqw;letter-spacing:.06em;white-space:nowrap}
-  .ec-low{margin-right:16cqw;display:flex;flex-direction:column;align-items:center;margin-top:3cqw}
-  .ec-addr{font:400 4.2cqw/1.45 'Cormorant Garamond',Georgia,serif;color:var(--ec);margin-top:2cqw}
+  .ec-date .dm em{display:block;font:600 2.8cqw 'Cormorant SC',Georgia,serif;font-style:normal;letter-spacing:.08em;text-transform:uppercase;margin-top:1cqw}
+  .ec-low{margin-right:16cqw;width:auto}
+  .ec-low .ec-caps{white-space:nowrap}
+  .ec-addr{font:400 4.2cqw/1.45 'Cormorant Garamond',Georgia,serif;color:var(--ec);margin-top:2.5cqw}
   .ec-addr i{font-size:4cqw;display:inline-block;margin-bottom:.6cqw}
-  .ec-foot{display:flex;flex-direction:column;align-items:center;width:46cqw;margin-right:24cqw;gap:2cqw}
-  .ec-foot .ec-orn{margin:0}
-  .ec-dl{background:rgba(251,243,236,.96);border:1px solid var(--ec-gold);color:var(--ec);border-radius:999px;font:600 2.3cqw 'Cormorant SC',Georgia,serif;letter-spacing:.16em;text-transform:uppercase;padding:1.6cqw 4cqw;cursor:pointer;width:100%;transition:background .2s}
-  .ec-dl:hover,.ec-dl:focus-visible{background:#f3e1d8}
-  .ec-dl:disabled{opacity:.6;cursor:wait}
-  .ec-foot .btn{font-size:2.4cqw;padding:2.4cqw 4cqw;min-height:0;letter-spacing:.2em;width:100%;text-align:center;white-space:normal}
+  .ec-low .ec-orn{margin:3cqw 0 0}
 
   /* ---------- Floating bar ---------- */
   .nav{
@@ -385,6 +381,7 @@
 
 <!-- Opening: closed doors ask for a name, then open onto the cover -->
 <div class="stage" id="stage">
+  <div class="col">
   <div class="box">
     <section class="cover" id="cover" aria-hidden="true">
       <svg class="rc tl" viewBox="0 0 200 200" aria-hidden="true">
@@ -421,26 +418,20 @@
         <div class="ec-top">
           <div class="ec-bw"><svg class="lf" viewBox="0 0 24 24" aria-hidden="true"><use href="#sprig"/></svg><p class="ec-bism" lang="ar" dir="rtl">بِسْمِ ٱللَّهِ ٱلرَّحْمَٰنِ ٱلرَّحِيمِ</p><svg class="lf r" viewBox="0 0 24 24" aria-hidden="true"><use href="#sprig"/></svg></div>
           <svg class="ec-orn" aria-hidden="true"><use href="#flourish"/></svg>
-          <p class="ec-dear">Dear <span id="coverName"></span>,</p>
-          <p class="ec-caps">With the blessings of Allah,<br>we joyfully invite you to the<br>Barat ceremony of</p>
+          <p class="ec-caps">With the blessings of Allah,<br>we joyfully invite you to the Barat ceremony of</p>
         </div>
 
-        <div>
-          <h1 class="ec-names"><span>Mahnoor</span><i>&amp;</i><span>Tahir</span></h1>
-          <p class="ec-par">D/o Mr &amp; Mrs Sheikh Aurangzeb Iqbal<br>S/o Mr &amp; Mrs Ghulam Muhammad Hussain</p>
-        </div>
+        <h1 class="ec-names"><span>Mahnoor</span><i>&amp;</i><span>Tahir</span></h1>
 
         <div class="ec-mid">
           <p class="ec-caps">Your presence and blessings will make<br>this occasion even more special</p>
           <div class="ec-date"><span class="dl">Sunday</span><span class="dm"><b>29</b><em>November, 2026</em></span><span class="dr">At 11 AM</span></div>
-          <div class="ec-low"><p class="ec-caps">Kindly grace the occasion with<br>your presence and duas</p>
-          <p class="ec-addr"><i>Address:</i><br>Divine Marque,<br>East Canal, Lahore</p></div>
         </div>
 
-        <div class="ec-foot">
+        <div class="ec-low">
+          <p class="ec-caps">Kindly grace the occasion with<br>your presence and duas</p>
+          <p class="ec-addr"><i>Address:</i><br>Divine Marque,<br>East Canal, Lahore</p>
           <svg class="ec-orn" aria-hidden="true"><use href="#flourish"/></svg>
-          <button class="btn primary" id="openInvite" type="button">Open Our Invitation</button>
-          <button class="ec-dl" id="dlCard" type="button">Download card</button>
         </div>
       </div>
     </section>
@@ -461,6 +452,8 @@
         <p class="ayah-ref">And We created you in pairs · Qur’an 78:8</p>
       </div>
     </main>
+  </div>
+  <div class="acts"><button class="btn primary" id="openInvite" type="button">Open Our Invitation</button><button class="btn" id="dlCard" type="button">Download card</button></div>
   </div>
 </div>
 
@@ -794,7 +787,6 @@
   /* opening sequence: doors -> cover -> invitation */
   function setGuest(name){
     guest=name;
-    $('coverName').textContent=name;
     $('dear').textContent=name;
     $('rName').value=name;
     document.title=name+', you are invited – Mahnoor & Tahir';
@@ -849,7 +841,7 @@
   /* download the main card as a PNG, drawn on a canvas so the fonts and the guest's name are kept */
   var guest='';
   function drawCard(name,couple){
-    var W=1080,H=2100,U=W/100,cv=document.createElement('canvas');cv.width=W;cv.height=H;
+    var W=1080,H=1620,U=W/100,cv=document.createElement('canvas');cv.width=W;cv.height=H;
     var c=cv.getContext('2d'),RAD=Math.PI/180,INK='#6a1424',SOFT='#8a4a52',GOLD='#b8924f';
     function px(n){return n*U}
     /* background: ivory silk */
@@ -891,18 +883,18 @@
         c.restore();
       });
     }
-    cluster(px(-3),px(-3),px(40),[
+    cluster(px(-3),px(-3),px(35),[
       {t:'gyp',x:92,y:-6,w:80,h:80,rot:[25,132,34]},{t:'leaf',x:120,y:52,w:30,h:62,rot:[48,135,83]},{t:'leaf',x:60,y:104,w:26,h:54,rot:[-18,73,131]},{t:'leaf',x:150,y:28,w:26,h:54,rot:[86,163,55]},
       {t:'rose',x:-6,y:-6,w:128},{t:'rose',x:106,y:-12,w:76},{t:'rose',x:-12,y:108,w:66},{t:'rose',x:82,y:92,w:50}]);
-    cluster(px(63),px(-3),px(40),[
+    cluster(px(68),px(-3),px(35),[
       {t:'gyp',x:2,y:-4,w:84,h:84,rot:[-20,44,38]},{t:'leaf',x:46,y:60,w:28,h:58,rot:[-50,60,89]},{t:'leaf',x:150,y:108,w:26,h:54,rot:[20,163,135]},
       {t:'rose',x:64,y:-2,w:138},{t:'rose',x:2,y:-10,w:80},{t:'rose',x:132,y:112,w:64}]);
-    cluster(px(-4),H-px(31)+px(4),px(31),[
+    cluster(px(-4),H-px(36)+px(4),px(36),[
       {t:'gyp',x:86,y:86,w:84,h:84,rot:[8,128,128]},{t:'leaf',x:108,y:62,w:28,h:58,rot:[64,122,91]},{t:'leaf',x:96,y:150,w:26,h:54,rot:[-70,109,177]},
       {t:'rose',x:-14,y:62,w:152},{t:'rose',x:92,y:130,w:82},{t:'rose',x:-8,y:2,w:76},{t:'rose',x:64,y:52,w:48}]);
 
     /* bride and groom (cut-out picture) */
-    if(couple){var cw=px(34),ch=cw*couple.naturalHeight/couple.naturalWidth;c.drawImage(couple,W-cw,H-ch,cw,ch)}
+    if(couple){var cw=px(41),ch=cw*couple.naturalHeight/couple.naturalWidth;c.drawImage(couple,W-cw+px(1),H-ch+px(1),cw,ch)}
 
     /* text */
     var CX=W/2;
@@ -912,40 +904,36 @@
       chars.forEach(function(ch,i){c.fillText(ch,x,px(y));x+=ws[i]+px(sp)});
     }
     function center(text,y,font,color){c.font=font;c.textAlign='center';c.textBaseline='alphabetic';c.fillStyle=color||INK;c.fillText(text,CX,px(y))}
-    c.direction='rtl';center('بِسْمِ ٱللَّهِ ٱلرَّحْمَٰنِ ٱلرَّحِيمِ',22.5,'700 '+px(6.4)+'px "Aref Ruqaa","Amiri","Noto Naskh Arabic",serif');c.direction='ltr';
     function flourish(cx,y,wc,color){
       var w=px(wc),k=w/120;c.save();c.translate(cx-w/2,px(y)-7*k);c.scale(k,k);c.strokeStyle=color;c.fillStyle=color;c.lineWidth=1.1;c.lineCap='round';
       c.stroke(new Path2D('M2 7H44M76 7H118'));c.stroke(new Path2D('M44 7C48 0 55 0 60 7C65 14 72 14 76 7'));c.beginPath();c.arc(60,7,2,0,7);c.fill();c.restore();
     }
-    flourish(CX,27.5,32,GOLD);
-    (function(){var spr=new Path2D('M2 20C8 18 14 12 19 4C18 12 13 18 2 20Z'),spr2=new Path2D('M11 14C14 15 17 14 20 11C17 17 13 18 11 14Z');c.fillStyle=GOLD;var k=px(6)/24;[[px(12),1],[W-px(12),-1]].forEach(function(o){c.save();c.translate(o[0],px(16.4));c.scale(k*o[1],k);c.translate(-12,0);c.fill(spr);c.fill(spr2);c.restore()})})();
-    var dear='Dear '+name+',',ds=6.4;c.font=px(ds)+'px "Satisfy","Snell Roundhand",cursive';
-    while(c.measureText(dear).width>px(78)&&ds>3){ds-=.3;c.font=px(ds)+'px "Satisfy","Snell Roundhand",cursive'}
-    center(dear,38,px(ds)+'px "Satisfy","Snell Roundhand",cursive');
-    caps('With the blessings of Allah,',47,3.0,.3);
-    caps('we joyfully invite you to the',51.4,3.0,.3);
-    caps('Barat ceremony of',55.8,3.0,.3);
-    center('Mahnoor',81,px(14)+'px "Satisfy","Snell Roundhand",cursive');
-    center('&',90,px(8)+'px "Satisfy","Snell Roundhand",cursive');
-    center('Tahir',104.5,px(14)+'px "Satisfy","Snell Roundhand",cursive');
-    caps('D/o Mr & Mrs Sheikh Aurangzeb Iqbal',114.5,2.5,.2,SOFT);
-    caps('S/o Mr & Mrs Ghulam Muhammad Hussain',118.5,2.5,.2,SOFT);
-    caps('Your presence and blessings will make',130,2.9,.3);
-    caps('this occasion even more special',134.4,2.9,.3);
+    c.direction='rtl';center('بِسْمِ ٱللَّهِ ٱلرَّحْمَٰنِ ٱلرَّحِيمِ',19,'700 '+px(6)+'px "Aref Ruqaa","Amiri","Noto Naskh Arabic",serif');c.direction='ltr';
+    (function(){var spr=new Path2D('M2 20C8 18 14 12 19 4C18 12 13 18 2 20Z'),spr2=new Path2D('M11 14C14 15 17 14 20 11C17 17 13 18 11 14Z');c.fillStyle=GOLD;var k=px(6)/24;[[px(18),1],[W-px(18),-1]].forEach(function(o){c.save();c.translate(o[0],px(12.9));c.scale(k*o[1],k);c.translate(-12,0);c.fill(spr);c.fill(spr2);c.restore()})})();
+    flourish(CX,23.5,32,GOLD);
+    caps('With the blessings of Allah,',33,2.4,.25);
+    caps('we joyfully invite you to the Barat ceremony of',37.6,2.4,.17);
+    var SC='"Satisfy","Snell Roundhand",cursive';
+    center('Mahnoor',55,px(14)+'px '+SC);
+    center('&',62,px(7)+'px '+SC);
+    center('Tahir',75,px(14)+'px '+SC);
+    caps('Your presence and blessings will make',83,2.5,.25);
+    caps('this occasion even more special',87.6,2.5,.25);
     /* date row */
-    var yc=148;c.strokeStyle=GOLD;c.lineWidth=2;
+    var yc=99;c.strokeStyle=GOLD;c.lineWidth=2;
     function hl(x1,x2,y){c.beginPath();c.moveTo(px(x1),px(y));c.lineTo(px(x2),px(y));c.stroke()}
-    hl(10.4,31.85,yc-4.6);hl(10.4,31.85,yc+4.6);hl(68.15,89.6,yc-4.6);hl(68.15,89.6,yc+4.6);
-    c.beginPath();c.moveTo(px(34.25),px(yc-10));c.lineTo(px(34.25),px(yc+10));c.moveTo(px(65.75),px(yc-10));c.lineTo(px(65.75),px(yc+10));c.stroke();
-    (function(){var save=CX;CX=px(21.1);caps('Sunday',yc+1.2,3.4,.35);CX=px(78.9);caps('At 11 AM',yc+1.2,3.4,.35);CX=save})();
-    center('29',yc-1,'600 '+px(9.5)+'px "Cormorant Garamond",Georgia,serif');
-    caps('November,',yc+4.2,3.3,.3);caps('2026',yc+8.2,3.3,.3);
+    hl(17.5,38,yc-4.2);hl(17.5,38,yc+4.2);hl(62,82.5,yc-4.2);hl(62,82.5,yc+4.2);
+    c.beginPath();c.moveTo(px(40.3),px(yc-9));c.lineTo(px(40.3),px(yc+9));c.moveTo(px(59.7),px(yc-9));c.lineTo(px(59.7),px(yc+9));c.stroke();
+    (function(){var save=CX;CX=px(27.75);caps('Sunday',yc+1.2,3.2,.3);CX=px(72.25);caps('At 11 AM',yc+1.2,3.2,.3);CX=save})();
+    center('29',yc-1,'600 '+px(8)+'px "Cormorant Garamond",Georgia,serif');
+    caps('November,',yc+4,2.8,.25);caps('2026',yc+7.6,2.8,.25);
     var CX0=CX;CX=CX0-px(8);
-    caps('Kindly grace the occasion with',168,2.4,.2);
-    caps('your presence and duas',172.4,2.4,.2);
-    center('Address:',180,'italic '+px(4.2)+'px "Cormorant Garamond",Georgia,serif');
-    center('Divine Marque,',185.6,px(4.6)+'px "Cormorant Garamond",Georgia,serif');
-    center('East Canal, Lahore',191.2,px(4.6)+'px "Cormorant Garamond",Georgia,serif');
+    caps('Kindly grace the occasion with',113.5,2.4,.2);
+    caps('your presence and duas',117.9,2.4,.2);
+    center('Address:',124.5,'italic '+px(4)+'px "Cormorant Garamond",Georgia,serif');
+    center('Divine Marque,',129.9,px(4.4)+'px "Cormorant Garamond",Georgia,serif');
+    center('East Canal, Lahore',135.5,px(4.4)+'px "Cormorant Garamond",Georgia,serif');
+    flourish(CX,141.5,32,GOLD);
     CX=CX0;
     return cv;
   }
