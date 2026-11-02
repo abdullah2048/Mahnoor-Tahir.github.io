@@ -93,6 +93,28 @@
   .closing{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.2rem;line-height:1.7;color:var(--muted);max-width:360px;margin:0 auto}
   .sign{font-family:'Great Vibes',cursive;font-size:2.2rem;color:var(--rose);margin-top:14px}
 
+
+  .guest{margin:6px auto 0;max-width:380px}
+  .guest label{display:block;font-size:.72rem;letter-spacing:.3em;text-transform:uppercase;color:var(--muted);margin-bottom:12px}
+  .guest .row{display:flex;gap:8px;flex-wrap:wrap;justify-content:center}
+  .guest input{
+    flex:1 1 180px;min-width:0;padding:12px 14px;text-align:center;
+    font:400 1.05rem 'Cormorant Garamond',serif;color:var(--ink);background:transparent;
+    border:1px solid var(--gold-soft);border-radius:0;
+  }
+  .guest input::placeholder{color:var(--muted)}
+  .guest input:focus-visible{outline:1px solid var(--gold);border-color:var(--gold)}
+  .guest button{
+    padding:12px 22px;border:1px solid var(--gold);background:transparent;color:var(--ink);cursor:pointer;
+    font:400 .72rem 'Jost',sans-serif;letter-spacing:.3em;text-transform:uppercase;transition:background .25s,color .25s;
+  }
+  .guest button:hover,.guest button:focus-visible{background:var(--gold);color:var(--paper);outline:none}
+  .welcome{font-family:'Cormorant Garamond',serif;line-height:1.6}
+  .welcome .dear{font-family:'Great Vibes',cursive;font-size:2.3rem;color:var(--rose);display:block;overflow-wrap:anywhere}
+  .welcome p{font-size:1.15rem;margin-top:6px}
+  .welcome .change{margin-top:12px;background:none;border:0;padding:4px;color:var(--muted);cursor:pointer;
+    font:400 .7rem 'Jost',sans-serif;letter-spacing:.2em;text-transform:uppercase;text-decoration:underline}
+
   @media (max-width:420px){
     .card{padding:56px 22px 48px}
     .countdown{gap:8px}.countdown div{min-width:56px}
@@ -116,6 +138,21 @@
     <span class="amp">&amp;</span>
     <span class="n">Tahir</span>
   </h1>
+
+  <section class="guest" id="guest" aria-live="polite">
+    <form id="nameForm">
+      <label for="guestName">Enter your name to receive your invitation</label>
+      <div class="row">
+        <input id="guestName" name="guestName" type="text" maxlength="40" autocomplete="given-name" placeholder="Your name" required>
+        <button type="submit">Invite me</button>
+      </div>
+    </form>
+    <div class="welcome" id="welcome" hidden>
+      <span class="dear" id="dear"></span>
+      <p>You are warmly invited to celebrate the wedding of Mahnoor &amp; Tahir. Your presence will mean the world to us.</p>
+      <button class="change" id="changeName" type="button">Not you? Change name</button>
+    </div>
+  </section>
 
   <div class="divider" aria-hidden="true">&#10086;</div>
 
@@ -169,6 +206,36 @@
     el('s').textContent = String(s%60).padStart(2,'0');
   }
   tick(); setInterval(tick, 1000);
+
+  // Personal invitation: ask for a name, then greet the guest.
+  (function(){
+    const form=document.getElementById('nameForm'), input=document.getElementById('guestName'),
+          welcome=document.getElementById('welcome'), dear=document.getElementById('dear');
+    const KEY='wedding-guest-name';
+    const clean=v=>v.replace(/\s+/g,' ').trim().slice(0,40);
+    function show(name){
+      dear.textContent='Dear '+name+',';
+      form.hidden=true; welcome.hidden=false;
+      document.title=name+', you are invited – Mahnoor & Tahir';
+    }
+    function reset(){
+      welcome.hidden=true; form.hidden=false; input.value='';
+      try{localStorage.removeItem(KEY)}catch(e){}
+      input.focus();
+    }
+    form.addEventListener('submit',e=>{
+      e.preventDefault();
+      const name=clean(input.value); if(!name) return;
+      try{localStorage.setItem(KEY,name)}catch(e){}
+      show(name);
+    });
+    document.getElementById('changeName').addEventListener('click',reset);
+    // A link like ?name=Ayesha shows that guest's invitation straight away.
+    let pre='';
+    try{pre=clean(new URLSearchParams(location.search).get('name')||'')}catch(e){}
+    if(!pre){try{pre=clean(localStorage.getItem(KEY)||'')}catch(e){}}
+    if(pre) show(pre);
+  })();
 </script>
 </body>
 </html>
