@@ -314,7 +314,7 @@
   .made{margin-top:30px;font:400 .62rem var(--sans);letter-spacing:.3em;text-transform:uppercase;color:var(--muted)}
 
   .music{
-    position:fixed;z-index:15;
+    position:fixed;z-index:60;
     left:max(16px,env(safe-area-inset-left,0px));bottom:max(16px,env(safe-area-inset-bottom,0px));
     width:52px;height:52px;border-radius:50%;display:grid;place-items:center;cursor:pointer;
     background:var(--panel);color:var(--accent);border:1px solid var(--maroon-hi);box-shadow:0 6px 20px var(--shadow);
@@ -689,12 +689,12 @@
   /* music */
   function setBtn(on){mbtn.hidden=false;mbtn.classList.toggle('off',!on);mbtn.setAttribute('aria-pressed',String(on));mbtn.setAttribute('aria-label',on?'Mute music':'Play music')}
   function fadeTo(v,ms){
-    clearInterval(fadeT);var step=(v-song.volume)/(ms/50);
+    clearInterval(fadeT);var v0=song.volume,t0=Date.now();
     fadeT=setInterval(function(){
-      var n=song.volume+step;
-      if((step>0&&n>=v)||(step<=0&&n<=v)){song.volume=v;clearInterval(fadeT);if(v===0)song.pause()}
-      else song.volume=Math.max(0,Math.min(1,n));
-    },50);
+      var k=Math.min(1,(Date.now()-t0)/ms);
+      try{song.volume=Math.max(0,Math.min(1,v0+(v-v0)*k))}catch(_){}   /* iPhones ignore volume, so timing decides, not the value */
+      if(k>=1){clearInterval(fadeT);if(v===0)song.pause()}
+    },40);
   }
   function playMusic(){
     wantMusic=true;song.volume=0;var pr=song.play();
@@ -703,7 +703,8 @@
   function stopMusic(){wantMusic=false;clearInterval(fadeT);song.pause();mbtn.hidden=true}
   song.addEventListener('error',function(){wantMusic=false;mbtn.hidden=true});
   mbtn.addEventListener('click',function(){
-    if(song.paused){playMusic()}else{wantMusic=false;fadeTo(0,400);setBtn(false)}
+    if(song.paused||!wantMusic){playMusic()}
+    else{wantMusic=false;setBtn(false);fadeTo(0,350);setTimeout(function(){if(!wantMusic){clearInterval(fadeT);song.pause()}},500)}
   });
 
 
