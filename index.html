@@ -136,6 +136,21 @@
   .change{margin-top:26px;background:none;border:0;padding:6px;color:var(--muted);cursor:pointer;
     font:400 .68rem 'Jost',system-ui,sans-serif;letter-spacing:.2em;text-transform:uppercase;text-decoration:underline}
 
+
+  .music{
+    position:fixed;z-index:5;
+    right:max(16px,env(safe-area-inset-right,0px));bottom:max(16px,env(safe-area-inset-bottom,0px));
+    width:46px;height:46px;border-radius:50%;
+    display:grid;place-items:center;cursor:pointer;
+    background:var(--paper);color:var(--rose);border:1px solid var(--gold);
+    box-shadow:0 6px 20px var(--shadow);transition:background .25s,color .25s;
+  }
+  .music:hover,.music:focus-visible{background:var(--gold);color:var(--ink);outline:none}
+  .music svg{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+  .music .x{display:none}
+  .music.off .wave{display:none}
+  .music.off .x{display:block}
+
   @media (max-width:420px){
     .card{padding:60px 22px 48px}
     #gate{padding-block:68px 104px}
@@ -235,6 +250,15 @@
   <button class="change" id="changeName" type="button">Not you? Change name</button>
 </main>
 
+<audio id="song" src="song.mp3" preload="none" loop></audio>
+<button class="music" id="musicBtn" type="button" aria-label="Mute music" aria-pressed="true" hidden>
+  <svg viewBox="0 0 24 24" aria-hidden="true">
+    <path d="M4 9.5v5h3.5L12 18.5v-13L7.5 9.5z"/>
+    <path class="wave" d="M15.5 9a4.2 4.2 0 0 1 0 6M18 6.5a8 8 0 0 1 0 11"/>
+    <path class="x" d="M16 9.5l5 5M21 9.5l-5 5"/>
+  </svg>
+</button>
+
 <script>
 (function(){
   // Edit this to change the countdown target (local time).
@@ -243,6 +267,7 @@
   var $ = function(id){ return document.getElementById(id); };
   var gate=$('gate'), invite=$('invite'), form=$('nameForm'), input=$('guestName'), dear=$('dear');
   var timer=null;
+  var song=$('song'), mbtn=$('musicBtn'), wantMusic=false, fadeT=null;
 
   function clean(v){ return String(v||'').replace(/\s+/g,' ').trim().slice(0,40); }
   function tick(){
@@ -256,6 +281,34 @@
   function startTimer(){ tick(); if(!timer) timer=setInterval(tick,1000); }
   function stopTimer(){ clearInterval(timer); timer=null; }
 
+
+  // Background song: starts when the guest taps "Open Invitation" (a tap is required for audio to play).
+  function setBtn(on){
+    mbtn.hidden=false; mbtn.classList.toggle('off',!on);
+    mbtn.setAttribute('aria-pressed',String(on));
+    mbtn.setAttribute('aria-label',on?'Mute music':'Play music');
+  }
+  function fadeTo(v,ms){
+    clearInterval(fadeT);
+    var step=(v-song.volume)/(ms/50);
+    fadeT=setInterval(function(){
+      var n=song.volume+step;
+      if((step>0&&n>=v)||(step<=0&&n<=v)){ song.volume=v; clearInterval(fadeT); if(v===0) song.pause(); }
+      else song.volume=Math.max(0,Math.min(1,n));
+    },50);
+  }
+  function playMusic(){
+    wantMusic=true; song.volume=0;
+    var pr=song.play();
+    if(pr&&pr.then) pr.then(function(){ fadeTo(.6,2500); setBtn(true); })
+                      .catch(function(){ if(!song.error) setBtn(false); });
+  }
+  function stopMusic(){ wantMusic=false; clearInterval(fadeT); song.pause(); mbtn.hidden=true; }
+  song.addEventListener('error',function(){ wantMusic=false; mbtn.hidden=true; });
+  mbtn.addEventListener('click',function(){
+    if(song.paused){ playMusic(); } else { wantMusic=false; fadeTo(0,400); setBtn(false); }
+  });
+
   function open(name){
     dear.textContent = 'Dear ' + name + ',';
     document.title = name + ', you are invited – Mahnoor & Tahir';
@@ -268,7 +321,7 @@
     }, matchMedia('(prefers-reduced-motion: reduce)').matches ? 0 : 320);
   }
   function back(){
-    stopTimer();
+    stopTimer(); stopMusic();
     invite.hidden = true; gate.hidden = false;
     document.title = 'Mahnoor & Tahir – Wedding Invitation';
     input.select(); window.scrollTo(0,0);
@@ -279,12 +332,14 @@
     var name = clean(input.value);
     if (!name) return;
     try{ localStorage.setItem(KEY, name); }catch(_){}
+    playMusic();
     open(name);
   });
   $('changeName').addEventListener('click', back);
   document.addEventListener('visibilitychange', function(){
     if (invite.hidden) return;
-    document.hidden ? stopTimer() : startTimer();
+    if (document.hidden){ stopTimer(); if(!song.paused) song.pause(); }
+    else { startTimer(); if(wantMusic&&song.paused){ var r=song.play(); if(r&&r.catch) r.catch(function(){}); } }
   });
 
   // Pre-fill the box (from ?name=Ayesha or a previous visit), but still wait for the tap.
