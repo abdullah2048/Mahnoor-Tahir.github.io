@@ -362,9 +362,9 @@
   <div class="col">
   <div class="box">
     <section class="cover" id="cover" aria-hidden="true">
-      <img class="rc tl" src="assets/rose-tl.png" alt="" width="290" height="350" decoding="async">
-      <img class="rc tr" src="assets/rose-tr.png" alt="" width="296" height="420" decoding="async">
-      <img class="rc bl" src="assets/rose-bl.png" alt="" width="230" height="454" decoding="async">
+      <img class="rc tl" src="assets/rose-tl.webp" alt="" width="870" height="1050" decoding="async">
+      <img class="rc tr" src="assets/rose-tr.webp" alt="" width="888" height="1260" decoding="async">
+      <img class="rc bl" src="assets/rose-bl.webp" alt="" width="690" height="1362" decoding="async">
 
       <img class="couple" src="assets/couple.png" alt="" width="353" height="447" decoding="async">
 
@@ -857,7 +857,7 @@
   function saveCard(btn){
     var label=btn.textContent;btn.disabled=true;btn.textContent='Preparing…';
     var fonts=['700 40px "Aref Ruqaa"','40px "Satisfy"','600 40px "Cormorant SC"','400 40px "Cormorant Garamond"','italic 400 40px "Cormorant Garamond"','600 40px "Cormorant Garamond"'];
-    var imgs={},srcs={couple:'assets/couple.png',tl:'assets/rose-tl.png',tr:'assets/rose-tr.png',bl:'assets/rose-bl.png'};
+    var imgs={},srcs={couple:'assets/couple.png',tl:'assets/rose-tl.webp',tr:'assets/rose-tr.webp',bl:'assets/rose-bl.webp'};
     var imgP=Promise.all(Object.keys(srcs).map(function(k){return new Promise(function(res){var im=new Image();im.onload=function(){imgs[k]=im;res()};im.onerror=function(){res()};im.src=srcs[k]})}));
     Promise.all(fonts.map(function(f){return document.fonts.load(f,'Aa')}).concat([imgP])).catch(function(){}).then(function(){
       var cv=drawCard(guest||'Guest',imgs);
