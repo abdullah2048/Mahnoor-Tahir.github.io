@@ -3,161 +3,248 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="theme-color" content="#0b0708">
+<meta name="theme-color" content="#080506">
 <title>Mahnoor &amp; Tahir – Wedding Invitation</title>
 <meta name="description" content="Mahnoor and Tahir invite you to their Barat on Sunday, 29 November 2026 from 11:00 AM at Divine Marque, East Canal, Lahore.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Great+Vibes&family=Jost:wght@300;400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 <style>
-    :root{
+  /* Layout: gate screen, then one long scrolling invitation with a floating bar, sections, RSVP and share. */
+  :root{
     color-scheme:dark;
-    --bg:#0b0708;
-    --paper:#120b0c;
-    --ink:#f2e8e8;
-    --muted:#b4a0a2;
-    --gold:#9b2237;        /* maroon lines and ornaments */
-    --gold-soft:#3d1219;   /* deep maroon hairlines */
-    --rose:#d4506a;        /* bright maroon for text accents */
+    --bg:#080506;
+    --panel:#120a0c;
+    --panel-2:#190d10;
+    --ink:#f4ebea;
+    --muted:#b09a9d;
+    --line:#3a1219;        /* deep maroon hairlines */
+    --maroon:#7d1228;      /* fills */
+    --maroon-hi:#a3203a;   /* fill highlight */
+    --accent:#d4506a;      /* bright maroon for text */
     --shadow:rgba(0,0,0,.6);
+    --serif:'Playfair Display',Georgia,serif;
+    --sans:'Poppins',system-ui,sans-serif;
+    --script:'Great Vibes','Snell Roundhand',cursive;
   }
   *{box-sizing:border-box;margin:0;padding:0}
   [hidden]{display:none!important}
   html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
   body{
     background:
-      radial-gradient(circle at 15% 10%, color-mix(in srgb,var(--gold-soft) 45%,transparent), transparent 40%),
-      radial-gradient(circle at 85% 90%, color-mix(in srgb,var(--rose) 18%,transparent), transparent 45%),
+      radial-gradient(circle at 12% 6%, color-mix(in srgb,var(--maroon) 30%,transparent), transparent 38%),
+      radial-gradient(circle at 90% 55%, color-mix(in srgb,var(--maroon) 18%,transparent), transparent 42%),
       var(--bg);
     background-attachment:fixed;
-    color:var(--ink);
-    font-family:'Jost',system-ui,sans-serif;
-    font-weight:300;
+    color:var(--ink);font-family:var(--sans);font-weight:300;line-height:1.6;
     min-height:100vh;min-height:100svh;
-    display:flex;justify-content:center;align-items:flex-start;
-    padding:max(24px,env(safe-area-inset-top)) max(16px,env(safe-area-inset-left)) max(48px,env(safe-area-inset-bottom)) max(16px,env(safe-area-inset-right));
+    padding-left:env(safe-area-inset-left,0px);padding-right:env(safe-area-inset-right,0px);
   }
-  .card{
-    width:100%;max-width:560px;
-    background:var(--paper);
-    border:1px solid var(--gold-soft);
-    outline:1px solid var(--gold);
-    outline-offset:-12px;
-    padding:64px 36px 56px;
-    text-align:center;
-    position:relative;
+  .script{font-family:var(--script);font-weight:400}
+  :focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+
+  .corner{position:absolute;width:56px;height:56px;color:var(--maroon-hi);fill:none;stroke:currentColor;stroke-width:1}
+  .corner.tl{top:20px;left:20px}
+  .corner.tr{top:20px;right:20px;transform:scaleX(-1)}
+  .corner.bl{bottom:20px;left:20px;transform:scaleY(-1)}
+  .corner.br{bottom:20px;right:20px;transform:scale(-1,-1)}
+
+  .btn{
+    display:inline-flex;align-items:center;justify-content:center;gap:10px;
+    padding:15px 26px;min-height:50px;cursor:pointer;text-decoration:none;
+    font:600 .72rem var(--sans);letter-spacing:.24em;text-transform:uppercase;color:var(--ink);
+    border:1px solid var(--maroon-hi);background:transparent;transition:filter .2s,background .2s,transform .2s;
+  }
+  .btn:hover{background:color-mix(in srgb,var(--maroon) 40%,transparent)}
+  .btn:active{transform:scale(.98)}
+  .btn.primary{background:linear-gradient(135deg,var(--maroon-hi),var(--maroon));border-color:#b8304c}
+  .btn.primary:hover{filter:brightness(1.12)}
+  .btn.block{width:100%}
+
+  /* ---------- Gate ---------- */
+  #gate{
+    width:min(560px,calc(100% - 32px));margin:max(24px,env(safe-area-inset-top)) auto max(40px,env(safe-area-inset-bottom));
+    min-height:min(640px,calc(100svh - 72px));
+    background:var(--panel);border:1px solid var(--line);outline:1px solid var(--maroon);outline-offset:-12px;
     box-shadow:0 20px 60px var(--shadow);
+    padding:72px 36px 112px;text-align:center;position:relative;
+    display:flex;flex-direction:column;align-items:center;justify-content:center;
     animation:rise .8s ease both;
   }
-  @keyframes rise{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
-
-  .corner{position:absolute;width:56px;height:56px;color:var(--gold);fill:none;stroke:currentColor;stroke-width:1}
-  .corner.tl{top:22px;left:22px}
-  .corner.tr{top:22px;right:22px;transform:scaleX(-1)}
-  .corner.bl{bottom:22px;left:22px;transform:scaleY(-1)}
-  .corner.br{bottom:22px;right:22px;transform:scale(-1,-1)}
-
-  .serif{font-family:'Cormorant Garamond',Georgia,serif}
-  .script{font-family:'Great Vibes','Snell Roundhand',cursive;font-weight:400}
-  .bismillah{font-family:'Cormorant Garamond',Georgia,serif;font-style:italic;color:var(--rose);font-size:.95rem;letter-spacing:.06em;margin:0 18px 28px}
-  .eyebrow{font-size:.72rem;letter-spacing:.35em;text-transform:uppercase;color:var(--muted)}
-  .lead{font-family:'Cormorant Garamond',Georgia,serif;font-size:1.15rem;line-height:1.7;margin:18px auto 0;max-width:380px}
-
-  .names{color:var(--rose);line-height:1.05;margin:30px 0 10px}
-  .names .n{display:block;font-size:clamp(3.4rem,15vw,5rem)}
-  .names .amp{display:block;font-family:'Cormorant Garamond',Georgia,serif;font-style:italic;font-size:1.6rem;color:var(--muted);margin:2px 0}
-
-  .divider{display:flex;align-items:center;gap:14px;justify-content:center;margin:34px auto;color:var(--gold);max-width:260px}
-  .divider::before,.divider::after{content:"";flex:1;height:1px;background:linear-gradient(90deg,transparent,var(--gold))}
-  .divider::after{transform:scaleX(-1)}
-
-  /* ---------- Gate (name entry) ---------- */
-  #gate{
-    min-height:min(620px,calc(100svh - 72px));
-    display:flex;flex-direction:column;align-items:center;justify-content:center;
-    padding-block:72px 112px;
-  }
   #gate.leaving{animation:fade .35s ease forwards}
+  @keyframes rise{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
   @keyframes fade{to{opacity:0;transform:translateY(-10px)}}
-  .monogram{font-size:clamp(4rem,22vw,6rem);color:var(--rose);line-height:1;margin:6px 0 4px}
-  .monogram i{font-family:'Cormorant Garamond',Georgia,serif;font-size:.4em;color:var(--muted);margin:0 .15em}
-  .gate-title{font-family:'Cormorant Garamond',Georgia,serif;font-size:1.9rem;font-weight:600;margin-top:10px}
-  .gate-sub{font-family:'Cormorant Garamond',Georgia,serif;font-size:1.15rem;line-height:1.6;color:var(--muted);margin-top:8px;max-width:300px}
+  .bismillah{font-family:var(--serif);font-style:italic;color:var(--accent);font-size:.95rem;margin:0 18px 28px;line-height:1.5}
+  .eyebrow{font:600 .68rem var(--sans);letter-spacing:.35em;text-transform:uppercase;color:var(--accent)}
+  .monogram{font-size:clamp(4rem,22vw,6rem);color:var(--accent);line-height:1;margin:8px 0 4px}
+  .monogram i{font-family:var(--serif);font-size:.4em;color:var(--muted);margin:0 .15em}
+  .gate-title{font-family:var(--serif);font-size:1.9rem;font-weight:600;margin-top:10px}
+  .gate-sub{color:var(--muted);margin-top:8px;max-width:300px;font-size:.95rem}
   #nameForm{width:100%;max-width:340px;margin-top:30px;display:grid;gap:14px}
-  #nameForm label{font-size:.7rem;letter-spacing:.3em;text-transform:uppercase;color:var(--muted)}
-  #guestName{
-    width:100%;padding:14px;text-align:center;
-    font:400 1.2rem 'Cormorant Garamond',Georgia,serif;color:var(--ink);background:transparent;
-    border:1px solid var(--gold-soft);border-radius:0;
+  #nameForm label{font:600 .66rem var(--sans);letter-spacing:.3em;text-transform:uppercase;color:var(--muted)}
+  .field{
+    width:100%;padding:14px;font:400 1rem var(--sans);color:var(--ink);background:transparent;
+    border:1px solid var(--line);border-radius:0;
   }
-  #guestName::placeholder{color:var(--muted)}
-  #guestName:focus-visible{outline:1px solid var(--gold);border-color:var(--gold)}
-  .btn,#nameForm button{
-    display:inline-block;padding:14px 28px;
-    border:1px solid var(--gold);background:transparent;color:var(--ink);cursor:pointer;text-decoration:none;
-    font:400 .72rem 'Jost',system-ui,sans-serif;letter-spacing:.3em;text-transform:uppercase;
-    transition:background .25s,color .25s;
+  .field::placeholder{color:var(--muted);opacity:.8}
+  .field:focus-visible{border-color:var(--accent);outline:1px solid var(--accent);outline-offset:0}
+  #guestName{text-align:center;font:400 1.15rem var(--serif)}
+
+  /* ---------- Floating bar ---------- */
+  .nav{
+    position:fixed;z-index:20;
+    top:max(12px,env(safe-area-inset-top,0px));
+    left:max(14px,env(safe-area-inset-left,0px));right:max(14px,env(safe-area-inset-right,0px));
+    max-width:720px;margin-inline:auto;
   }
-  .btn:hover,.btn:focus-visible,#nameForm button:hover,#nameForm button:focus-visible{background:var(--gold);color:var(--ink);outline:none}
-  .btn{margin-top:18px}
+  .nav-bar{
+    display:flex;align-items:center;justify-content:space-between;gap:12px;
+    padding:10px 12px 10px 24px;border-radius:30px;
+    background:color-mix(in srgb,var(--panel) 86%,transparent);
+    -webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);
+    border:1px solid var(--line);box-shadow:0 8px 30px var(--shadow);
+  }
+  .mono{font-family:var(--serif);font-size:1.6rem;letter-spacing:.05em;color:inherit;text-decoration:none}
+  .mono i{color:var(--accent);margin:0 .35em;font-size:1.2rem}
+  .burger{width:46px;height:46px;display:grid;place-items:center;background:transparent;color:var(--ink);border:1px solid var(--maroon);cursor:pointer}
+  .burger svg{width:22px;height:22px;stroke:currentColor;stroke-width:1.5;fill:none;stroke-linecap:round}
+  .menu{
+    margin-top:8px;padding:8px;display:grid;
+    background:var(--panel);border:1px solid var(--line);border-radius:22px;
+    box-shadow:0 12px 40px var(--shadow);
+  }
+  .menu a,.menu button{
+    display:block;width:100%;text-align:left;padding:14px 18px;color:var(--ink);text-decoration:none;
+    font:400 .78rem var(--sans);letter-spacing:.22em;text-transform:uppercase;background:none;border:0;cursor:pointer;border-radius:14px;
+  }
+  .menu a:hover,.menu button:hover{background:color-mix(in srgb,var(--maroon) 35%,transparent)}
+  .menu .sep{height:1px;background:var(--line);margin:6px 10px}
 
-  /* ---------- Invitation ---------- */
-  .dear{font-size:2.3rem;color:var(--rose);display:block;overflow-wrap:anywhere;margin:-4px 0 26px;line-height:1.2}
-  .date{font-family:'Cormorant Garamond',Georgia,serif;font-size:1.9rem;font-weight:600;letter-spacing:.03em}
-  .date small{display:block;font-family:'Jost',system-ui,sans-serif;font-weight:300;font-size:.72rem;letter-spacing:.35em;text-transform:uppercase;color:var(--muted);margin-top:6px}
+  /* ---------- Sections ---------- */
+  .wrap{width:100%;max-width:720px;margin-inline:auto;padding-inline:20px}
+  section{scroll-margin-top:96px}
+  .sec{padding-block:72px 8px;text-align:center}
+  .sec h2{font:400 clamp(2rem,8vw,2.8rem)/1.15 var(--serif);margin-top:12px;text-wrap:balance}
+  .sec h2 em{font-style:italic;color:var(--accent)}
+  .rule{width:150px;height:1px;margin:22px auto;background:linear-gradient(90deg,transparent,var(--maroon-hi),transparent)}
+  .lead{color:var(--muted);max-width:440px;margin-inline:auto}
+  .card{
+    position:relative;margin-top:34px;padding:34px 24px;text-align:center;
+    background:linear-gradient(180deg,var(--panel-2),var(--panel));
+    border:1px solid var(--line);border-radius:26px;
+  }
 
-  .countdown{display:flex;justify-content:center;gap:12px;margin:30px 0 4px}
-  .countdown div{min-width:64px;padding:10px 6px;border:1px solid var(--gold-soft)}
-  .countdown b{display:block;font-family:'Cormorant Garamond',Georgia,serif;font-size:1.7rem;font-weight:600;color:var(--rose);font-variant-numeric:tabular-nums}
-  .countdown span{font-size:.6rem;letter-spacing:.25em;text-transform:uppercase;color:var(--muted)}
+  .hero{padding-top:max(120px,calc(env(safe-area-inset-top,0px) + 108px));padding-bottom:20px}
+  .frame{position:relative;padding:60px 26px 56px;text-align:center;background:var(--panel);border:1px solid var(--line);outline:1px solid var(--maroon);outline-offset:-12px;box-shadow:0 20px 60px var(--shadow)}
+  .dear{font-size:2.3rem;color:var(--accent);display:block;overflow-wrap:anywhere;margin:0 0 22px;line-height:1.2}
+  .invited{color:var(--muted);font-size:.95rem}
+  .invited b{display:block;font:600 .68rem var(--sans);letter-spacing:.35em;text-transform:uppercase;color:var(--accent);margin-bottom:6px}
+  .names{color:var(--ink);line-height:1.05;margin:20px 0 6px;font-weight:400}
+  .names .n{display:block;font-size:clamp(3.4rem,16vw,5.2rem);color:var(--accent)}
+  .names .amp{display:block;font-family:var(--serif);font-style:italic;font-size:1.5rem;color:var(--muted);margin:2px 0}
+  .parents{display:grid;gap:18px;margin:22px auto 0;max-width:380px}
+  .parents p{font-family:var(--serif);font-size:1rem;line-height:1.5;color:var(--muted)}
+  .parents em{display:block}
+  .parents b{display:block;font-weight:600;font-size:1.15rem;color:var(--ink);margin-top:2px}
+  .parents .who{font:600 .62rem var(--sans);letter-spacing:.3em;text-transform:uppercase;color:var(--accent);display:block;margin-bottom:4px}
+  .diamond{display:flex;align-items:center;gap:14px;justify-content:center;margin:30px auto;color:var(--maroon-hi);max-width:260px;font-size:.8rem}
+  .diamond::before,.diamond::after{content:"";flex:1;height:1px;background:linear-gradient(90deg,transparent,var(--maroon-hi))}
+  .diamond::after{transform:scaleX(-1)}
+  .date{font:600 .82rem var(--sans);letter-spacing:.3em;text-transform:uppercase;color:var(--accent)}
+  .date-sub{font-family:var(--serif);font-size:1.15rem;margin-top:8px}
 
-  h2{font-family:'Cormorant Garamond',Georgia,serif;font-weight:600;font-size:1.5rem;letter-spacing:.06em;margin-bottom:18px}
-  .event{padding:18px 14px;border:1px solid var(--gold-soft)}
-  .event h3{font-family:'Cormorant Garamond',Georgia,serif;font-size:1.5rem;font-weight:600;color:var(--rose)}
-  .event p{margin-top:6px;line-height:1.6;font-size:.95rem}
-  .event .t{color:var(--muted);font-size:.8rem;letter-spacing:.2em;text-transform:uppercase;margin-top:8px}
+  .countdown{display:flex;justify-content:center;gap:10px;margin:26px 0 6px}
+  .countdown div{min-width:66px;padding:12px 6px;border:1px solid var(--line);background:var(--panel-2)}
+  .countdown b{display:block;font:600 1.6rem var(--serif);color:var(--accent);font-variant-numeric:tabular-nums}
+  .countdown span{font:400 .58rem var(--sans);letter-spacing:.22em;text-transform:uppercase;color:var(--muted)}
+  .hero-actions{display:grid;gap:12px;margin-top:30px}
 
-  .parents{display:grid;gap:18px;margin:6px auto 0;max-width:380px}
-  .parents p{font-family:'Cormorant Garamond',Georgia,serif;font-size:1.1rem;line-height:1.5;color:var(--muted)}
-  .parents em{display:block;font-size:1rem}
-  .parents b{display:block;font-weight:600;font-size:1.25rem;color:var(--ink);margin-top:2px}
-  .parents .who{font-family:'Jost',system-ui,sans-serif;font-weight:400;font-size:.7rem;letter-spacing:.3em;text-transform:uppercase;color:var(--rose);display:block;margin-bottom:4px}
+  .tag{display:inline-flex;align-items:center;gap:12px;font:600 .7rem var(--sans);letter-spacing:.3em;text-transform:uppercase;color:var(--accent)}
+  .tag .ico{width:46px;height:46px;border:1px solid var(--maroon);border-radius:50%;display:grid;place-items:center;font-size:1.1rem}
+  .card h3{font:400 1.9rem/1.2 var(--serif);margin-top:22px}
+  .card p{color:var(--muted)}
+  .card .big{color:var(--ink);font-size:1.05rem;margin-top:10px}
 
-  .timeline{list-style:none;border:1px solid var(--gold-soft);text-align:left}
-  .timeline li{display:grid;grid-template-columns:7rem minmax(0,1fr);gap:12px;align-items:baseline;padding:15px 16px}
-  .timeline li+li{border-top:1px solid var(--gold-soft)}
-  .timeline time{font-family:'Cormorant Garamond',Georgia,serif;font-weight:600;font-size:1.25rem;color:var(--rose);font-variant-numeric:tabular-nums}
-  .timeline span{font-family:'Cormorant Garamond',Georgia,serif;font-size:1.35rem}
-  .tl-note{margin-top:12px;font-size:.72rem;letter-spacing:.25em;text-transform:uppercase;color:var(--muted)}
-  .venue p{line-height:1.7}
+  .timeline{list-style:none;margin-top:6px;text-align:left;border-top:1px solid var(--line)}
+  .timeline li{display:grid;grid-template-columns:7.2rem minmax(0,1fr);gap:12px;align-items:baseline;padding:16px 4px;border-bottom:1px solid var(--line)}
+  .timeline time{font:600 1.05rem var(--serif);color:var(--accent);font-variant-numeric:tabular-nums}
+  .timeline span{font:400 1.2rem var(--serif)}
+  .tl-note{margin-top:16px;font:400 .7rem var(--sans);letter-spacing:.24em;text-transform:uppercase;color:var(--muted)}
 
-  .closing{font-family:'Cormorant Garamond',Georgia,serif;font-style:italic;font-size:1.2rem;line-height:1.7;color:var(--muted);max-width:360px;margin:0 auto}
-  .sign{font-size:2.2rem;color:var(--rose);margin-top:14px}
-  .change{margin-top:26px;background:none;border:0;padding:6px;color:var(--muted);cursor:pointer;
-    font:400 .68rem 'Jost',system-ui,sans-serif;letter-spacing:.2em;text-transform:uppercase;text-decoration:underline}
+  .palette{display:flex;flex-wrap:wrap;gap:12px 22px;justify-content:center;margin-top:20px;padding-top:22px;border-top:1px solid var(--line)}
+  .palette small{flex-basis:100%;font:600 .62rem var(--sans);letter-spacing:.3em;text-transform:uppercase;color:var(--accent)}
+  .sw{display:inline-flex;align-items:center;gap:10px;font-size:.9rem;color:var(--muted)}
+  .sw i{width:26px;height:26px;border-radius:50%;border:1px solid #6b4a50;display:inline-block}
 
+  .faq{display:grid;gap:14px;margin-top:34px;text-align:left}
+  .faq details{background:linear-gradient(180deg,var(--panel-2),var(--panel));border:1px solid var(--line);border-radius:26px;overflow:hidden}
+  .faq summary{list-style:none;cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:22px 24px;font:400 1.15rem/1.35 var(--serif)}
+  .faq summary::-webkit-details-marker{display:none}
+  .faq summary::after{content:"+";flex:none;width:38px;height:38px;border:1px solid var(--maroon-hi);border-radius:50%;display:grid;place-items:center;color:var(--accent);font:300 1.4rem var(--sans);line-height:1}
+  .faq details[open] summary::after{content:"\2013"}
+  .faq details p{padding:0 24px 24px;color:var(--muted)}
+
+  form.rsvp{margin-top:34px;padding:30px 22px;text-align:left;background:linear-gradient(180deg,var(--panel-2),var(--panel));border:1px solid var(--line);outline:1px solid var(--line);outline-offset:-8px}
+  .rsvp label.lbl,.rsvp legend{display:block;font:600 .66rem var(--sans);letter-spacing:.3em;text-transform:uppercase;color:var(--muted);margin-bottom:10px}
+  .rsvp fieldset{border:0;margin-top:26px;min-width:0}
+  .rsvp .row{margin-top:20px}
+  .rsvp legend{text-align:center;color:var(--accent);width:100%;margin-bottom:14px}
+  .opt{display:grid;gap:12px}
+  .opt>div,.cnt>div{position:relative}
+  .opt input,.cnt input{position:absolute;opacity:0;pointer-events:none}
+  .opt label{display:block;text-align:center;padding:18px 12px;border:1px solid var(--line);background:var(--panel);cursor:pointer;transition:background .2s,border-color .2s}
+  .opt label b{display:block;font:400 1.15rem var(--serif);color:var(--ink)}
+  .opt label span{font-size:.8rem;color:var(--muted)}
+  .opt input:checked+label{background:linear-gradient(135deg,var(--maroon-hi),var(--maroon));border-color:#b8304c}
+  .opt input:checked+label span{color:var(--ink)}
+  .opt input:focus-visible+label,.cnt input:focus-visible+label{outline:2px solid var(--accent);outline-offset:2px}
+  .cnt{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:8px}
+  .cnt label{display:grid;place-items:center;height:52px;border:1px solid var(--line);background:var(--panel);cursor:pointer;font:600 1rem var(--sans);transition:background .2s}
+  .cnt input:checked+label{background:linear-gradient(135deg,var(--maroon-hi),var(--maroon));border-color:#b8304c}
+  textarea.field{min-height:110px;resize:vertical}
+  .opt-note{float:right;font-weight:300;letter-spacing:.2em}
+  .err{margin-top:14px;color:#ff9aa9;font-size:.9rem;text-align:center}
+  .done{margin-top:34px;padding:30px 22px;border:1px solid var(--maroon-hi);background:var(--panel);text-align:center}
+  .done h3{font:400 1.7rem var(--serif)}
+  .done p{color:var(--muted);margin-top:10px}
+
+  .share-card{position:relative;margin-top:34px;padding:42px 22px 30px;text-align:center;background:var(--panel);border:1px solid var(--line);outline:1px solid var(--maroon);outline-offset:-8px}
+  .rings{width:62px;height:34px;margin:0 auto 16px;color:var(--maroon-hi);display:block}
+  .share-card .names2{font:400 clamp(2rem,9vw,2.8rem)/1.15 var(--serif);margin:10px 0}
+  .share-card .names2 i{font-size:.6em;color:var(--accent)}
+  .share-actions{display:grid;gap:12px;margin-top:24px}
+  .status{margin-top:14px;color:var(--muted);font-size:.9rem;min-height:1.4em;overflow-wrap:anywhere}
+
+  footer{margin-top:90px;padding:80px 20px calc(110px + env(safe-area-inset-bottom,0px));text-align:center;background:linear-gradient(180deg,transparent,#000 40%)}
+  footer h2{font:400 clamp(2rem,8vw,2.6rem)/1.2 var(--serif);margin:14px auto 0;max-width:520px;text-wrap:balance}
+  footer .fn{font-family:var(--script);font-size:clamp(3rem,13vw,4.4rem);color:var(--accent);margin-top:34px;line-height:1.1}
+  .up{margin:34px auto 0;width:58px;height:58px;border-radius:50%;border:1px solid var(--maroon-hi);display:grid;place-items:center;color:var(--accent);background:none;cursor:pointer;font-size:1.5rem}
+  .made{margin-top:30px;font:400 .62rem var(--sans);letter-spacing:.3em;text-transform:uppercase;color:var(--muted)}
 
   .music{
-    position:fixed;z-index:5;
-    right:max(16px,env(safe-area-inset-right,0px));bottom:max(16px,env(safe-area-inset-bottom,0px));
-    width:46px;height:46px;border-radius:50%;
-    display:grid;place-items:center;cursor:pointer;
-    background:var(--paper);color:var(--rose);border:1px solid var(--gold);
-    box-shadow:0 6px 20px var(--shadow);transition:background .25s,color .25s;
+    position:fixed;z-index:15;
+    left:max(16px,env(safe-area-inset-left,0px));bottom:max(16px,env(safe-area-inset-bottom,0px));
+    width:52px;height:52px;border-radius:50%;display:grid;place-items:center;cursor:pointer;
+    background:var(--panel);color:var(--accent);border:1px solid var(--maroon-hi);box-shadow:0 6px 20px var(--shadow);
   }
-  .music:hover,.music:focus-visible{background:var(--gold);color:var(--ink);outline:none}
+  .music:hover{background:var(--maroon);color:var(--ink)}
   .music svg{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
-  .music .x{display:none}
-  .music.off .wave{display:none}
-  .music.off .x{display:block}
+  .music .x{display:none}.music.off .wave{display:none}.music.off .x{display:block}
+
+  .petals{position:fixed;inset:0;pointer-events:none;overflow:hidden;z-index:1}
+  .petals i{position:absolute;bottom:-30px;color:var(--maroon-hi);opacity:0;font-style:normal;animation:drift linear infinite}
+  @keyframes drift{0%{transform:translateY(0) rotate(0);opacity:0}10%{opacity:.28}90%{opacity:.28}100%{transform:translateY(-110vh) rotate(260deg);opacity:0}}
+  #invite>main,#invite>footer{position:relative;z-index:2}
 
   @media (max-width:420px){
-    .card{padding:60px 22px 48px}
-    #gate{padding-block:68px 104px}
-    .countdown{gap:8px}.countdown div{min-width:56px}
+    #gate{padding:68px 22px 104px}
+    .frame{padding:56px 18px 50px}
+    .countdown{gap:7px}.countdown div{min-width:58px}
+    .timeline li{grid-template-columns:6.4rem minmax(0,1fr)}
   }
+  @media (min-width:640px){.opt{grid-template-columns:repeat(3,1fr)}.hero-actions{grid-template-columns:1fr 1fr}.share-actions{grid-template-columns:1fr 1fr}}
   @media (prefers-reduced-motion:reduce){
-    .card,#gate.leaving{animation:none}html{scroll-behavior:auto}
+    html{scroll-behavior:auto}#gate,#gate.leaving{animation:none}.petals{display:none}
   }
 </style>
 </head>
@@ -168,7 +255,7 @@
 </svg>
 
 <!-- Step 1: enter your name -->
-<main class="card" id="gate">
+<main id="gate">
   <svg class="corner tl" aria-hidden="true"><use href="#corner"/></svg>
   <svg class="corner tr" aria-hidden="true"><use href="#corner"/></svg>
   <svg class="corner bl" aria-hidden="true"><use href="#corner"/></svg>
@@ -182,73 +269,218 @@
 
   <form id="nameForm" autocomplete="off">
     <label for="guestName">Your name</label>
-    <input id="guestName" name="guestName" type="text" maxlength="40" placeholder="Your name" autocapitalize="words" enterkeyhint="go" required>
-    <button type="submit">Open Invitation</button>
+    <input class="field" id="guestName" name="guestName" type="text" maxlength="40" placeholder="Your name" autocapitalize="words" enterkeyhint="go" required>
+    <button class="btn primary" type="submit">Open Invitation</button>
   </form>
 </main>
 
-<!-- Step 2: the invitation (shown after a name is entered) -->
-<main class="card" id="invite" hidden>
-  <svg class="corner tl" aria-hidden="true"><use href="#corner"/></svg>
-  <svg class="corner tr" aria-hidden="true"><use href="#corner"/></svg>
-  <svg class="corner bl" aria-hidden="true"><use href="#corner"/></svg>
-  <svg class="corner br" aria-hidden="true"><use href="#corner"/></svg>
+<!-- Step 2: the invitation -->
+<div id="invite" hidden>
+  <div class="petals" id="petals" aria-hidden="true"></div>
 
-  <p class="bismillah">In the name of Allah, the Most Gracious, the Most Merciful</p>
-  <span class="dear script" id="dear"></span>
-  <p class="eyebrow">You are cordially invited</p>
-  <p class="lead">to celebrate the wedding of</p>
+  <header class="nav" id="nav">
+    <div class="nav-bar">
+      <a class="mono" href="#home" aria-label="Mahnoor and Tahir, back to top">M<i>&amp;</i>T</a>
+      <button class="burger" id="burger" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="menu">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 7h18M3 12h18M3 17h18"/></svg>
+      </button>
+    </div>
+    <nav class="menu" id="menu" aria-label="Sections" hidden>
+      <a href="#home">Home</a>
+      <a href="#programme">Programme</a>
+      <a href="#venue">Venue</a>
+      <a href="#dress">Dress code</a>
+      <a href="#faq">Questions</a>
+      <a href="#rsvp">RSVP</a>
+      <a href="#share">Share</a>
+      <div class="sep"></div>
+      <button type="button" id="changeName">Change name</button>
+    </nav>
+  </header>
 
-  <h2 class="names script" style="font-size:inherit;letter-spacing:0;margin-bottom:10px">
-    <span class="n">Mahnoor</span>
-    <span class="amp">&amp;</span>
-    <span class="n">Tahir</span>
-  </h2>
+  <main>
+    <section id="home" class="hero wrap">
+      <div class="frame">
+        <svg class="corner tl" aria-hidden="true"><use href="#corner"/></svg>
+        <svg class="corner tr" aria-hidden="true"><use href="#corner"/></svg>
+        <svg class="corner bl" aria-hidden="true"><use href="#corner"/></svg>
+        <svg class="corner br" aria-hidden="true"><use href="#corner"/></svg>
 
-  <div class="parents">
-    <p><span class="who">The bride</span><em>Mahnoor, daughter of</em><b>Mr &amp; Mrs Sheikh Aurangzeb Iqbal</b></p>
-    <p><span class="who">The groom</span><em>Tahir, son of</em><b>Mr &amp; Mrs Ghulam Muhammad Hussain</b></p>
-  </div>
+        <p class="bismillah">In the name of Allah, the Most Gracious, the Most Merciful</p>
+        <span class="dear script" id="dear"></span>
+        <p class="invited"><b>You are cordially invited</b>to celebrate the wedding of</p>
 
-  <div class="divider" aria-hidden="true">&#10086;</div>
+        <h1 class="names script">
+          <span class="n">Mahnoor</span>
+          <span class="amp">&amp;</span>
+          <span class="n">Tahir</span>
+        </h1>
 
-  <p class="date">Sunday, 29 November 2026<small>Save the date</small></p>
+        <div class="parents">
+          <p><span class="who">The bride</span><em>Mahnoor, daughter of</em><b>Mr &amp; Mrs Sheikh Aurangzeb Iqbal</b></p>
+          <p><span class="who">The groom</span><em>Tahir, son of</em><b>Mr &amp; Mrs Ghulam Muhammad Hussain</b></p>
+        </div>
 
-  <div class="countdown" id="countdown" role="timer" aria-label="Countdown to the Barat">
-    <div><b id="d">--</b><span>Days</span></div>
-    <div><b id="h">--</b><span>Hours</span></div>
-    <div><b id="m">--</b><span>Mins</span></div>
-    <div><b id="s">--</b><span>Secs</span></div>
-  </div>
+        <div class="diamond" aria-hidden="true">&#9670;</div>
 
-  <div class="divider" aria-hidden="true">&#10086;</div>
+        <p class="date">29 November 2026</p>
+        <p class="date-sub">Sunday · Barat from 11:00 AM</p>
 
-  <section>
-    <h2>Barat Programme</h2>
-    <ol class="timeline">
-      <li><time datetime="11:00">11:00 AM</time><span>Barat Arrival</span></li>
-      <li><time datetime="12:00">12:00 PM</time><span>Nikkah</span></li>
-      <li><time datetime="13:00">1:00 PM</time><span>Lunch</span></li>
-      <li><time datetime="14:00">2:00 PM</time><span>Ruqsati</span></li>
-    </ol>
-    <p class="tl-note">Concludes by 3:00 PM</p>
-  </section>
+        <div class="countdown" id="countdown" role="timer" aria-label="Countdown to the Barat">
+          <div><b id="d">--</b><span>Days</span></div>
+          <div><b id="h">--</b><span>Hours</span></div>
+          <div><b id="m">--</b><span>Mins</span></div>
+          <div><b id="s">--</b><span>Secs</span></div>
+        </div>
 
-  <div class="divider" aria-hidden="true">&#10086;</div>
+        <div class="hero-actions">
+          <a class="btn primary" href="#rsvp">RSVP</a>
+          <a class="btn" href="#venue">View venue</a>
+        </div>
+      </div>
+    </section>
 
-  <section class="venue">
-    <h2>Venue</h2>
-    <p>Divine Marque<br>East Canal, Lahore</p>
-    <a class="btn" href="https://www.google.com/maps/search/?api=1&query=Divine+Marque+East+Canal+Lahore" target="_blank" rel="noopener">View Map</a>
-  </section>
+    <section id="programme" class="sec wrap">
+      <p class="eyebrow">The day</p>
+      <h2>Barat <em>Programme</em></h2>
+      <div class="rule"></div>
+      <p class="lead">Sunday, 29 November 2026</p>
+      <div class="card">
+        <ol class="timeline">
+          <li><time datetime="11:00">11:00 AM</time><span>Barat Arrival</span></li>
+          <li><time datetime="12:00">12:00 PM</time><span>Nikkah</span></li>
+          <li><time datetime="13:00">1:00 PM</time><span>Lunch</span></li>
+          <li><time datetime="14:00">2:00 PM</time><span>Ruqsati</span></li>
+        </ol>
+        <p class="tl-note">Concludes by 3:00 PM</p>
+      </div>
+    </section>
 
-  <div class="divider" aria-hidden="true">&#10086;</div>
+    <section id="venue" class="sec wrap">
+      <p class="eyebrow">Celebrate with us</p>
+      <h2>Wedding <em>Venue</em></h2>
+      <div class="rule"></div>
+      <p class="lead">We look forward to welcoming you.</p>
+      <div class="card">
+        <span class="tag"><span class="ico" aria-hidden="true">&#9670;</span>Barat</span>
+        <h3>Divine Marque</h3>
+        <p class="big">East Canal, Lahore</p>
+        <p style="margin-top:6px">Sunday, 29 November 2026 · 11:00 AM</p>
+        <a class="btn primary" style="margin-top:26px" href="https://www.google.com/maps/search/?api=1&query=Divine+Marque+East+Canal+Lahore" target="_blank" rel="noopener">Open in Maps</a>
+      </div>
+    </section>
 
-  <p class="closing">Your presence and prayers will make our day truly special. We look forward to celebrating with you.</p>
-  <p class="sign script">Mahnoor &amp; Tahir</p>
+    <section id="dress" class="sec wrap">
+      <p class="eyebrow">What to wear</p>
+      <h2>Dress <em>Code</em></h2>
+      <div class="rule"></div>
+      <div class="card">
+        <span class="tag"><span class="ico" aria-hidden="true">&#10022;</span>Barat</span>
+        <h3>Formal &amp; Elegant</h3>
+        <p class="big">Traditional formal attire. The bride and groom will be in maroon and black.</p>
+        <div class="palette">
+          <small>Suggested palette</small>
+          <span class="sw"><i style="background:#7d1228"></i>Maroon</span>
+          <span class="sw"><i style="background:#0b0708"></i>Black</span>
+          <span class="sw"><i style="background:#efe3d3"></i>Ivory</span>
+        </div>
+      </div>
+    </section>
 
-  <button class="change" id="changeName" type="button">Not you? Change name</button>
-</main>
+    <section id="faq" class="sec wrap">
+      <p class="eyebrow">Everything you need to know</p>
+      <h2>Frequently Asked <em>Questions</em></h2>
+      <div class="rule"></div>
+      <div class="faq">
+        <details name="faq" open><summary>What time should we arrive?</summary><p>The Barat arrives at 11:00 AM. Please arrive a little earlier so you can be seated before the Nikkah at 12:00 PM.</p></details>
+        <details name="faq"><summary>Where is the wedding being held?</summary><p>At Divine Marque, East Canal, Lahore. Use the “Open in Maps” button in the venue section for directions.</p></details>
+        <details name="faq"><summary>What is the dress code?</summary><p>Elegant traditional formal attire. Maroon, black and ivory suit the occasion well.</p></details>
+        <details name="faq"><summary>How do I confirm my attendance?</summary><p>Fill in the RSVP form below. It opens a WhatsApp message to send to the family.</p></details>
+      </div>
+    </section>
+
+    <section id="rsvp" class="sec wrap">
+      <p class="eyebrow">RSVP</p>
+      <h2>Will you celebrate <em>with us?</em></h2>
+      <div class="rule"></div>
+      <p class="lead">Your presence would make our special day even more beautiful.</p>
+
+      <form class="rsvp" id="rsvpForm" novalidate>
+        <div>
+          <label class="lbl" for="rName">Your name</label>
+          <input class="field" id="rName" name="rName" type="text" maxlength="40" placeholder="Enter your full name" autocomplete="name" required>
+        </div>
+        <div class="row">
+          <label class="lbl" for="rPhone">WhatsApp number <span class="opt-note">Optional</span></label>
+          <input class="field" id="rPhone" name="rPhone" type="tel" inputmode="tel" maxlength="20" placeholder="03XXXXXXXXX" autocomplete="tel">
+        </div>
+
+        <fieldset>
+          <legend>Will you join us?</legend>
+          <div class="opt">
+            <div><input type="radio" name="att" id="att1" value="Joyfully Accept"><label for="att1"><b>Joyfully Accept</b><span>I will be there</span></label></div>
+            <div><input type="radio" name="att" id="att2" value="Maybe"><label for="att2"><b>Maybe</b><span>I will confirm soon</span></label></div>
+            <div><input type="radio" name="att" id="att3" value="Regretfully Decline"><label for="att3"><b>Regretfully Decline</b><span>Unable to attend</span></label></div>
+          </div>
+        </fieldset>
+
+        <fieldset id="guestsBox">
+          <legend>Number of guests</legend>
+          <div class="cnt">
+            <div><input type="radio" name="cnt" id="c1" value="1" checked><label for="c1">1</label></div>
+            <div><input type="radio" name="cnt" id="c2" value="2"><label for="c2">2</label></div>
+            <div><input type="radio" name="cnt" id="c3" value="3"><label for="c3">3</label></div>
+            <div><input type="radio" name="cnt" id="c4" value="4"><label for="c4">4</label></div>
+            <div><input type="radio" name="cnt" id="c5" value="5"><label for="c5">5</label></div>
+          </div>
+        </fieldset>
+
+        <div class="row" style="margin-top:26px">
+          <label class="lbl" for="rMsg">Message for the couple <span class="opt-note">Optional</span></label>
+          <textarea class="field" id="rMsg" name="rMsg" maxlength="300" placeholder="Share your wishes with us"></textarea>
+        </div>
+
+        <p class="err" id="rErr" role="alert" hidden></p>
+        <button class="btn primary block" style="margin-top:24px" type="submit">Send my RSVP</button>
+      </form>
+
+      <div class="done" id="rDone" hidden aria-live="polite">
+        <h3 id="rDoneTitle">Thank you</h3>
+        <p>Your RSVP message is ready in WhatsApp. Tap <b>Send</b> there to confirm it with the family.</p>
+        <button class="btn" style="margin-top:20px" type="button" id="rAgain">Edit my response</button>
+      </div>
+    </section>
+
+    <section id="share" class="sec wrap">
+      <p class="eyebrow">Share the celebration</p>
+      <h2>Share our <em>Invitation</em></h2>
+      <div class="rule"></div>
+      <p class="lead">Share our wedding invitation with your family and loved ones.</p>
+      <div class="share-card">
+        <svg class="rings" viewBox="0 0 62 34" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><circle cx="21" cy="17" r="14"/><circle cx="41" cy="17" r="14"/></svg>
+        <p class="eyebrow">You are invited</p>
+        <p class="names2">Mahnoor <i>&amp;</i> Tahir</p>
+        <p class="date">29 November 2026</p>
+        <p class="lead" style="margin-top:12px">Divine Marque, East Canal, Lahore</p>
+        <div class="share-actions">
+          <button class="btn primary" type="button" id="shareWa">Share on WhatsApp</button>
+          <button class="btn" type="button" id="shareAny">Share invitation</button>
+        </div>
+        <p class="status" id="shareStatus" aria-live="polite"></p>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p class="eyebrow">With love and gratitude</p>
+    <h2>Thank you for being part of our story</h2>
+    <p class="lead" style="margin-top:18px">Your love, blessings and presence will make our celebration even more beautiful.</p>
+    <p class="fn">Mahnoor &amp; Tahir</p>
+    <p class="date" style="margin-top:10px">29 November 2026</p>
+    <button class="up" type="button" id="toTop" aria-label="Back to top">&#8593;</button>
+    <p class="made">Made with love for our forever</p>
+  </footer>
+</div>
 
 <audio id="song" src="song.mp3" preload="none" loop></audio>
 <button class="music" id="musicBtn" type="button" aria-label="Mute music" aria-pressed="true" hidden>
@@ -261,92 +493,150 @@
 
 <script>
 (function(){
-  // Edit this to change the countdown target (local time).
-  var WEDDING = new Date('2026-11-29T11:00:00');
-  var KEY = 'wedding-guest-name';
-  var $ = function(id){ return document.getElementById(id); };
+  // ---- Edit these ----
+  var WEDDING = new Date('2026-11-29T11:00:00');   // countdown target (local time)
+  var RSVP_WHATSAPP = '';                           // e.g. '923001234567' (country code, no + or spaces). Empty = guest picks the contact.
+  // --------------------
+  var KEY='wedding-guest-name';
+  var $=function(id){return document.getElementById(id)};
   var gate=$('gate'), invite=$('invite'), form=$('nameForm'), input=$('guestName'), dear=$('dear');
-  var timer=null;
-  var song=$('song'), mbtn=$('musicBtn'), wantMusic=false, fadeT=null;
+  var song=$('song'), mbtn=$('musicBtn'), wantMusic=false, fadeT=null, timer=null;
 
-  function clean(v){ return String(v||'').replace(/\s+/g,' ').trim().slice(0,40); }
+  function clean(v){return String(v||'').replace(/\s+/g,' ').trim().slice(0,40)}
+
+  /* countdown */
   function tick(){
-    var s = Math.floor((WEDDING - new Date())/1000);
-    if (s <= 0){ $('countdown').hidden = true; clearInterval(timer); timer=null; return; }
-    $('d').textContent = Math.floor(s/86400);
-    $('h').textContent = String(Math.floor(s%86400/3600)).padStart(2,'0');
-    $('m').textContent = String(Math.floor(s%3600/60)).padStart(2,'0');
-    $('s').textContent = String(s%60).padStart(2,'0');
+    var s=Math.floor((WEDDING-new Date())/1000);
+    if(s<=0){$('countdown').hidden=true;clearInterval(timer);timer=null;return}
+    $('d').textContent=Math.floor(s/86400);
+    $('h').textContent=String(Math.floor(s%86400/3600)).padStart(2,'0');
+    $('m').textContent=String(Math.floor(s%3600/60)).padStart(2,'0');
+    $('s').textContent=String(s%60).padStart(2,'0');
   }
-  function startTimer(){ tick(); if(!timer) timer=setInterval(tick,1000); }
-  function stopTimer(){ clearInterval(timer); timer=null; }
+  function startTimer(){tick();if(!timer)timer=setInterval(tick,1000)}
+  function stopTimer(){clearInterval(timer);timer=null}
 
-
-  // Background song: starts when the guest taps "Open Invitation" (a tap is required for audio to play).
-  function setBtn(on){
-    mbtn.hidden=false; mbtn.classList.toggle('off',!on);
-    mbtn.setAttribute('aria-pressed',String(on));
-    mbtn.setAttribute('aria-label',on?'Mute music':'Play music');
-  }
+  /* music */
+  function setBtn(on){mbtn.hidden=false;mbtn.classList.toggle('off',!on);mbtn.setAttribute('aria-pressed',String(on));mbtn.setAttribute('aria-label',on?'Mute music':'Play music')}
   function fadeTo(v,ms){
-    clearInterval(fadeT);
-    var step=(v-song.volume)/(ms/50);
+    clearInterval(fadeT);var step=(v-song.volume)/(ms/50);
     fadeT=setInterval(function(){
       var n=song.volume+step;
-      if((step>0&&n>=v)||(step<=0&&n<=v)){ song.volume=v; clearInterval(fadeT); if(v===0) song.pause(); }
+      if((step>0&&n>=v)||(step<=0&&n<=v)){song.volume=v;clearInterval(fadeT);if(v===0)song.pause()}
       else song.volume=Math.max(0,Math.min(1,n));
     },50);
   }
   function playMusic(){
-    wantMusic=true; song.volume=0;
-    var pr=song.play();
-    if(pr&&pr.then) pr.then(function(){ fadeTo(.6,2500); setBtn(true); })
-                      .catch(function(){ if(!song.error) setBtn(false); });
+    wantMusic=true;song.volume=0;var pr=song.play();
+    if(pr&&pr.then)pr.then(function(){fadeTo(.6,2500);setBtn(true)}).catch(function(){if(!song.error)setBtn(false)});
   }
-  function stopMusic(){ wantMusic=false; clearInterval(fadeT); song.pause(); mbtn.hidden=true; }
-  song.addEventListener('error',function(){ wantMusic=false; mbtn.hidden=true; });
+  function stopMusic(){wantMusic=false;clearInterval(fadeT);song.pause();mbtn.hidden=true}
+  song.addEventListener('error',function(){wantMusic=false;mbtn.hidden=true});
   mbtn.addEventListener('click',function(){
-    if(song.paused){ playMusic(); } else { wantMusic=false; fadeTo(0,400); setBtn(false); }
+    if(song.paused){playMusic()}else{wantMusic=false;fadeTo(0,400);setBtn(false)}
   });
 
+  /* petals */
+  (function(){
+    var box=$('petals');
+    for(var i=0;i<9;i++){
+      var p=document.createElement('i');p.textContent='✿';
+      p.style.left=(5+i*11)+'%';p.style.fontSize=(10+(i%4)*5)+'px';
+      p.style.animationDuration=(16+(i*3)%11)+'s';p.style.animationDelay=(-i*2.3)+'s';
+      box.appendChild(p);
+    }
+  })();
+
+  /* open / back */
   function open(name){
-    dear.textContent = 'Dear ' + name + ',';
-    document.title = name + ', you are invited – Mahnoor & Tahir';
+    dear.textContent='Dear '+name+',';
+    $('rName').value=name;
+    document.title=name+', you are invited – Mahnoor & Tahir';
     gate.classList.add('leaving');
     setTimeout(function(){
-      gate.hidden = true; gate.classList.remove('leaving');
-      invite.hidden = false;
-      window.scrollTo(0,0);
-      startTimer();
-    }, matchMedia('(prefers-reduced-motion: reduce)').matches ? 0 : 320);
+      gate.hidden=true;gate.classList.remove('leaving');
+      invite.hidden=false;window.scrollTo(0,0);startTimer();
+    },matchMedia('(prefers-reduced-motion: reduce)').matches?0:320);
   }
   function back(){
-    stopTimer(); stopMusic();
-    invite.hidden = true; gate.hidden = false;
-    document.title = 'Mahnoor & Tahir – Wedding Invitation';
-    input.select(); window.scrollTo(0,0);
+    stopTimer();stopMusic();closeMenu();
+    invite.hidden=true;gate.hidden=false;
+    document.title='Mahnoor & Tahir – Wedding Invitation';
+    input.select();window.scrollTo(0,0);
   }
-
-  form.addEventListener('submit', function(e){
-    e.preventDefault();
-    var name = clean(input.value);
-    if (!name) return;
-    try{ localStorage.setItem(KEY, name); }catch(_){}
-    playMusic();
-    open(name);
+  form.addEventListener('submit',function(e){
+    e.preventDefault();var name=clean(input.value);if(!name)return;
+    try{localStorage.setItem(KEY,name)}catch(_){}
+    playMusic();open(name);
   });
-  $('changeName').addEventListener('click', back);
-  document.addEventListener('visibilitychange', function(){
-    if (invite.hidden) return;
-    if (document.hidden){ stopTimer(); if(!song.paused) song.pause(); }
-    else { startTimer(); if(wantMusic&&song.paused){ var r=song.play(); if(r&&r.catch) r.catch(function(){}); } }
+  document.addEventListener('visibilitychange',function(){
+    if(invite.hidden)return;
+    if(document.hidden){stopTimer();if(!song.paused)song.pause()}
+    else{startTimer();if(wantMusic&&song.paused){var r=song.play();if(r&&r.catch)r.catch(function(){})}}
   });
-
-  // Pre-fill the box (from ?name=Ayesha or a previous visit), but still wait for the tap.
   var pre='';
-  try{ pre = clean(new URLSearchParams(location.search).get('name')); }catch(_){}
-  if(!pre){ try{ pre = clean(localStorage.getItem(KEY)); }catch(_){} }
-  if(pre) input.value = pre;
+  try{pre=clean(new URLSearchParams(location.search).get('name'))}catch(_){}
+  if(!pre){try{pre=clean(localStorage.getItem(KEY))}catch(_){}}
+  if(pre)input.value=pre;
+
+  /* menu */
+  var burger=$('burger'), menu=$('menu');
+  function closeMenu(){menu.hidden=true;burger.setAttribute('aria-expanded','false');burger.setAttribute('aria-label','Open menu')}
+  burger.addEventListener('click',function(){
+    var show=menu.hidden;menu.hidden=!show;
+    burger.setAttribute('aria-expanded',String(show));burger.setAttribute('aria-label',show?'Close menu':'Open menu');
+  });
+  menu.addEventListener('click',function(e){if(e.target.closest('a'))closeMenu()});
+  $('changeName').addEventListener('click',back);
+  document.addEventListener('click',function(e){if(!menu.hidden&&!e.target.closest('#nav'))closeMenu()});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape')closeMenu()});
+  $('toTop').addEventListener('click',function(){window.scrollTo({top:0,behavior:'smooth'})});
+
+  /* RSVP -> WhatsApp message */
+  var rForm=$('rsvpForm'), rErr=$('rErr'), rDone=$('rDone');
+  function waLink(text){
+    var num=String(RSVP_WHATSAPP||'').replace(/\D/g,'');
+    return 'https://wa.me/'+num+'?text='+encodeURIComponent(text);
+  }
+  function openLink(url){
+    var a=document.createElement('a');a.href=url;a.target='_blank';a.rel='noopener';
+    document.body.appendChild(a);a.click();a.remove();
+  }
+  function syncGuests(){
+    var att=(rForm.querySelector('input[name=att]:checked')||{}).value;
+    $('guestsBox').hidden=(att==='Regretfully Decline');
+  }
+  rForm.addEventListener('change',syncGuests);
+  rForm.addEventListener('submit',function(e){
+    e.preventDefault();
+    var name=clean($('rName').value), att=(rForm.querySelector('input[name=att]:checked')||{}).value;
+    if(!name){rErr.textContent='Please enter your name.';rErr.hidden=false;$('rName').focus();return}
+    if(!att){rErr.textContent='Please choose whether you can join us.';rErr.hidden=false;return}
+    rErr.hidden=true;
+    var phone=clean($('rPhone').value), msg=$('rMsg').value.trim().slice(0,300);
+    var lines=['RSVP: Mahnoor & Tahir’s Barat, Sunday 29 November 2026','Name: '+name];
+    if(phone)lines.push('WhatsApp: '+phone);
+    lines.push('Response: '+att);
+    if(att!=='Regretfully Decline')lines.push('Guests: '+rForm.querySelector('input[name=cnt]:checked').value);
+    if(msg)lines.push('Message: '+msg);
+    openLink(waLink(lines.join('\n')));
+    $('rDoneTitle').textContent='Thank you, '+name;
+    rForm.hidden=true;rDone.hidden=false;
+  });
+  $('rAgain').addEventListener('click',function(){rDone.hidden=true;rForm.hidden=false;rForm.scrollIntoView({block:'start'})});
+
+  /* share */
+  var status=$('shareStatus');
+  function pageUrl(){try{return location.origin+location.pathname}catch(_){return location.href}}
+  var shareText='You are invited to the wedding of Mahnoor & Tahir — Sunday, 29 November 2026, Divine Marque, East Canal, Lahore.';
+  $('shareWa').addEventListener('click',function(){openLink('https://wa.me/?text='+encodeURIComponent(shareText+'\n'+pageUrl()))});
+  $('shareAny').addEventListener('click',function(){
+    var url=pageUrl();
+    if(navigator.share){navigator.share({title:'Mahnoor & Tahir',text:shareText,url:url}).catch(function(){})}
+    else if(navigator.clipboard&&navigator.clipboard.writeText){
+      navigator.clipboard.writeText(url).then(function(){status.textContent='Link copied.'},function(){status.textContent='Copy this link: '+url});
+    } else status.textContent='Copy this link: '+url;
+  });
 })();
 </script>
 </body>
