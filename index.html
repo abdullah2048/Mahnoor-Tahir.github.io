@@ -8,7 +8,7 @@
 <meta name="description" content="Mahnoor and Tahir invite you to their Barat on Sunday, 29 November 2026 from 11:00 AM at Divine Marque, East Canal, Lahore.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Amiri&family=Great+Vibes&family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Amiri&family=Aref+Ruqaa:wght@400;700&family=Cormorant+SC:wght@500;600&family=Great+Vibes&family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 <style>
   /* Layout: gate screen, then one long scrolling invitation with a floating bar, sections, RSVP and share. */
   :root{
@@ -78,7 +78,7 @@
     padding:max(24px,env(safe-area-inset-top)) max(14px,env(safe-area-inset-right)) max(24px,env(safe-area-inset-bottom)) max(14px,env(safe-area-inset-left));
   }
   .stage.leaving{animation:fade .45s ease forwards}
-  .box{position:relative;width:min(440px,100%);height:min(760px,100%)}
+  .box{position:relative;width:min(440px,100%,calc((100svh - 48px) / 1.85));height:min(760px,100%)}
 
   .doors{position:absolute;inset:0;z-index:2;border:2px solid var(--maroon-hi);border-radius:34px;overflow:hidden;background:#050304;box-shadow:0 20px 60px var(--shadow)}
   .door{
@@ -106,31 +106,55 @@
   .stage.opening .door.r{transform:translateX(112%)}
   .stage.opened .doors{visibility:hidden}
 
-  .cover{
     position:absolute;inset:0;z-index:1;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;
     padding:40px 26px;border:1px solid var(--maroon-hi);background:linear-gradient(180deg,rgba(20,10,13,.94),rgba(8,5,6,.97));
     visibility:hidden;opacity:0;transition:opacity .7s ease .25s;
   }
-  .cover .in{position:absolute;inset:14px;border:1px solid var(--line);pointer-events:none}
-  .cover::before,.cover::after{content:"";position:absolute;left:50%;width:1px;height:100vh;background:var(--maroon-hi);opacity:.7}
-  .cover::before{bottom:100%}.cover::after{top:100%}
   .stage.opening .cover{visibility:visible;opacity:1}
-  .c-welcome{display:flex;gap:14px;align-items:baseline;justify-content:center;flex-wrap:wrap;margin-top:22px}
-  .c-welcome span{font:600 .68rem var(--sans);letter-spacing:.4em;text-transform:uppercase;color:var(--muted)}
-  .c-welcome b{font-family:var(--script);font-weight:400;font-size:2.4rem;color:var(--accent);overflow-wrap:anywhere;line-height:1.2}
-  .c-inv{margin-top:18px;font:600 .68rem var(--sans);letter-spacing:.3em;text-transform:uppercase;color:var(--accent)}
-  .c-rule{width:150px;height:1px;margin:20px auto;background:linear-gradient(90deg,transparent,var(--maroon-hi),transparent)}
-  .c-lead{font:400 .7rem var(--sans);letter-spacing:.3em;text-transform:uppercase;color:var(--muted)}
-  .c-names{font:600 clamp(2.8rem,13vw,3.7rem)/1.05 var(--serif);margin-top:26px}
-  .c-names span{display:block}
-  .c-names em{font-style:italic;font-weight:400;color:var(--accent);margin-right:.12em}
-  .c-date{font:600 .78rem var(--sans);letter-spacing:.35em;color:var(--accent);margin-top:26px;text-transform:uppercase}
-  .cover .btn{margin-top:40px}
   @media (max-height:700px){
     .monogram{font-size:3.4rem;margin:6px 0}
     .door-content{padding:22px 26px}#nameForm{margin-top:18px}.ayah{margin-top:16px;font-size:1.5rem}
-    .c-names{margin-top:16px}.cover .btn{margin-top:26px}.c-date{margin-top:16px}
   }
+
+  /* ---------- Main invitation card (ivory, roses, calligraphy) ---------- */
+  .cover{
+    --ec:#6a1424; --ec-soft:#8a4a52; --ec-gold:#b8924f;
+    position:absolute;inset:0;z-index:1;container-type:inline-size;overflow:hidden;border-radius:4px;color:var(--ec);
+    background:
+      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='320' height='320'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.010 .022' numOctaves='3' seed='6' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .42 0 0 0 0 .24 0 0 0 0 .26 0 0 0 .30 0'/%3E%3C/filter%3E%3Crect width='320' height='320' filter='url(%23n)'/%3E%3C/svg%3E") 0 0/100% 100% no-repeat,
+      radial-gradient(ellipse at 30% 18%,#fffaf4,transparent 62%),
+      radial-gradient(ellipse at 78% 62%,#f4e3da,transparent 58%),
+      linear-gradient(165deg,#f8ede4,#ead6cd 55%,#f5e8df);
+    box-shadow:0 20px 60px var(--shadow);
+    visibility:hidden;opacity:0;transition:opacity .7s ease .25s;
+  }
+  .stage.opening .cover{visibility:visible;opacity:1}
+  .rc{position:absolute;pointer-events:none;overflow:visible}
+  .rc.tl{top:-3cqw;left:-3cqw;width:40cqw;height:40cqw}
+  .rc.tr{top:-3cqw;right:-3cqw;width:40cqw;height:40cqw}
+  .rc.bl{bottom:-4cqw;left:-4cqw;width:42cqw;height:42cqw}
+  .couple{position:absolute;right:2cqw;bottom:3cqw;width:30cqw;height:auto;pointer-events:none}
+  .ec-body{position:relative;z-index:2;height:100%;display:flex;flex-direction:column;justify-content:space-between;align-items:center;text-align:center;padding:10cqw 9cqw 5cqw}
+  .ec-top,.ec-mid{display:flex;flex-direction:column;align-items:center;width:100%}
+  .ec-bism{font:700 6.6cqw/1.3 'Aref Ruqaa','Amiri','Noto Naskh Arabic',serif;color:var(--ec);direction:rtl;margin-top:3cqw}
+  .ec-orn{width:32cqw;height:3.6cqw;color:var(--ec-gold);margin:1cqw 0 2cqw}
+  .ec-dear{font:400 6cqw/1.1 var(--script);color:var(--ec);margin-bottom:2cqw;overflow-wrap:anywhere}
+  .ec-caps{font:600 2.8cqw/1.65 'Cormorant SC','Cormorant Garamond',Georgia,serif;letter-spacing:.09em;text-transform:uppercase;color:var(--ec)}
+  .ec-names{font-weight:400;font-family:var(--script);color:var(--ec);line-height:.9;margin:2cqw 0 0}
+  .ec-names span{display:block;font-size:12.5cqw}
+  .ec-names i{display:block;font-family:'Cormorant Garamond',Georgia,serif;font-style:italic;font-size:6.5cqw;line-height:.8;margin:.6cqw 0}
+  .ec-par{font:500 2.6cqw/1.5 'Cormorant SC',Georgia,serif;letter-spacing:.07em;text-transform:uppercase;color:var(--ec-soft);margin-top:2cqw}
+  .ec-mid .ec-caps+.ec-date,.ec-date+.ec-caps{margin-top:4cqw}
+  .ec-date{display:grid;grid-template-columns:1fr 1.2fr 1fr;align-items:center;width:84cqw;margin:3cqw 0}
+  .ec-date .dl,.ec-date .dr{font:600 3.5cqw 'Cormorant SC',Georgia,serif;letter-spacing:.1em;text-transform:uppercase;text-align:center;padding:2cqw 0;margin:0 2.4cqw;border-top:1px solid var(--ec-gold);border-bottom:1px solid var(--ec-gold)}
+  .ec-date .dm{text-align:center;padding:1cqw 2cqw;border-left:1px solid var(--ec-gold);border-right:1px solid var(--ec-gold)}
+  .ec-date .dm b{display:block;font:600 8cqw/1 'Cormorant Garamond',Georgia,serif}
+  .ec-date .dm em{display:block;font:600 3.3cqw 'Cormorant SC',Georgia,serif;font-style:normal;letter-spacing:.1em;text-transform:uppercase;margin-top:1cqw}
+  .ec-addr{font:400 4.2cqw/1.45 'Cormorant Garamond',Georgia,serif;color:var(--ec);margin-top:2cqw}
+  .ec-addr i{font-size:4cqw;display:inline-block;margin-bottom:.6cqw}
+  .ec-foot{display:flex;flex-direction:column;align-items:center;width:46cqw;margin-right:24cqw;gap:3cqw}
+  .ec-foot .ec-orn{margin:0}
+  .ec-foot .btn{font-size:2.4cqw;padding:3cqw 4cqw;min-height:0;letter-spacing:.2em;width:100%;text-align:center;white-space:normal}
 
   /* ---------- Floating bar ---------- */
   .nav{
@@ -316,6 +340,37 @@
 <body>
 
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <radialGradient id="rg1" cx=".4" cy=".35" r=".85"><stop offset="0" stop-color="#d03545"/><stop offset=".6" stop-color="#a21a2b"/><stop offset="1" stop-color="#6a0b18"/></radialGradient>
+    <radialGradient id="rg2" cx=".4" cy=".3" r=".85"><stop offset="0" stop-color="#e04b5a"/><stop offset=".6" stop-color="#b92234"/><stop offset="1" stop-color="#7c1020"/></radialGradient>
+    <radialGradient id="rg3" cx=".4" cy=".3" r=".85"><stop offset="0" stop-color="#ef6874"/><stop offset=".55" stop-color="#c72a3c"/><stop offset="1" stop-color="#8a1424"/></radialGradient>
+    <linearGradient id="gown" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#8d1630"/><stop offset="1" stop-color="#4a0918"/></linearGradient>
+    <path id="pet" d="M0 0C-30 -8 -38 -36 -14 -46C-4 -50 10 -50 18 -44C40 -34 30 -6 0 0Z"/>
+    <symbol id="rose" viewBox="-50 -50 100 100">
+      <circle r="47" fill="#4a0711"/>
+      <g stroke="#3b050d" stroke-width=".7">
+        <g fill="url(#rg1)"><use href="#pet"/><use href="#pet" transform="rotate(72)"/><use href="#pet" transform="rotate(144)"/><use href="#pet" transform="rotate(216)"/><use href="#pet" transform="rotate(288)"/></g>
+        <g fill="url(#rg2)" transform="scale(.72) rotate(36)"><use href="#pet"/><use href="#pet" transform="rotate(72)"/><use href="#pet" transform="rotate(144)"/><use href="#pet" transform="rotate(216)"/><use href="#pet" transform="rotate(288)"/></g>
+        <g fill="url(#rg3)" transform="scale(.46) rotate(10)"><use href="#pet"/><use href="#pet" transform="rotate(72)"/><use href="#pet" transform="rotate(144)"/><use href="#pet" transform="rotate(216)"/><use href="#pet" transform="rotate(288)"/></g>
+      </g>
+      <ellipse cx="-14" cy="-22" rx="12" ry="5" fill="#fff" opacity=".14" transform="rotate(-30 -14 -22)"/>
+      <circle cx="18" cy="-14" r="1.2" fill="#fff" opacity=".55"/><circle cx="-24" cy="10" r="1" fill="#fff" opacity=".45"/><circle cx="8" cy="26" r="1.1" fill="#fff" opacity=".5"/>
+    </symbol>
+    <symbol id="leaf" viewBox="-12 -30 24 60">
+      <path d="M0 -28C13 -14 13 12 0 28C-13 12 -13 -14 0 -28Z" fill="#2d3b29"/>
+      <path d="M0 -24V24" stroke="#4d6445" stroke-width=".9"/>
+    </symbol>
+    <symbol id="gyp" viewBox="0 0 60 60">
+      <g stroke="#c8a766" stroke-width=".7" fill="none"><path d="M4 56C16 40 22 24 30 6"/><path d="M14 44C26 40 38 38 52 28"/><path d="M20 32C30 22 36 14 38 4"/></g>
+      <g fill="#f6e7c8"><circle cx="30" cy="6" r="2.2"/><circle cx="52" cy="28" r="2"/><circle cx="38" cy="4" r="1.8"/><circle cx="22" cy="20" r="1.6"/><circle cx="40" cy="36" r="1.7"/><circle cx="12" cy="40" r="1.6"/><circle cx="46" cy="16" r="1.5"/></g>
+    </symbol>
+    <symbol id="flourish" viewBox="0 0 120 14">
+      <g fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round"><path d="M2 7H44M76 7H118"/><path d="M44 7C48 0 55 0 60 7C65 14 72 14 76 7"/></g>
+      <circle cx="60" cy="7" r="2" fill="currentColor"/>
+    </symbol>
+  </defs>
+</svg>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
   <symbol id="corner" viewBox="0 0 60 60"><path d="M2 58V2h56"/><path d="M10 50V10h40"/><circle cx="10" cy="10" r="3"/></symbol>
 </svg>
 
@@ -323,15 +378,81 @@
 <div class="stage" id="stage">
   <div class="box">
     <section class="cover" id="cover" aria-hidden="true">
-      <i class="in"></i>
-      <p class="bismillah">In the name of Allah, the Most Gracious, the Most Merciful</p>
-      <p class="c-welcome"><span>Welcome</span><b id="coverName"></b></p>
-      <p class="c-inv">You are cordially invited</p>
-      <div class="c-rule"></div>
-      <p class="c-lead">to celebrate the wedding of</p>
-      <h1 class="c-names"><span>Mahnoor</span><span><em>&amp;</em>Tahir</span></h1>
-      <p class="c-date">29 November 2026</p>
-      <button class="btn primary" id="openInvite" type="button">Open Our Invitation</button>
+      <svg class="rc tl" viewBox="0 0 200 200" aria-hidden="true">
+        <use href="#gyp" x="92" y="-6" width="80" height="80" transform="rotate(25 132 34)"/>
+        <use href="#leaf" x="120" y="52" width="30" height="62" transform="rotate(48 135 83)"/>
+        <use href="#leaf" x="60" y="104" width="26" height="54" transform="rotate(-18 73 131)"/>
+        <use href="#leaf" x="150" y="28" width="26" height="54" transform="rotate(86 163 55)"/>
+        <use href="#rose" x="-6" y="-6" width="128" height="128"/>
+        <use href="#rose" x="106" y="-12" width="76" height="76"/>
+        <use href="#rose" x="-12" y="108" width="66" height="66"/>
+        <use href="#rose" x="82" y="92" width="50" height="50"/>
+      </svg>
+      <svg class="rc tr" viewBox="0 0 200 200" aria-hidden="true">
+        <use href="#gyp" x="2" y="-4" width="84" height="84" transform="rotate(-20 44 38)"/>
+        <use href="#leaf" x="46" y="60" width="28" height="58" transform="rotate(-50 60 89)"/>
+        <use href="#leaf" x="150" y="108" width="26" height="54" transform="rotate(20 163 135)"/>
+        <use href="#rose" x="64" y="-2" width="138" height="138"/>
+        <use href="#rose" x="2" y="-10" width="80" height="80"/>
+        <use href="#rose" x="132" y="112" width="64" height="64"/>
+      </svg>
+      <svg class="rc bl" viewBox="0 0 200 200" aria-hidden="true">
+        <use href="#gyp" x="86" y="86" width="84" height="84" transform="rotate(8 128 128)"/>
+        <use href="#leaf" x="108" y="62" width="28" height="58" transform="rotate(64 122 91)"/>
+        <use href="#leaf" x="96" y="150" width="26" height="54" transform="rotate(-70 109 177)"/>
+        <use href="#rose" x="-14" y="62" width="152" height="152"/>
+        <use href="#rose" x="92" y="130" width="82" height="82"/>
+        <use href="#rose" x="-8" y="2" width="76" height="76"/>
+        <use href="#rose" x="64" y="52" width="48" height="48"/>
+      </svg>
+
+      <svg class="couple" viewBox="0 0 120 190" aria-hidden="true">
+        <ellipse cx="62" cy="186" rx="58" ry="4" fill="#000" opacity=".16"/>
+        <!-- groom -->
+        <path d="M84 30 L112 30 L116 72 L114 122 L82 122 L80 72Z" fill="#171214"/>
+        <path d="M96 30 L100 122" stroke="#2c2428" stroke-width="1"/>
+        <circle cx="98" cy="17" r="9" fill="#1b1517"/>
+        <rect x="94" y="24" width="8" height="7" rx="2" fill="#d9a98a"/>
+        <path d="M84 120H98V178H84ZM100 120H114V178H100Z" fill="#171214"/>
+        <path d="M82 178H98V183H80ZM100 178H116V183H102Z" fill="#0c090a"/>
+        <!-- bride -->
+        <path d="M46 30 C34 36 30 62 32 92 C26 126 16 154 4 176 C14 182 40 186 64 186 C90 186 110 182 118 172 C100 150 78 122 66 92 C68 60 64 36 52 30Z" fill="url(#gown)"/>
+        <path d="M32 92 C26 126 16 154 4 176 M66 92 C78 122 100 150 118 172" fill="none" stroke="#d6a95b" stroke-width="1.4"/>
+        <path d="M4 176 C14 182 40 186 64 186 C90 186 110 182 118 172" fill="none" stroke="#d6a95b" stroke-width="2.2"/>
+        <g fill="#e0b565" opacity=".85"><circle cx="30" cy="150" r="1.4"/><circle cx="46" cy="162" r="1.4"/><circle cx="70" cy="170" r="1.4"/><circle cx="92" cy="166" r="1.4"/><circle cx="56" cy="140" r="1.3"/><circle cx="80" cy="150" r="1.3"/><circle cx="40" cy="118" r="1.2"/><circle cx="58" cy="110" r="1.2"/></g>
+        <path d="M40 32 C30 42 30 66 34 90 L64 90 C68 66 68 42 58 32Z" fill="#7d1228" opacity=".92"/>
+        <path d="M40 32 C30 42 30 66 34 90 M58 32 C68 42 68 66 64 90" fill="none" stroke="#d6a95b" stroke-width="1.2"/>
+        <circle cx="49" cy="22" r="10.5" fill="#7d1228"/>
+        <path d="M39 24C41 12 57 12 59 24" fill="none" stroke="#d6a95b" stroke-width="1.6" stroke-linecap="round"/>
+        <rect x="45" y="30" width="8" height="6" rx="2" fill="#d9a98a"/>
+        <path d="M60 70 C70 78 76 84 82 82" fill="none" stroke="#d9a98a" stroke-width="3" stroke-linecap="round"/>
+      </svg>
+
+      <div class="ec-body">
+        <div class="ec-top">
+          <p class="ec-bism" lang="ar" dir="rtl">بِسْمِ ٱللَّهِ ٱلرَّحْمَٰنِ ٱلرَّحِيمِ</p>
+          <svg class="ec-orn" aria-hidden="true"><use href="#flourish"/></svg>
+          <p class="ec-dear">Dear <span id="coverName"></span>,</p>
+          <p class="ec-caps">With the blessings of Allah,<br>we joyfully invite you to the<br>Barat ceremony of</p>
+        </div>
+
+        <div>
+          <h1 class="ec-names"><span>Mahnoor</span><i>&amp;</i><span>Tahir</span></h1>
+          <p class="ec-par">D/o Mr &amp; Mrs Sheikh Aurangzeb Iqbal<br>S/o Mr &amp; Mrs Ghulam Muhammad Hussain</p>
+        </div>
+
+        <div class="ec-mid">
+          <p class="ec-caps">Your presence and blessings will make<br>this occasion even more special</p>
+          <div class="ec-date"><span class="dl">Sunday</span><span class="dm"><b>29</b><em>November, 2026</em></span><span class="dr">At 11 AM</span></div>
+          <p class="ec-caps">Kindly grace the occasion with<br>your presence and duas</p>
+          <p class="ec-addr"><i>Address:</i><br>Divine Marque,<br>East Canal, Lahore</p>
+        </div>
+
+        <div class="ec-foot">
+          <svg class="ec-orn" aria-hidden="true"><use href="#flourish"/></svg>
+          <button class="btn primary" id="openInvite" type="button">Open Our Invitation</button>
+        </div>
+      </div>
     </section>
 
     <main class="doors" id="doors">
