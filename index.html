@@ -218,6 +218,24 @@
   .timeline li{display:grid;grid-template-columns:7.2rem minmax(0,1fr);gap:12px;align-items:baseline;padding:16px 4px;border-bottom:1px solid var(--line)}
   .timeline time{font:600 1.05rem var(--serif);color:var(--accent);font-variant-numeric:tabular-nums}
   .timeline span{font:400 1.2rem var(--serif)}
+  .story .story-names{font:400 clamp(2rem,9vw,2.8rem)/1.2 var(--serif);color:var(--accent);margin:34px auto 0}
+  .story-names i{font-size:.7em;margin:0 .3em;color:var(--muted)}
+  .story p{color:var(--muted);max-width:440px;margin:0 auto}
+  .story p+p{margin-top:22px}
+  .chapters{display:grid;gap:0;margin-top:34px}
+  .chap{position:relative;padding:14px;background:linear-gradient(180deg,var(--panel-2),var(--panel));border:1px solid var(--line);border-radius:26px}
+  .chap+.chap{margin-top:44px}
+  .chap+.chap::before{content:"";position:absolute;left:50%;bottom:100%;height:44px;width:1px;background:var(--maroon-hi);opacity:.7}
+  .chap-in{padding:34px 22px;border:1px solid var(--line);background:rgba(255,255,255,.02)}
+  .chap-in .eyebrow{letter-spacing:.3em}
+  .chap-in h3{font:400 clamp(1.8rem,8vw,2.3rem)/1.2 var(--serif);margin-top:16px}
+  .chap-in .rule{width:70px;margin:18px auto}
+  .chap-in p{color:var(--muted)}
+  .gallery{display:grid;gap:16px;margin-top:34px}
+  .gallery figure{position:relative;margin:0;overflow:hidden;border:1px solid var(--line);border-radius:6px;background:var(--panel)}
+  .gallery img{display:block;width:100%;aspect-ratio:4/5;object-fit:cover}
+  .gallery figcaption{position:absolute;inset:auto 0 0 0;padding:46px 16px 18px;font:400 1.35rem var(--serif);background:linear-gradient(180deg,transparent,rgba(0,0,0,.85))}
+  @media (min-width:640px){.gallery{grid-template-columns:repeat(3,1fr)}}
   .tl-note{margin-top:16px;font:400 .7rem var(--sans);letter-spacing:.24em;text-transform:uppercase;color:var(--muted)}
 
   .palette{display:flex;flex-wrap:wrap;gap:12px 22px;justify-content:center;margin-top:20px;padding-top:22px;border-top:1px solid var(--line)}
@@ -349,6 +367,9 @@
     <nav class="menu" id="menu" aria-label="Sections" hidden>
       <a href="#home">Home</a>
       <a href="#programme">Programme</a>
+      <a href="#story">Our story</a>
+      <a href="#journey">Journey</a>
+      <a href="#gallery" id="galleryLink" hidden>Gallery</a>
       <a href="#venue">Venue</a>
       <a href="#dress">Dress code</a>
       <a href="#faq">Questions</a>
@@ -379,13 +400,6 @@
 
         <p class="meta">29 November 2026<i>•</i>Barat<i>•</i>11:00 AM</p>
 
-        <div class="countdown" id="countdown" role="timer" aria-label="Countdown to the Barat">
-          <div><b id="d">--</b><span>Days</span></div>
-          <div><b id="h">--</b><span>Hours</span></div>
-          <div><b id="m">--</b><span>Mins</span></div>
-          <div><b id="s">--</b><span>Secs</span></div>
-        </div>
-
         <div class="hero-actions">
           <a class="btn primary" href="#programme">Open Invitation</a>
           <a class="btn" href="#rsvp">RSVP</a>
@@ -407,6 +421,53 @@
         </ol>
         <p class="tl-note">Concludes by 3:00 PM</p>
       </div>
+    </section>
+
+    <section id="countdown-sec" class="sec wrap">
+      <p class="eyebrow">The countdown begins</p>
+      <h2>Counting Down to <em>Forever</em></h2>
+      <div class="rule"></div>
+      <p class="lead">Every second brings us closer to the beautiful celebration of Mahnoor and Tahir.</p>
+      <div class="card">
+        <h3 style="color:var(--accent);margin-top:0">Barat</h3>
+        <p class="date" style="margin-top:12px">29 November 2026</p>
+        <p style="margin-top:6px">11:00 AM · Divine Marque, Lahore</p>
+        <div class="countdown" id="countdown" role="timer" aria-label="Countdown to the Barat">
+          <div><b id="d">--</b><span>Days</span></div>
+          <div><b id="h">--</b><span>Hours</span></div>
+          <div><b id="m">--</b><span>Mins</span></div>
+          <div><b id="s">--</b><span>Secs</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="story" class="sec story wrap">
+      <p class="eyebrow">Our love story</p>
+      <h2>Written in the <em>Stars</em></h2>
+      <div class="rule"></div>
+      <p>Some journeys begin quietly and grow into a story worth celebrating for a lifetime.</p>
+      <p>With the grace of Allah and the prayers of our loved ones, two lives are becoming one.</p>
+      <p class="story-names">Mahnoor <i>&amp;</i> Tahir</p>
+    </section>
+
+    <section id="journey" class="sec wrap">
+      <p class="eyebrow">Our beautiful journey</p>
+      <h2>From a Moment to <em>Forever</em></h2>
+      <div class="rule"></div>
+      <p class="lead">Every chapter brought us closer to this beautiful beginning.</p>
+      <div class="chapters">
+        <article class="chap"><div class="chap-in"><p class="eyebrow">Chapter 1</p><h3>The Beginning</h3><div class="rule"></div><p>Every beautiful story begins with a moment that quietly changes everything.</p></div></article>
+        <article class="chap"><div class="chap-in"><p class="eyebrow">Chapter 2</p><h3>The Promise</h3><div class="rule"></div><p>Trust, kindness and prayer grew into a promise to walk through life together.</p></div></article>
+        <article class="chap"><div class="chap-in"><p class="eyebrow">Chapter 3</p><h3>The Celebration</h3><div class="rule"></div><p>Now we celebrate the beginning of our forever with the people we love.</p></div></article>
+      </div>
+    </section>
+
+    <section id="gallery" class="sec wrap" hidden>
+      <p class="eyebrow">Moments to remember</p>
+      <h2>Memories We Will <em>Cherish</em></h2>
+      <div class="rule"></div>
+      <p class="lead">Every beautiful moment becomes a part of our forever.</p>
+      <div class="gallery" id="galleryGrid"></div>
     </section>
 
     <section id="venue" class="sec wrap">
@@ -589,6 +650,23 @@
   mbtn.addEventListener('click',function(){
     if(song.paused){playMusic()}else{wantMusic=false;fadeTo(0,400);setBtn(false)}
   });
+
+
+  /* gallery: add photos to the photos/ folder, then list them here */
+  var PHOTOS=[
+    // {src:'photos/1.jpg', caption:'A Beautiful Beginning'},
+    // {src:'photos/2.jpg', caption:'Together Forever'}
+  ];
+  (function(){
+    if(!PHOTOS.length)return;
+    var grid=$('galleryGrid');
+    PHOTOS.forEach(function(ph){
+      var f=document.createElement('figure'),im=document.createElement('img'),c=document.createElement('figcaption');
+      im.src=ph.src;im.alt=ph.caption||'Mahnoor and Tahir';im.loading='lazy';c.textContent=ph.caption||'';
+      f.appendChild(im);if(ph.caption)f.appendChild(c);grid.appendChild(f);
+    });
+    $('gallery').hidden=false;$('galleryLink').hidden=false;
+  })();
 
   /* petals */
   (function(){
