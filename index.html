@@ -8,7 +8,7 @@
 <meta name="description" content="Mahnoor and Tahir invite you to their Barat on Sunday, 29 November 2026 from 11:00 AM at Divine Marque, East Canal, Lahore.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Amiri&family=Aref+Ruqaa:wght@400;700&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Cormorant+SC:wght@500;600&family=Great+Vibes&family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Amiri&family=Satisfy&family=Aref+Ruqaa:wght@400;700&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Cormorant+SC:wght@500;600&family=Great+Vibes&family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 <style>
   /* Layout: gate screen, then one long scrolling invitation with a floating bar, sections, RSVP and share. */
   :root{
@@ -134,15 +134,18 @@
   .rc.tr{top:-3cqw;right:-3cqw;width:40cqw;height:40cqw}
   .rc.bl{bottom:-4cqw;left:-4cqw;width:31cqw;height:31cqw}
   .couple{position:absolute;right:0;bottom:0;width:34cqw;height:auto;pointer-events:none;z-index:1}
-  .ec-body{position:relative;z-index:2;height:100%;display:flex;flex-direction:column;justify-content:space-between;align-items:center;text-align:center;padding:10cqw 9cqw 5cqw}
+  .ec-body{position:relative;z-index:2;height:100%;display:flex;flex-direction:column;justify-content:space-between;align-items:center;text-align:center;padding:9cqw 9cqw 4cqw}
   .ec-top,.ec-mid{display:flex;flex-direction:column;align-items:center;width:100%}
+  .ec-bw{display:flex;align-items:center;justify-content:center;gap:2.5cqw;width:100%;margin-top:3cqw}
+  .ec-bw .lf{width:6cqw;height:6cqw;color:var(--ec-gold);flex:none}
+  .ec-bw .lf.r{transform:scaleX(-1)}
   .ec-bism{font:700 6.6cqw/1.3 'Aref Ruqaa','Amiri','Noto Naskh Arabic',serif;color:var(--ec);direction:rtl;margin-top:3cqw}
   .ec-orn{width:32cqw;height:3.6cqw;color:var(--ec-gold);margin:1cqw 0 2cqw}
-  .ec-dear{font:400 6cqw/1.1 var(--script);color:var(--ec);margin-bottom:2cqw;overflow-wrap:anywhere}
+  .ec-dear{font:400 6cqw/1.1 'Satisfy','Snell Roundhand',cursive;color:var(--ec);margin-bottom:2cqw;overflow-wrap:anywhere}
   .ec-caps{font:600 2.8cqw/1.65 'Cormorant SC','Cormorant Garamond',Georgia,serif;letter-spacing:.09em;text-transform:uppercase;color:var(--ec)}
-  .ec-names{font-weight:400;font-family:var(--script);color:var(--ec);line-height:.9;margin:2cqw 0 0}
-  .ec-names span{display:block;font-size:12.5cqw}
-  .ec-names i{display:block;font-family:'Cormorant Garamond',Georgia,serif;font-style:italic;font-size:6.5cqw;line-height:.8;margin:.6cqw 0}
+  .ec-names{font-weight:400;font-family:'Satisfy','Snell Roundhand',cursive;color:var(--ec);line-height:.9;margin:2cqw 0 0}
+  .ec-names span{display:block;font-size:12cqw;line-height:1}
+  .ec-names i{display:block;font-family:'Satisfy','Snell Roundhand',cursive;font-style:normal;font-size:6.5cqw;line-height:.8;margin:0}
   .ec-par{font:500 2.6cqw/1.5 'Cormorant SC',Georgia,serif;letter-spacing:.07em;text-transform:uppercase;color:var(--ec-soft);margin-top:2cqw}
   
   .ec-date{display:grid;grid-template-columns:1fr 1.2fr 1fr;align-items:center;width:84cqw;margin:3cqw 0}
@@ -154,12 +157,12 @@
   .ec-low{margin-right:16cqw;display:flex;flex-direction:column;align-items:center;margin-top:3cqw}
   .ec-addr{font:400 4.2cqw/1.45 'Cormorant Garamond',Georgia,serif;color:var(--ec);margin-top:2cqw}
   .ec-addr i{font-size:4cqw;display:inline-block;margin-bottom:.6cqw}
-  .ec-foot{display:flex;flex-direction:column;align-items:center;width:46cqw;margin-right:24cqw;gap:3cqw}
+  .ec-foot{display:flex;flex-direction:column;align-items:center;width:46cqw;margin-right:24cqw;gap:2cqw}
   .ec-foot .ec-orn{margin:0}
-  .ec-dl{background:rgba(251,243,236,.96);border:1px solid var(--ec-gold);color:var(--ec);border-radius:999px;font:600 2.3cqw 'Cormorant SC',Georgia,serif;letter-spacing:.16em;text-transform:uppercase;padding:2cqw 4cqw;cursor:pointer;width:100%;transition:background .2s}
+  .ec-dl{background:rgba(251,243,236,.96);border:1px solid var(--ec-gold);color:var(--ec);border-radius:999px;font:600 2.3cqw 'Cormorant SC',Georgia,serif;letter-spacing:.16em;text-transform:uppercase;padding:1.6cqw 4cqw;cursor:pointer;width:100%;transition:background .2s}
   .ec-dl:hover,.ec-dl:focus-visible{background:#f3e1d8}
   .ec-dl:disabled{opacity:.6;cursor:wait}
-  .ec-foot .btn{font-size:2.4cqw;padding:3cqw 4cqw;min-height:0;letter-spacing:.2em;width:100%;text-align:center;white-space:normal}
+  .ec-foot .btn{font-size:2.4cqw;padding:2.4cqw 4cqw;min-height:0;letter-spacing:.2em;width:100%;text-align:center;white-space:normal}
 
   /* ---------- Floating bar ---------- */
   .nav{
@@ -369,6 +372,7 @@
       <g stroke="#c8a766" stroke-width=".7" fill="none"><path d="M4 56C16 40 22 24 30 6"/><path d="M14 44C26 40 38 38 52 28"/><path d="M20 32C30 22 36 14 38 4"/></g>
       <g fill="#f6e7c8"><circle cx="30" cy="6" r="2.2"/><circle cx="52" cy="28" r="2"/><circle cx="38" cy="4" r="1.8"/><circle cx="22" cy="20" r="1.6"/><circle cx="40" cy="36" r="1.7"/><circle cx="12" cy="40" r="1.6"/><circle cx="46" cy="16" r="1.5"/></g>
     </symbol>
+    <symbol id="sprig" viewBox="0 0 24 24"><g fill="currentColor"><path d="M2 20C8 18 14 12 19 4C18 12 13 18 2 20Z"/><path d="M11 14C14 15 17 14 20 11C17 17 13 18 11 14Z"/><circle cx="21" cy="3" r="1.4"/></g></symbol>
     <symbol id="flourish" viewBox="0 0 120 14">
       <g fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round"><path d="M2 7H44M76 7H118"/><path d="M44 7C48 0 55 0 60 7C65 14 72 14 76 7"/></g>
       <circle cx="60" cy="7" r="2" fill="currentColor"/>
@@ -415,7 +419,7 @@
 
       <div class="ec-body">
         <div class="ec-top">
-          <p class="ec-bism" lang="ar" dir="rtl">بِسْمِ ٱللَّهِ ٱلرَّحْمَٰنِ ٱلرَّحِيمِ</p>
+          <div class="ec-bw"><svg class="lf" viewBox="0 0 24 24" aria-hidden="true"><use href="#sprig"/></svg><p class="ec-bism" lang="ar" dir="rtl">بِسْمِ ٱللَّهِ ٱلرَّحْمَٰنِ ٱلرَّحِيمِ</p><svg class="lf r" viewBox="0 0 24 24" aria-hidden="true"><use href="#sprig"/></svg></div>
           <svg class="ec-orn" aria-hidden="true"><use href="#flourish"/></svg>
           <p class="ec-dear">Dear <span id="coverName"></span>,</p>
           <p class="ec-caps">With the blessings of Allah,<br>we joyfully invite you to the<br>Barat ceremony of</p>
@@ -914,15 +918,16 @@
       c.stroke(new Path2D('M2 7H44M76 7H118'));c.stroke(new Path2D('M44 7C48 0 55 0 60 7C65 14 72 14 76 7'));c.beginPath();c.arc(60,7,2,0,7);c.fill();c.restore();
     }
     flourish(CX,27.5,32,GOLD);
-    var dear='Dear '+name+',',ds=6.4;c.font=px(ds)+'px "Great Vibes","Snell Roundhand",cursive';
-    while(c.measureText(dear).width>px(78)&&ds>3){ds-=.3;c.font=px(ds)+'px "Great Vibes","Snell Roundhand",cursive'}
-    center(dear,38,px(ds)+'px "Great Vibes","Snell Roundhand",cursive');
+    (function(){var spr=new Path2D('M2 20C8 18 14 12 19 4C18 12 13 18 2 20Z'),spr2=new Path2D('M11 14C14 15 17 14 20 11C17 17 13 18 11 14Z');c.fillStyle=GOLD;var k=px(6)/24;[[px(12),1],[W-px(12),-1]].forEach(function(o){c.save();c.translate(o[0],px(16.4));c.scale(k*o[1],k);c.translate(-12,0);c.fill(spr);c.fill(spr2);c.restore()})})();
+    var dear='Dear '+name+',',ds=6.4;c.font=px(ds)+'px "Satisfy","Snell Roundhand",cursive';
+    while(c.measureText(dear).width>px(78)&&ds>3){ds-=.3;c.font=px(ds)+'px "Satisfy","Snell Roundhand",cursive'}
+    center(dear,38,px(ds)+'px "Satisfy","Snell Roundhand",cursive');
     caps('With the blessings of Allah,',47,3.0,.3);
     caps('we joyfully invite you to the',51.4,3.0,.3);
     caps('Barat ceremony of',55.8,3.0,.3);
-    center('Mahnoor',81,px(14)+'px "Great Vibes","Snell Roundhand",cursive');
-    center('&',90,'italic '+px(7)+'px "Cormorant Garamond",Georgia,serif');
-    center('Tahir',104.5,px(14)+'px "Great Vibes","Snell Roundhand",cursive');
+    center('Mahnoor',81,px(14)+'px "Satisfy","Snell Roundhand",cursive');
+    center('&',90,px(8)+'px "Satisfy","Snell Roundhand",cursive');
+    center('Tahir',104.5,px(14)+'px "Satisfy","Snell Roundhand",cursive');
     caps('D/o Mr & Mrs Sheikh Aurangzeb Iqbal',114.5,2.5,.2,SOFT);
     caps('S/o Mr & Mrs Ghulam Muhammad Hussain',118.5,2.5,.2,SOFT);
     caps('Your presence and blessings will make',130,2.9,.3);
@@ -946,7 +951,7 @@
   }
   function saveCard(btn){
     var label=btn.textContent;btn.disabled=true;btn.textContent='Preparing…';
-    var fonts=['700 40px "Aref Ruqaa"','40px "Great Vibes"','600 40px "Cormorant SC"','400 40px "Cormorant Garamond"','italic 400 40px "Cormorant Garamond"','600 40px "Cormorant Garamond"'];
+    var fonts=['700 40px "Aref Ruqaa"','40px "Satisfy"','600 40px "Cormorant SC"','400 40px "Cormorant Garamond"','italic 400 40px "Cormorant Garamond"','600 40px "Cormorant Garamond"'];
     var img=new Image();var imgP=new Promise(function(res){img.onload=function(){res()};img.onerror=function(){img=null;res()};img.src='assets/couple.png'});
     Promise.all(fonts.map(function(f){return document.fonts.load(f,'Aa')}).concat([imgP])).catch(function(){}).then(function(){
       var cv=drawCard(guest||'Guest',img);
