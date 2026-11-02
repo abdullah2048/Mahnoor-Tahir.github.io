@@ -1,0 +1,179 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mahnoor &amp; Tahir – Wedding Invitation</title>
+<meta name="description" content="Together with their families, Mahnoor and Tahir invite you to celebrate their wedding.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Great+Vibes&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#fbf6ee;
+    --paper:#fffdf8;
+    --ink:#3b2a2a;
+    --muted:#8a7468;
+    --gold:#b8935a;
+    --gold-soft:#e6d3ae;
+    --rose:#a8505f;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{--bg:#1d1517;--paper:#261b1e;--ink:#f3e8dc;--muted:#bfa89a;--gold:#d4ad73;--gold-soft:#5a4630;--rose:#d88a98}
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    background:
+      radial-gradient(circle at 15% 10%, color-mix(in srgb,var(--gold-soft) 45%,transparent), transparent 40%),
+      radial-gradient(circle at 85% 90%, color-mix(in srgb,var(--rose) 18%,transparent), transparent 45%),
+      var(--bg);
+    color:var(--ink);
+    font-family:'Jost',sans-serif;
+    font-weight:300;
+    min-height:100vh;
+    display:flex;justify-content:center;
+    padding:32px 16px 64px;
+  }
+  .card{
+    width:100%;max-width:560px;
+    background:var(--paper);
+    border:1px solid var(--gold-soft);
+    outline:1px solid var(--gold);
+    outline-offset:-12px;
+    padding:64px 36px 56px;
+    text-align:center;
+    position:relative;
+    box-shadow:0 20px 60px rgba(60,30,30,.15);
+    animation:rise .9s ease both;
+  }
+  @keyframes rise{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
+  .corner{position:absolute;width:56px;height:56px;color:var(--gold)}
+  .corner.tl{top:22px;left:22px}
+  .corner.tr{top:22px;right:22px;transform:scaleX(-1)}
+  .corner.bl{bottom:22px;left:22px;transform:scaleY(-1)}
+  .corner.br{bottom:22px;right:22px;transform:scale(-1,-1)}
+
+  .bismillah{font-family:'Cormorant Garamond',serif;font-style:italic;color:var(--gold);font-size:.95rem;letter-spacing:.08em;margin-bottom:28px}
+  .eyebrow{font-size:.72rem;letter-spacing:.35em;text-transform:uppercase;color:var(--muted)}
+  .lead{font-family:'Cormorant Garamond',serif;font-size:1.15rem;line-height:1.7;margin:18px auto 0;max-width:380px;color:var(--ink)}
+
+  .names{font-family:'Great Vibes',cursive;font-weight:400;color:var(--rose);line-height:1.05;margin:30px 0 10px}
+  .names .n{display:block;font-size:clamp(3.4rem,15vw,5rem)}
+  .names .amp{display:block;font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.6rem;color:var(--gold);margin:2px 0}
+
+  .divider{display:flex;align-items:center;gap:14px;justify-content:center;margin:34px auto;color:var(--gold);max-width:260px}
+  .divider::before,.divider::after{content:"";flex:1;height:1px;background:linear-gradient(90deg,transparent,var(--gold))}
+  .divider::after{transform:scaleX(-1)}
+
+  .date{font-family:'Cormorant Garamond',serif;font-size:1.9rem;font-weight:500;letter-spacing:.04em}
+  .date small{display:block;font-family:'Jost';font-size:.72rem;letter-spacing:.35em;text-transform:uppercase;color:var(--muted);margin-top:6px}
+
+  .countdown{display:flex;justify-content:center;gap:14px;margin:30px 0 4px}
+  .countdown div{min-width:64px;padding:10px 6px;border:1px solid var(--gold-soft)}
+  .countdown b{display:block;font-family:'Cormorant Garamond',serif;font-size:1.7rem;font-weight:600;color:var(--rose)}
+  .countdown span{font-size:.6rem;letter-spacing:.25em;text-transform:uppercase;color:var(--muted)}
+
+  h2{font-family:'Cormorant Garamond',serif;font-weight:500;font-size:1.5rem;letter-spacing:.06em;margin-bottom:18px}
+  .events{display:grid;gap:22px}
+  .event{padding:18px 14px;border:1px solid var(--gold-soft)}
+  .event h3{font-family:'Cormorant Garamond',serif;font-size:1.35rem;font-weight:600;color:var(--rose)}
+  .event p{margin-top:6px;line-height:1.6;font-size:.95rem}
+  .event .t{color:var(--muted);font-size:.8rem;letter-spacing:.2em;text-transform:uppercase;margin-top:8px}
+
+  .venue p{line-height:1.7}
+  .btn{
+    display:inline-block;margin-top:18px;padding:12px 28px;
+    border:1px solid var(--gold);color:var(--ink);text-decoration:none;
+    font-size:.72rem;letter-spacing:.3em;text-transform:uppercase;
+    transition:background .25s,color .25s;
+  }
+  .btn:hover,.btn:focus-visible{background:var(--gold);color:var(--paper);outline:none}
+
+  .closing{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.2rem;line-height:1.7;color:var(--muted);max-width:360px;margin:0 auto}
+  .sign{font-family:'Great Vibes',cursive;font-size:2.2rem;color:var(--rose);margin-top:14px}
+
+  @media (max-width:420px){
+    .card{padding:56px 22px 48px}
+    .countdown{gap:8px}.countdown div{min-width:56px}
+  }
+  @media (prefers-reduced-motion:reduce){.card{animation:none}html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+<main class="card">
+  <svg class="corner tl" viewBox="0 0 60 60" fill="none" stroke="currentColor" stroke-width="1" aria-hidden="true"><path d="M2 58V2h56"/><path d="M10 50V10h40"/><circle cx="10" cy="10" r="3"/></svg>
+  <svg class="corner tr" viewBox="0 0 60 60" fill="none" stroke="currentColor" stroke-width="1" aria-hidden="true"><path d="M2 58V2h56"/><path d="M10 50V10h40"/><circle cx="10" cy="10" r="3"/></svg>
+  <svg class="corner bl" viewBox="0 0 60 60" fill="none" stroke="currentColor" stroke-width="1" aria-hidden="true"><path d="M2 58V2h56"/><path d="M10 50V10h40"/><circle cx="10" cy="10" r="3"/></svg>
+  <svg class="corner br" viewBox="0 0 60 60" fill="none" stroke="currentColor" stroke-width="1" aria-hidden="true"><path d="M2 58V2h56"/><path d="M10 50V10h40"/><circle cx="10" cy="10" r="3"/></svg>
+
+  <p class="bismillah">In the name of Allah, the Most Gracious, the Most Merciful</p>
+  <p class="eyebrow">Together with their families</p>
+  <p class="lead">request the honour of your presence at the wedding of</p>
+
+  <h1 class="names">
+    <span class="n">Mahnoor</span>
+    <span class="amp">&amp;</span>
+    <span class="n">Tahir</span>
+  </h1>
+
+  <div class="divider" aria-hidden="true">&#10086;</div>
+
+  <p class="date" id="dateText">Saturday, 20 December 2026<small>Save the date</small></p>
+
+  <div class="countdown" id="countdown" aria-label="Countdown to the wedding">
+    <div><b id="d">--</b><span>Days</span></div>
+    <div><b id="h">--</b><span>Hours</span></div>
+    <div><b id="m">--</b><span>Mins</span></div>
+    <div><b id="s">--</b><span>Secs</span></div>
+  </div>
+
+  <div class="divider" aria-hidden="true">&#10086;</div>
+
+  <section>
+    <h2>Celebrations</h2>
+    <div class="events">
+      <div class="event">
+        <h3>Nikah</h3>
+        <p>Saturday, 20 December 2026</p>
+        <p class="t">3:00 PM</p>
+      </div>
+      <div class="event">
+        <h3>Reception</h3>
+        <p>Saturday, 20 December 2026</p>
+        <p class="t">7:30 PM · Dinner to follow</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider" aria-hidden="true">&#10086;</div>
+
+  <section class="venue">
+    <h2>Venue</h2>
+    <p>The Grand Banquet Hall<br>Main Boulevard, Your City</p>
+    <a class="btn" id="mapBtn" href="https://www.google.com/maps/search/?api=1&query=Grand+Banquet+Hall" target="_blank" rel="noopener">View Map</a>
+  </section>
+
+  <div class="divider" aria-hidden="true">&#10086;</div>
+
+  <p class="closing">Your presence and prayers will make our day truly special. We look forward to celebrating with you.</p>
+  <p class="sign">Mahnoor &amp; Tahir</p>
+</main>
+
+<script>
+  // Edit this to change the countdown target (local time).
+  const WEDDING = new Date('2026-12-20T15:00:00');
+  const el = id => document.getElementById(id);
+  function tick(){
+    let diff = WEDDING - new Date();
+    if (diff <= 0){ document.getElementById('countdown').style.display='none'; return; }
+    const s = Math.floor(diff/1000);
+    el('d').textContent = Math.floor(s/86400);
+    el('h').textContent = String(Math.floor(s%86400/3600)).padStart(2,'0');
+    el('m').textContent = String(Math.floor(s%3600/60)).padStart(2,'0');
+    el('s').textContent = String(s%60).padStart(2,'0');
+  }
+  tick(); setInterval(tick, 1000);
+</script>
+</body>
+</html>
