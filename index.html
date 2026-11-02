@@ -3,26 +3,23 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="theme-color" content="#fbf6ee" media="(prefers-color-scheme: light)">
-<meta name="theme-color" content="#1d1517" media="(prefers-color-scheme: dark)">
+<meta name="theme-color" content="#0b0708">
 <title>Mahnoor &amp; Tahir – Wedding Invitation</title>
 <meta name="description" content="Mahnoor and Tahir invite you to their Barat on Sunday, 29 November 2026 from 1:00 PM at Divine Marque, East Canal, Lahore.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Great+Vibes&family=Jost:wght@300;400&display=swap" rel="stylesheet">
 <style>
-  :root{
-    --bg:#fbf6ee;
-    --paper:#fffdf8;
-    --ink:#3b2a2a;
-    --muted:#8a7468;
-    --gold:#b8935a;
-    --gold-soft:#e6d3ae;
-    --rose:#a8505f;
-    --shadow:rgba(60,30,30,.15);
-  }
-  @media (prefers-color-scheme: dark){
-    :root:not([data-theme="light"]){--bg:#1d1517;--paper:#261b1e;--ink:#f3e8dc;--muted:#bfa89a;--gold:#d4ad73;--gold-soft:#5a4630;--rose:#d88a98;--shadow:rgba(0,0,0,.5)}
+    :root{
+    color-scheme:dark;
+    --bg:#0b0708;
+    --paper:#120b0c;
+    --ink:#f2e8e8;
+    --muted:#b4a0a2;
+    --gold:#9b2237;        /* maroon lines and ornaments */
+    --gold-soft:#3d1219;   /* deep maroon hairlines */
+    --rose:#d4506a;        /* bright maroon for text accents */
+    --shadow:rgba(0,0,0,.6);
   }
   *{box-sizing:border-box;margin:0;padding:0}
   [hidden]{display:none!important}
@@ -62,13 +59,13 @@
 
   .serif{font-family:'Cormorant Garamond',Georgia,serif}
   .script{font-family:'Great Vibes','Snell Roundhand',cursive;font-weight:400}
-  .bismillah{font-family:'Cormorant Garamond',Georgia,serif;font-style:italic;color:var(--gold);font-size:.95rem;letter-spacing:.06em;margin:0 18px 28px}
+  .bismillah{font-family:'Cormorant Garamond',Georgia,serif;font-style:italic;color:var(--rose);font-size:.95rem;letter-spacing:.06em;margin:0 18px 28px}
   .eyebrow{font-size:.72rem;letter-spacing:.35em;text-transform:uppercase;color:var(--muted)}
   .lead{font-family:'Cormorant Garamond',Georgia,serif;font-size:1.15rem;line-height:1.7;margin:18px auto 0;max-width:380px}
 
   .names{color:var(--rose);line-height:1.05;margin:30px 0 10px}
   .names .n{display:block;font-size:clamp(3.4rem,15vw,5rem)}
-  .names .amp{display:block;font-family:'Cormorant Garamond',Georgia,serif;font-style:italic;font-size:1.6rem;color:var(--gold);margin:2px 0}
+  .names .amp{display:block;font-family:'Cormorant Garamond',Georgia,serif;font-style:italic;font-size:1.6rem;color:var(--muted);margin:2px 0}
 
   .divider{display:flex;align-items:center;gap:14px;justify-content:center;margin:34px auto;color:var(--gold);max-width:260px}
   .divider::before,.divider::after{content:"";flex:1;height:1px;background:linear-gradient(90deg,transparent,var(--gold))}
@@ -83,7 +80,7 @@
   #gate.leaving{animation:fade .35s ease forwards}
   @keyframes fade{to{opacity:0;transform:translateY(-10px)}}
   .monogram{font-size:clamp(4rem,22vw,6rem);color:var(--rose);line-height:1;margin:6px 0 4px}
-  .monogram i{font-family:'Cormorant Garamond',Georgia,serif;font-size:.4em;color:var(--gold);margin:0 .15em}
+  .monogram i{font-family:'Cormorant Garamond',Georgia,serif;font-size:.4em;color:var(--muted);margin:0 .15em}
   .gate-title{font-family:'Cormorant Garamond',Georgia,serif;font-size:1.9rem;font-weight:600;margin-top:10px}
   .gate-sub{font-family:'Cormorant Garamond',Georgia,serif;font-size:1.15rem;line-height:1.6;color:var(--muted);margin-top:8px;max-width:300px}
   #nameForm{width:100%;max-width:340px;margin-top:30px;display:grid;gap:14px}
@@ -101,7 +98,7 @@
     font:400 .72rem 'Jost',system-ui,sans-serif;letter-spacing:.3em;text-transform:uppercase;
     transition:background .25s,color .25s;
   }
-  .btn:hover,.btn:focus-visible,#nameForm button:hover,#nameForm button:focus-visible{background:var(--gold);color:var(--paper);outline:none}
+  .btn:hover,.btn:focus-visible,#nameForm button:hover,#nameForm button:focus-visible{background:var(--gold);color:var(--ink);outline:none}
   .btn{margin-top:18px}
 
   /* ---------- Invitation ---------- */
@@ -124,7 +121,7 @@
   .parents p{font-family:'Cormorant Garamond',Georgia,serif;font-size:1.1rem;line-height:1.5;color:var(--muted)}
   .parents em{display:block;font-size:1rem}
   .parents b{display:block;font-weight:600;font-size:1.25rem;color:var(--ink);margin-top:2px}
-  .parents .who{font-family:'Jost',system-ui,sans-serif;font-weight:400;font-size:.7rem;letter-spacing:.3em;text-transform:uppercase;color:var(--gold);display:block;margin-bottom:4px}
+  .parents .who{font-family:'Jost',system-ui,sans-serif;font-weight:400;font-size:.7rem;letter-spacing:.3em;text-transform:uppercase;color:var(--rose);display:block;margin-bottom:4px}
 
   .timeline{list-style:none;border:1px solid var(--gold-soft);text-align:left}
   .timeline li{display:grid;grid-template-columns:7rem minmax(0,1fr);gap:12px;align-items:baseline;padding:15px 16px}
