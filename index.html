@@ -8,7 +8,7 @@
 <meta name="description" content="Mahnoor and Tahir invite you to their Barat on Sunday, 29 November 2026 from 11:00 AM at Divine Marque, East Canal, Lahore.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Amiri&family=Great+Vibes&family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 <style>
   /* Layout: gate screen, then one long scrolling invitation with a floating bar, sections, RSVP and share. */
   :root{
@@ -53,7 +53,7 @@
     display:inline-flex;align-items:center;justify-content:center;gap:10px;
     padding:15px 26px;min-height:50px;cursor:pointer;text-decoration:none;
     font:600 .72rem var(--sans);letter-spacing:.24em;text-transform:uppercase;color:var(--ink);
-    border:1px solid var(--maroon-hi);background:transparent;transition:filter .2s,background .2s,transform .2s;
+    border:1px solid var(--maroon-hi);border-radius:999px;background:transparent;transition:filter .2s,background .2s,transform .2s;
   }
   .btn:hover{background:color-mix(in srgb,var(--maroon) 40%,transparent)}
   .btn:active{transform:scale(.98)}
@@ -61,34 +61,76 @@
   .btn.primary:hover{filter:brightness(1.12)}
   .btn.block{width:100%}
 
-  /* ---------- Gate ---------- */
-  #gate{
-    width:min(560px,calc(100% - 32px));margin:max(24px,env(safe-area-inset-top)) auto max(40px,env(safe-area-inset-bottom));
-    min-height:min(640px,calc(100svh - 72px));
-    background:var(--panel);border:1px solid var(--line);outline:1px solid var(--maroon);outline-offset:-12px;
-    box-shadow:0 20px 60px var(--shadow);
-    padding:72px 36px 112px;text-align:center;position:relative;
-    display:flex;flex-direction:column;align-items:center;justify-content:center;
-    animation:rise .8s ease both;
-  }
-  #gate.leaving{animation:fade .35s ease forwards}
-  @keyframes rise{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
-  @keyframes fade{to{opacity:0;transform:translateY(-10px)}}
-  .bismillah{font-family:var(--serif);font-style:italic;color:var(--accent);font-size:.95rem;margin:0 18px 28px;line-height:1.5}
+  /* ---------- Opening: doors, then cover ---------- */
   .eyebrow{font:600 .68rem var(--sans);letter-spacing:.35em;text-transform:uppercase;color:var(--accent)}
-  .monogram{font-size:clamp(4rem,22vw,6rem);color:var(--accent);line-height:1;margin:8px 0 4px}
-  .monogram i{font-family:var(--serif);font-size:.4em;color:var(--muted);margin:0 .15em}
-  .gate-title{font-family:var(--serif);font-size:1.9rem;font-weight:600;margin-top:10px}
-  .gate-sub{color:var(--muted);margin-top:8px;max-width:300px;font-size:.95rem}
-  #nameForm{width:100%;max-width:340px;margin-top:30px;display:grid;gap:14px}
-  #nameForm label{font:600 .66rem var(--sans);letter-spacing:.3em;text-transform:uppercase;color:var(--muted)}
+  .bismillah{font-family:var(--serif);font-style:italic;color:var(--accent);font-size:.92rem;line-height:1.5}
   .field{
-    width:100%;padding:14px;font:400 1rem var(--sans);color:var(--ink);background:transparent;
-    border:1px solid var(--line);border-radius:0;
+    width:100%;padding:15px 16px;font:400 1rem var(--sans);color:var(--ink);background:rgba(0,0,0,.35);
+    border:1px solid var(--maroon-hi);border-radius:16px;
   }
   .field::placeholder{color:var(--muted);opacity:.8}
   .field:focus-visible{border-color:var(--accent);outline:1px solid var(--accent);outline-offset:0}
-  #guestName{text-align:center;font:400 1.15rem var(--serif)}
+  @keyframes fade{to{opacity:0;transform:scale(.98)}}
+
+  .stage{
+    position:fixed;inset:0;z-index:50;overflow:hidden;display:grid;place-items:center;
+    background:radial-gradient(circle at 50% 38%,color-mix(in srgb,var(--maroon) 40%,transparent),transparent 62%),var(--bg);
+    padding:max(24px,env(safe-area-inset-top)) max(14px,env(safe-area-inset-right)) max(24px,env(safe-area-inset-bottom)) max(14px,env(safe-area-inset-left));
+  }
+  .stage.leaving{animation:fade .45s ease forwards}
+  .box{position:relative;width:min(440px,100%);height:min(760px,100%)}
+
+  .doors{position:absolute;inset:0;z-index:2;border:2px solid var(--maroon-hi);border-radius:34px;overflow:hidden;background:#050304;box-shadow:0 20px 60px var(--shadow)}
+  .door{
+    position:absolute;top:12px;bottom:12px;width:calc(50% - 18px);
+    background:radial-gradient(circle at 50% 30%,color-mix(in srgb,var(--maroon) 55%,#050304),#050304 72%);
+    border:2px solid var(--maroon-hi);transition:transform .95s cubic-bezier(.7,0,.2,1) .2s;
+  }
+  .door::before{content:"";position:absolute;inset:14px;border:1px solid color-mix(in srgb,var(--maroon-hi) 55%,transparent);border-radius:20px}
+  .door.l{left:12px;border-radius:24px 6px 6px 24px}
+  .door.r{right:12px;border-radius:6px 24px 24px 6px}
+  .door-content{
+    position:absolute;inset:0;z-index:3;display:flex;flex-direction:column;align-items:center;justify-content:center;
+    padding:36px 30px;text-align:center;transition:opacity .3s;
+  }
+  .monogram{font-size:clamp(3.6rem,20vw,5.6rem);color:var(--ink);line-height:1;margin:14px 0 10px}
+  .monogram i{font-family:var(--serif);font-size:.55em;color:var(--accent);margin:0 .1em}
+  .tagline{font:400 .64rem var(--sans);letter-spacing:.3em;text-transform:uppercase;color:var(--muted);max-width:300px;line-height:1.8}
+  #nameForm{width:100%;max-width:330px;margin-top:30px;display:grid;gap:14px}
+  #nameForm label{font:600 .64rem var(--sans);letter-spacing:.32em;text-transform:uppercase;color:var(--ink)}
+  #guestName{text-align:center;font:400 1.15rem var(--serif);padding:16px}
+  .ayah{font-family:'Amiri','Noto Naskh Arabic','Geeza Pro',serif;font-size:1.8rem;line-height:1.5;color:var(--accent);margin-top:30px;direction:rtl}
+  .ayah-ref{font:400 .6rem var(--sans);letter-spacing:.28em;text-transform:uppercase;color:var(--muted);margin-top:4px}
+  .stage.opening .door-content{opacity:0;pointer-events:none}
+  .stage.opening .door.l{transform:translateX(-112%)}
+  .stage.opening .door.r{transform:translateX(112%)}
+  .stage.opened .doors{visibility:hidden}
+
+  .cover{
+    position:absolute;inset:0;z-index:1;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;
+    padding:40px 26px;border:1px solid var(--maroon-hi);background:linear-gradient(180deg,rgba(20,10,13,.94),rgba(8,5,6,.97));
+    visibility:hidden;opacity:0;transition:opacity .7s ease .25s;
+  }
+  .cover .in{position:absolute;inset:14px;border:1px solid var(--line);pointer-events:none}
+  .cover::before,.cover::after{content:"";position:absolute;left:50%;width:1px;height:100vh;background:var(--maroon-hi);opacity:.7}
+  .cover::before{bottom:100%}.cover::after{top:100%}
+  .stage.opening .cover{visibility:visible;opacity:1}
+  .c-welcome{display:flex;gap:14px;align-items:baseline;justify-content:center;flex-wrap:wrap;margin-top:22px}
+  .c-welcome span{font:600 .68rem var(--sans);letter-spacing:.4em;text-transform:uppercase;color:var(--muted)}
+  .c-welcome b{font-family:var(--script);font-weight:400;font-size:2.4rem;color:var(--accent);overflow-wrap:anywhere;line-height:1.2}
+  .c-inv{margin-top:18px;font:600 .68rem var(--sans);letter-spacing:.3em;text-transform:uppercase;color:var(--accent)}
+  .c-rule{width:150px;height:1px;margin:20px auto;background:linear-gradient(90deg,transparent,var(--maroon-hi),transparent)}
+  .c-lead{font:400 .7rem var(--sans);letter-spacing:.3em;text-transform:uppercase;color:var(--muted)}
+  .c-names{font:600 clamp(2.8rem,13vw,3.7rem)/1.05 var(--serif);margin-top:26px}
+  .c-names span{display:block}
+  .c-names em{font-style:italic;font-weight:400;color:var(--accent);margin-right:.12em}
+  .c-date{font:600 .78rem var(--sans);letter-spacing:.35em;color:var(--accent);margin-top:26px;text-transform:uppercase}
+  .cover .btn{margin-top:40px}
+  @media (max-height:700px){
+    .monogram{font-size:3.4rem;margin:6px 0}
+    .door-content{padding:22px 26px}#nameForm{margin-top:18px}.ayah{margin-top:16px;font-size:1.5rem}
+    .c-names{margin-top:16px}.cover .btn{margin-top:26px}.c-date{margin-top:16px}
+  }
 
   /* ---------- Floating bar ---------- */
   .nav{
@@ -134,14 +176,6 @@
     border:1px solid var(--line);border-radius:26px;
   }
 
-  .hero{padding-top:max(120px,calc(env(safe-area-inset-top,0px) + 108px));padding-bottom:20px}
-  .frame{position:relative;padding:60px 26px 56px;text-align:center;background:var(--panel);border:1px solid var(--line);outline:1px solid var(--maroon);outline-offset:-12px;box-shadow:0 20px 60px var(--shadow)}
-  .dear{font-size:2.3rem;color:var(--accent);display:block;overflow-wrap:anywhere;margin:0 0 22px;line-height:1.2}
-  .invited{color:var(--muted);font-size:.95rem}
-  .invited b{display:block;font:600 .68rem var(--sans);letter-spacing:.35em;text-transform:uppercase;color:var(--accent);margin-bottom:6px}
-  .names{color:var(--ink);line-height:1.05;margin:20px 0 6px;font-weight:400}
-  .names .n{display:block;font-size:clamp(3.4rem,16vw,5.2rem);color:var(--accent)}
-  .names .amp{display:block;font-family:var(--serif);font-style:italic;font-size:1.5rem;color:var(--muted);margin:2px 0}
   .parents{display:grid;gap:18px;margin:22px auto 0;max-width:380px}
   .parents p{font-family:var(--serif);font-size:1rem;line-height:1.5;color:var(--muted)}
   .parents em{display:block}
@@ -153,8 +187,23 @@
   .date{font:600 .82rem var(--sans);letter-spacing:.3em;text-transform:uppercase;color:var(--accent)}
   .date-sub{font-family:var(--serif);font-size:1.15rem;margin-top:8px}
 
+  .hero{padding-top:max(112px,calc(env(safe-area-inset-top,0px) + 104px));padding-bottom:30px;text-align:center}
+  .hero-in{position:relative;overflow:hidden;padding:30px 0 10px}
+  .watermark{position:absolute;left:50%;top:210px;transform:translateX(-50%);font-size:clamp(11rem,62vw,17rem);line-height:1;color:transparent;-webkit-text-stroke:1px color-mix(in srgb,var(--maroon-hi) 38%,transparent);white-space:nowrap;pointer-events:none;user-select:none}
+  .hero-in>*:not(.watermark){position:relative;z-index:1}
+  .h-welcome{font:600 .7rem var(--sans);letter-spacing:.4em;text-transform:uppercase;color:var(--accent)}
+  .h-name{font:400 2.5rem/1.2 var(--serif);margin-top:6px;overflow-wrap:anywhere}
+  .h-sub{color:var(--muted);font-size:.95rem;margin-top:8px}
+  .h-of{margin-top:46px;font:600 .7rem var(--sans);letter-spacing:.4em;text-transform:uppercase;color:var(--accent)}
+  .h-names{font:600 clamp(3.2rem,16vw,4.8rem)/1.05 var(--serif);margin-top:14px;letter-spacing:-.01em}
+  .h-names span{display:block}
+  .h-names em{font-style:italic;font-weight:400;color:var(--accent);font-size:1.05em;margin-right:.12em}
+  .h-rule{width:170px;height:1px;margin:30px auto;background:linear-gradient(90deg,transparent,var(--maroon-hi),transparent)}
+  .h-quote{font-family:var(--serif);font-style:italic;color:var(--muted);font-size:1.12rem;max-width:380px;margin:0 auto;line-height:1.6}
+  .meta{margin-top:30px;font:600 .82rem var(--sans);color:var(--accent);letter-spacing:.04em}
+  .meta i{font-style:normal;margin:0 .6em;opacity:.7}
   .countdown{display:flex;justify-content:center;gap:10px;margin:26px 0 6px}
-  .countdown div{min-width:66px;padding:12px 6px;border:1px solid var(--line);background:var(--panel-2)}
+  .countdown div{min-width:66px;padding:12px 6px;border:1px solid var(--line);background:var(--panel-2);border-radius:14px}
   .countdown b{display:block;font:600 1.6rem var(--serif);color:var(--accent);font-variant-numeric:tabular-nums}
   .countdown span{font:400 .58rem var(--sans);letter-spacing:.22em;text-transform:uppercase;color:var(--muted)}
   .hero-actions{display:grid;gap:12px;margin-top:30px}
@@ -237,14 +286,12 @@
   #invite>main,#invite>footer{position:relative;z-index:2}
 
   @media (max-width:420px){
-    #gate{padding:68px 22px 104px}
-    .frame{padding:56px 18px 50px}
-    .countdown{gap:7px}.countdown div{min-width:58px}
+      .countdown{gap:7px}.countdown div{min-width:58px}
     .timeline li{grid-template-columns:6.4rem minmax(0,1fr)}
   }
   @media (min-width:640px){.opt{grid-template-columns:repeat(3,1fr)}.hero-actions{grid-template-columns:1fr 1fr}.share-actions{grid-template-columns:1fr 1fr}}
   @media (prefers-reduced-motion:reduce){
-    html{scroll-behavior:auto}#gate,#gate.leaving{animation:none}.petals{display:none}
+    html{scroll-behavior:auto}.stage.leaving{animation:none}.door,.cover{transition:none}.petals{display:none}
   }
 </style>
 </head>
@@ -254,25 +301,39 @@
   <symbol id="corner" viewBox="0 0 60 60"><path d="M2 58V2h56"/><path d="M10 50V10h40"/><circle cx="10" cy="10" r="3"/></symbol>
 </svg>
 
-<!-- Step 1: enter your name -->
-<main id="gate">
-  <svg class="corner tl" aria-hidden="true"><use href="#corner"/></svg>
-  <svg class="corner tr" aria-hidden="true"><use href="#corner"/></svg>
-  <svg class="corner bl" aria-hidden="true"><use href="#corner"/></svg>
-  <svg class="corner br" aria-hidden="true"><use href="#corner"/></svg>
+<!-- Opening: closed doors ask for a name, then open onto the cover -->
+<div class="stage" id="stage">
+  <div class="box">
+    <section class="cover" id="cover" aria-hidden="true">
+      <i class="in"></i>
+      <p class="bismillah">In the name of Allah, the Most Gracious, the Most Merciful</p>
+      <p class="c-welcome"><span>Welcome</span><b id="coverName"></b></p>
+      <p class="c-inv">You are cordially invited</p>
+      <div class="c-rule"></div>
+      <p class="c-lead">to celebrate the wedding of</p>
+      <h1 class="c-names"><span>Mahnoor</span><span><em>&amp;</em>Tahir</span></h1>
+      <p class="c-date">29 November 2026</p>
+      <button class="btn primary" id="openInvite" type="button">Open Our Invitation</button>
+    </section>
 
-  <p class="bismillah">In the name of Allah, the Most Gracious, the Most Merciful</p>
-  <p class="eyebrow">Wedding Invitation</p>
-  <p class="monogram script" aria-label="Mahnoor and Tahir">M<i>&amp;</i>T</p>
-  <h1 class="gate-title">You are invited</h1>
-  <p class="gate-sub">Please enter your name to open your invitation.</p>
-
-  <form id="nameForm" autocomplete="off">
-    <label for="guestName">Your name</label>
-    <input class="field" id="guestName" name="guestName" type="text" maxlength="40" placeholder="Your name" autocapitalize="words" enterkeyhint="go" required>
-    <button class="btn primary" type="submit">Open Invitation</button>
-  </form>
-</main>
+    <main class="doors" id="doors">
+      <div class="door l" aria-hidden="true"></div>
+      <div class="door r" aria-hidden="true"></div>
+      <div class="door-content">
+        <p class="eyebrow">Wedding Invitation</p>
+        <p class="monogram serif" aria-label="Mahnoor and Tahir">M<i>&amp;</i>T</p>
+        <p class="tagline">A new beginning · A beautiful forever</p>
+        <form id="nameForm" autocomplete="off">
+          <label for="guestName">Enter your name</label>
+          <input class="field" id="guestName" name="guestName" type="text" maxlength="40" placeholder="Your name" autocapitalize="words" enterkeyhint="go" required>
+          <button class="btn primary" type="submit">Open Our Invitation</button>
+        </form>
+        <p class="ayah" lang="ar" dir="rtl">وَخَلَقْنَاكُمْ أَزْوَاجًا</p>
+        <p class="ayah-ref">And We created you in pairs · Qur’an 78:8</p>
+      </div>
+    </main>
+  </div>
+</div>
 
 <!-- Step 2: the invitation -->
 <div id="invite" hidden>
@@ -300,31 +361,23 @@
 
   <main>
     <section id="home" class="hero wrap">
-      <div class="frame">
-        <svg class="corner tl" aria-hidden="true"><use href="#corner"/></svg>
-        <svg class="corner tr" aria-hidden="true"><use href="#corner"/></svg>
-        <svg class="corner bl" aria-hidden="true"><use href="#corner"/></svg>
-        <svg class="corner br" aria-hidden="true"><use href="#corner"/></svg>
+      <div class="hero-in">
+        <span class="watermark" aria-hidden="true">M&amp;T</span>
+        <p class="h-welcome">Welcome</p>
+        <p class="h-name" id="dear"></p>
+        <p class="h-sub">We are delighted to celebrate with you</p>
 
-        <p class="bismillah">In the name of Allah, the Most Gracious, the Most Merciful</p>
-        <span class="dear script" id="dear"></span>
-        <p class="invited"><b>You are cordially invited</b>to celebrate the wedding of</p>
+        <p class="h-of">The wedding of</p>
+        <h1 class="h-names"><span>Mahnoor</span><span><em>&amp;</em>Tahir</span></h1>
+        <div class="h-rule"></div>
+        <p class="h-quote">With the blessings of Allah, we begin our new life together.</p>
 
-        <h1 class="names script">
-          <span class="n">Mahnoor</span>
-          <span class="amp">&amp;</span>
-          <span class="n">Tahir</span>
-        </h1>
-
-        <div class="parents">
+        <div class="parents" style="margin-top:34px">
           <p><span class="who">The bride</span><em>Mahnoor, daughter of</em><b>Mr &amp; Mrs Sheikh Aurangzeb Iqbal</b></p>
           <p><span class="who">The groom</span><em>Tahir, son of</em><b>Mr &amp; Mrs Ghulam Muhammad Hussain</b></p>
         </div>
 
-        <div class="diamond" aria-hidden="true">&#9670;</div>
-
-        <p class="date">29 November 2026</p>
-        <p class="date-sub">Sunday · Barat from 11:00 AM</p>
+        <p class="meta">29 November 2026<i>•</i>Barat<i>•</i>11:00 AM</p>
 
         <div class="countdown" id="countdown" role="timer" aria-label="Countdown to the Barat">
           <div><b id="d">--</b><span>Days</span></div>
@@ -334,8 +387,8 @@
         </div>
 
         <div class="hero-actions">
-          <a class="btn primary" href="#rsvp">RSVP</a>
-          <a class="btn" href="#venue">View venue</a>
+          <a class="btn primary" href="#programme">Open Invitation</a>
+          <a class="btn" href="#rsvp">RSVP</a>
         </div>
       </div>
     </section>
@@ -499,8 +552,9 @@
   // --------------------
   var KEY='wedding-guest-name';
   var $=function(id){return document.getElementById(id)};
-  var gate=$('gate'), invite=$('invite'), form=$('nameForm'), input=$('guestName'), dear=$('dear');
+  var stage=$('stage'), cover=$('cover'), invite=$('invite'), form=$('nameForm'), input=$('guestName');
   var song=$('song'), mbtn=$('musicBtn'), wantMusic=false, fadeT=null, timer=null;
+  var reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   function clean(v){return String(v||'').replace(/\s+/g,' ').trim().slice(0,40)}
 
@@ -547,32 +601,41 @@
     }
   })();
 
-  /* open / back */
-  function open(name){
-    dear.textContent='Dear '+name+',';
+  /* opening sequence: doors -> cover -> invitation */
+  function setGuest(name){
+    $('coverName').textContent=name;
+    $('dear').textContent=name;
     $('rName').value=name;
     document.title=name+', you are invited – Mahnoor & Tahir';
-    gate.classList.add('leaving');
-    setTimeout(function(){
-      gate.hidden=true;gate.classList.remove('leaving');
-      invite.hidden=false;window.scrollTo(0,0);startTimer();
-    },matchMedia('(prefers-reduced-motion: reduce)').matches?0:320);
-  }
-  function back(){
-    stopTimer();stopMusic();closeMenu();
-    invite.hidden=true;gate.hidden=false;
-    document.title='Mahnoor & Tahir – Wedding Invitation';
-    input.select();window.scrollTo(0,0);
   }
   form.addEventListener('submit',function(e){
     e.preventDefault();var name=clean(input.value);if(!name)return;
     try{localStorage.setItem(KEY,name)}catch(_){}
-    playMusic();open(name);
+    setGuest(name);playMusic();
+    stage.classList.add('opening');
+    cover.removeAttribute('aria-hidden');
+    setTimeout(function(){stage.classList.add('opened');$('openInvite').focus({preventScroll:true})},reduce?0:1300);
   });
+  $('openInvite').addEventListener('click',function(){
+    stage.classList.add('leaving');
+    setTimeout(function(){
+      stage.hidden=true;stage.classList.remove('leaving');
+      invite.hidden=false;window.scrollTo(0,0);startTimer();
+    },reduce?0:450);
+  });
+  function back(){
+    stopTimer();stopMusic();closeMenu();
+    invite.hidden=true;stage.hidden=false;stage.className='stage';
+    cover.setAttribute('aria-hidden','true');
+    document.title='Mahnoor & Tahir – Wedding Invitation';
+    input.select();window.scrollTo(0,0);
+  }
   document.addEventListener('visibilitychange',function(){
-    if(invite.hidden)return;
     if(document.hidden){stopTimer();if(!song.paused)song.pause()}
-    else{startTimer();if(wantMusic&&song.paused){var r=song.play();if(r&&r.catch)r.catch(function(){})}}
+    else{
+      if(!invite.hidden)startTimer();
+      if(wantMusic&&song.paused){var r=song.play();if(r&&r.catch)r.catch(function(){})}
+    }
   });
   var pre='';
   try{pre=clean(new URLSearchParams(location.search).get('name'))}catch(_){}
