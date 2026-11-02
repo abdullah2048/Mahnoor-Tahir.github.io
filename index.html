@@ -134,9 +134,10 @@
   }
   .stage.opening .cover{visibility:visible;opacity:1}
   .rc{position:absolute;pointer-events:none;overflow:visible}
-  .rc.tl{top:-3cqw;left:-3cqw;width:35cqw;height:35cqw}
-  .rc.tr{top:-3cqw;right:-3cqw;width:35cqw;height:35cqw}
-  .rc.bl{bottom:-4cqw;left:-4cqw;width:36cqw;height:36cqw}
+  .rc{height:auto}
+  .rc.tl{top:0;left:0;width:39.4cqw}
+  .rc.tr{top:0;right:0;width:40.2cqw}
+  .rc.bl{bottom:0;left:0;width:31.3cqw}
   .couple{position:absolute;right:-1cqw;bottom:-1cqw;width:41cqw;height:auto;pointer-events:none;z-index:1}
   .ec-body{position:relative;z-index:2;height:100%;display:flex;flex-direction:column;justify-content:space-between;align-items:center;text-align:center;padding:9cqw 5cqw 7cqw}
   .ec-top,.ec-mid,.ec-low{display:flex;flex-direction:column;align-items:center;width:100%}
@@ -154,7 +155,7 @@
   .ec-date .dm{text-align:center;padding:1cqw 1.5cqw;border-left:1px solid var(--ec-gold);border-right:1px solid var(--ec-gold)}
   .ec-date .dm b{display:block;font:600 8cqw/1 'Cormorant Garamond',Georgia,serif}
   .ec-date .dm em{display:block;font:600 2.8cqw 'Cormorant SC',Georgia,serif;font-style:normal;letter-spacing:.08em;text-transform:uppercase;margin-top:1cqw}
-  .ec-low{margin-right:16cqw;width:auto}
+  .ec-low{margin-right:6cqw;width:auto}
   .ec-low .ec-caps{white-space:nowrap}
   .ec-addr{font:400 4.2cqw/1.45 'Cormorant Garamond',Georgia,serif;color:var(--ec);margin-top:2.5cqw}
   .ec-addr i{font-size:4cqw;display:inline-block;margin-bottom:.6cqw}
@@ -345,29 +346,6 @@
 
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
   <defs>
-    <radialGradient id="rg1" cx=".4" cy=".35" r=".85"><stop offset="0" stop-color="#d03545"/><stop offset=".6" stop-color="#a21a2b"/><stop offset="1" stop-color="#6a0b18"/></radialGradient>
-    <radialGradient id="rg2" cx=".4" cy=".3" r=".85"><stop offset="0" stop-color="#e04b5a"/><stop offset=".6" stop-color="#b92234"/><stop offset="1" stop-color="#7c1020"/></radialGradient>
-    <radialGradient id="rg3" cx=".4" cy=".3" r=".85"><stop offset="0" stop-color="#ef6874"/><stop offset=".55" stop-color="#c72a3c"/><stop offset="1" stop-color="#8a1424"/></radialGradient>
-    <linearGradient id="gown" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#8d1630"/><stop offset="1" stop-color="#4a0918"/></linearGradient>
-    <path id="pet" d="M0 0C-30 -8 -38 -36 -14 -46C-4 -50 10 -50 18 -44C40 -34 30 -6 0 0Z"/>
-    <symbol id="rose" viewBox="-50 -50 100 100">
-      <circle r="47" fill="#4a0711"/>
-      <g stroke="#3b050d" stroke-width=".7">
-        <g fill="url(#rg1)"><use href="#pet"/><use href="#pet" transform="rotate(72)"/><use href="#pet" transform="rotate(144)"/><use href="#pet" transform="rotate(216)"/><use href="#pet" transform="rotate(288)"/></g>
-        <g fill="url(#rg2)" transform="scale(.72) rotate(36)"><use href="#pet"/><use href="#pet" transform="rotate(72)"/><use href="#pet" transform="rotate(144)"/><use href="#pet" transform="rotate(216)"/><use href="#pet" transform="rotate(288)"/></g>
-        <g fill="url(#rg3)" transform="scale(.46) rotate(10)"><use href="#pet"/><use href="#pet" transform="rotate(72)"/><use href="#pet" transform="rotate(144)"/><use href="#pet" transform="rotate(216)"/><use href="#pet" transform="rotate(288)"/></g>
-      </g>
-      <ellipse cx="-14" cy="-22" rx="12" ry="5" fill="#fff" opacity=".14" transform="rotate(-30 -14 -22)"/>
-      <circle cx="18" cy="-14" r="1.2" fill="#fff" opacity=".55"/><circle cx="-24" cy="10" r="1" fill="#fff" opacity=".45"/><circle cx="8" cy="26" r="1.1" fill="#fff" opacity=".5"/>
-    </symbol>
-    <symbol id="leaf" viewBox="-12 -30 24 60">
-      <path d="M0 -28C13 -14 13 12 0 28C-13 12 -13 -14 0 -28Z" fill="#2d3b29"/>
-      <path d="M0 -24V24" stroke="#4d6445" stroke-width=".9"/>
-    </symbol>
-    <symbol id="gyp" viewBox="0 0 60 60">
-      <g stroke="#c8a766" stroke-width=".7" fill="none"><path d="M4 56C16 40 22 24 30 6"/><path d="M14 44C26 40 38 38 52 28"/><path d="M20 32C30 22 36 14 38 4"/></g>
-      <g fill="#f6e7c8"><circle cx="30" cy="6" r="2.2"/><circle cx="52" cy="28" r="2"/><circle cx="38" cy="4" r="1.8"/><circle cx="22" cy="20" r="1.6"/><circle cx="40" cy="36" r="1.7"/><circle cx="12" cy="40" r="1.6"/><circle cx="46" cy="16" r="1.5"/></g>
-    </symbol>
     <symbol id="sprig" viewBox="0 0 24 24"><g fill="currentColor"><path d="M2 20C8 18 14 12 19 4C18 12 13 18 2 20Z"/><path d="M11 14C14 15 17 14 20 11C17 17 13 18 11 14Z"/><circle cx="21" cy="3" r="1.4"/></g></symbol>
     <symbol id="flourish" viewBox="0 0 120 14">
       <g fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round"><path d="M2 7H44M76 7H118"/><path d="M44 7C48 0 55 0 60 7C65 14 72 14 76 7"/></g>
@@ -384,33 +362,9 @@
   <div class="col">
   <div class="box">
     <section class="cover" id="cover" aria-hidden="true">
-      <svg class="rc tl" viewBox="0 0 200 200" aria-hidden="true">
-        <use href="#gyp" x="92" y="-6" width="80" height="80" transform="rotate(25 132 34)"/>
-        <use href="#leaf" x="120" y="52" width="30" height="62" transform="rotate(48 135 83)"/>
-        <use href="#leaf" x="60" y="104" width="26" height="54" transform="rotate(-18 73 131)"/>
-        <use href="#leaf" x="150" y="28" width="26" height="54" transform="rotate(86 163 55)"/>
-        <use href="#rose" x="-6" y="-6" width="128" height="128"/>
-        <use href="#rose" x="106" y="-12" width="76" height="76"/>
-        <use href="#rose" x="-12" y="108" width="66" height="66"/>
-        <use href="#rose" x="82" y="92" width="50" height="50"/>
-      </svg>
-      <svg class="rc tr" viewBox="0 0 200 200" aria-hidden="true">
-        <use href="#gyp" x="2" y="-4" width="84" height="84" transform="rotate(-20 44 38)"/>
-        <use href="#leaf" x="46" y="60" width="28" height="58" transform="rotate(-50 60 89)"/>
-        <use href="#leaf" x="150" y="108" width="26" height="54" transform="rotate(20 163 135)"/>
-        <use href="#rose" x="64" y="-2" width="138" height="138"/>
-        <use href="#rose" x="2" y="-10" width="80" height="80"/>
-        <use href="#rose" x="132" y="112" width="64" height="64"/>
-      </svg>
-      <svg class="rc bl" viewBox="0 0 200 200" aria-hidden="true">
-        <use href="#gyp" x="86" y="86" width="84" height="84" transform="rotate(8 128 128)"/>
-        <use href="#leaf" x="108" y="62" width="28" height="58" transform="rotate(64 122 91)"/>
-        <use href="#leaf" x="96" y="150" width="26" height="54" transform="rotate(-70 109 177)"/>
-        <use href="#rose" x="-14" y="62" width="152" height="152"/>
-        <use href="#rose" x="92" y="130" width="82" height="82"/>
-        <use href="#rose" x="-8" y="2" width="76" height="76"/>
-        <use href="#rose" x="64" y="52" width="48" height="48"/>
-      </svg>
+      <img class="rc tl" src="assets/rose-tl.png" alt="" width="290" height="350" decoding="async">
+      <img class="rc tr" src="assets/rose-tr.png" alt="" width="296" height="420" decoding="async">
+      <img class="rc bl" src="assets/rose-bl.png" alt="" width="230" height="454" decoding="async">
 
       <img class="couple" src="assets/couple.png" alt="" width="353" height="447" decoding="async">
 
@@ -840,7 +794,7 @@
 
   /* download the main card as a PNG, drawn on a canvas so the fonts and the guest's name are kept */
   var guest='';
-  function drawCard(name,couple){
+  function drawCard(name,imgs){var couple=imgs.couple;
     var W=1080,H=1620,U=W/100,cv=document.createElement('canvas');cv.width=W;cv.height=H;
     var c=cv.getContext('2d'),RAD=Math.PI/180,INK='#6a1424',SOFT='#8a4a52',GOLD='#b8924f';
     function px(n){return n*U}
@@ -852,46 +806,9 @@
     for(var i=0;i<id.data.length;i+=4){id.data[i]=110;id.data[i+1]=60;id.data[i+2]=66;id.data[i+3]=Math.random()*16}
     nc.putImageData(id,0,0);c.imageSmoothingEnabled=true;c.imageSmoothingQuality='high';c.drawImage(nz,0,0,W,H);
 
-    /* roses, leaves, baby's breath */
-    var PET=new Path2D('M0 0C-30 -8 -38 -36 -14 -46C-4 -50 10 -50 18 -44C40 -34 30 -6 0 0Z');
-    var LEAF=new Path2D('M0 -28C13 -14 13 12 0 28C-13 12 -13 -14 0 -28Z');
-    function rg(a,b,d){var q=c.createRadialGradient(-6,-12,2,-2,-10,52);q.addColorStop(0,a);q.addColorStop(.6,b);q.addColorStop(1,d);return q}
-    function rose(x,y,w){
-      c.save();c.translate(x+w/2,y+w/2);c.scale(w/100,w/100);
-      c.fillStyle='#4a0711';c.beginPath();c.arc(0,0,47,0,7);c.fill();
-      c.strokeStyle='#3b050d';c.lineWidth=.7;
-      [[1,0,'#d03545','#a21a2b','#6a0b18'],[.72,36,'#e04b5a','#b92234','#7c1020'],[.46,10,'#ef6874','#c72a3c','#8a1424']].forEach(function(r){
-        for(var k=0;k<5;k++){c.save();c.scale(r[0],r[0]);c.rotate((r[1]+72*k)*RAD);c.fillStyle=rg(r[2],r[3],r[4]);c.fill(PET);c.stroke(PET);c.restore()}
-      });
-      c.save();c.translate(-14,-22);c.rotate(-30*RAD);c.fillStyle='rgba(255,255,255,.14)';c.beginPath();c.ellipse(0,0,12,5,0,0,7);c.fill();c.restore();
-      c.fillStyle='rgba(255,255,255,.5)';[[18,-14,1.2],[-24,10,1],[8,26,1.1]].forEach(function(d){c.beginPath();c.arc(d[0],d[1],d[2],0,7);c.fill()});
-      c.restore();
-    }
-    function leaf(x,y,w,h){c.save();c.translate(x,y);c.scale(w/24,h/60);c.translate(12,30);c.fillStyle='#2d3b29';c.fill(LEAF);c.strokeStyle='#4d6445';c.lineWidth=.9;c.beginPath();c.moveTo(0,-24);c.lineTo(0,24);c.stroke();c.restore()}
-    function gyp(x,y,w,h){
-      c.save();c.translate(x,y);c.scale(w/60,h/60);
-      c.strokeStyle='#c8a766';c.lineWidth=.7;
-      ['M4 56C16 40 22 24 30 6','M14 44C26 40 38 38 52 28','M20 32C30 22 36 14 38 4'].forEach(function(d){c.stroke(new Path2D(d))});
-      c.fillStyle='#f6e7c8';[[30,6,2.2],[52,28,2],[38,4,1.8],[22,20,1.6],[40,36,1.7],[12,40,1.6],[46,16,1.5]].forEach(function(d){c.beginPath();c.arc(d[0],d[1],d[2],0,7);c.fill()});
-      c.restore();
-    }
-    function cluster(bx,by,size,items){
-      items.forEach(function(it){
-        c.save();c.translate(bx,by);c.scale(size/200,size/200);
-        if(it.rot){c.translate(it.rot[1],it.rot[2]);c.rotate(it.rot[0]*RAD);c.translate(-it.rot[1],-it.rot[2])}
-        if(it.t==='rose')rose(it.x,it.y,it.w);else if(it.t==='leaf')leaf(it.x,it.y,it.w,it.h);else gyp(it.x,it.y,it.w,it.h);
-        c.restore();
-      });
-    }
-    cluster(px(-3),px(-3),px(35),[
-      {t:'gyp',x:92,y:-6,w:80,h:80,rot:[25,132,34]},{t:'leaf',x:120,y:52,w:30,h:62,rot:[48,135,83]},{t:'leaf',x:60,y:104,w:26,h:54,rot:[-18,73,131]},{t:'leaf',x:150,y:28,w:26,h:54,rot:[86,163,55]},
-      {t:'rose',x:-6,y:-6,w:128},{t:'rose',x:106,y:-12,w:76},{t:'rose',x:-12,y:108,w:66},{t:'rose',x:82,y:92,w:50}]);
-    cluster(px(68),px(-3),px(35),[
-      {t:'gyp',x:2,y:-4,w:84,h:84,rot:[-20,44,38]},{t:'leaf',x:46,y:60,w:28,h:58,rot:[-50,60,89]},{t:'leaf',x:150,y:108,w:26,h:54,rot:[20,163,135]},
-      {t:'rose',x:64,y:-2,w:138},{t:'rose',x:2,y:-10,w:80},{t:'rose',x:132,y:112,w:64}]);
-    cluster(px(-4),H-px(36)+px(4),px(36),[
-      {t:'gyp',x:86,y:86,w:84,h:84,rot:[8,128,128]},{t:'leaf',x:108,y:62,w:28,h:58,rot:[64,122,91]},{t:'leaf',x:96,y:150,w:26,h:54,rot:[-70,109,177]},
-      {t:'rose',x:-14,y:62,w:152},{t:'rose',x:92,y:130,w:82},{t:'rose',x:-8,y:2,w:76},{t:'rose',x:64,y:52,w:48}]);
+    /* real rose clusters, placed at the same proportions as on the card */
+    function put(im,x,y,wu,fromRight,fromBottom){if(!im)return;var w=px(wu),h=w*im.naturalHeight/im.naturalWidth;c.drawImage(im,fromRight?W-w:x,fromBottom?H-h:y,w,h)}
+    put(imgs.tl,0,0,39.4);put(imgs.tr,0,0,40.2,true);put(imgs.bl,0,0,31.3,false,true);
 
     /* bride and groom (cut-out picture) */
     if(couple){var cw=px(41),ch=cw*couple.naturalHeight/couple.naturalWidth;c.drawImage(couple,W-cw+px(1),H-ch+px(1),cw,ch)}
@@ -927,7 +844,7 @@
     (function(){var save=CX;CX=px(27.75);caps('Sunday',yc+1.2,3.2,.3);CX=px(72.25);caps('At 11 AM',yc+1.2,3.2,.3);CX=save})();
     center('29',yc-1,'600 '+px(8)+'px "Cormorant Garamond",Georgia,serif');
     caps('November,',yc+4,2.8,.25);caps('2026',yc+7.6,2.8,.25);
-    var CX0=CX;CX=CX0-px(8);
+    var CX0=CX;CX=CX0-px(3);
     caps('Kindly grace the occasion with',113.5,2.4,.2);
     caps('your presence and duas',117.9,2.4,.2);
     center('Address:',124.5,'italic '+px(4)+'px "Cormorant Garamond",Georgia,serif');
@@ -940,9 +857,10 @@
   function saveCard(btn){
     var label=btn.textContent;btn.disabled=true;btn.textContent='Preparing…';
     var fonts=['700 40px "Aref Ruqaa"','40px "Satisfy"','600 40px "Cormorant SC"','400 40px "Cormorant Garamond"','italic 400 40px "Cormorant Garamond"','600 40px "Cormorant Garamond"'];
-    var img=new Image();var imgP=new Promise(function(res){img.onload=function(){res()};img.onerror=function(){img=null;res()};img.src='assets/couple.png'});
+    var imgs={},srcs={couple:'assets/couple.png',tl:'assets/rose-tl.png',tr:'assets/rose-tr.png',bl:'assets/rose-bl.png'};
+    var imgP=Promise.all(Object.keys(srcs).map(function(k){return new Promise(function(res){var im=new Image();im.onload=function(){imgs[k]=im;res()};im.onerror=function(){res()};im.src=srcs[k]})}));
     Promise.all(fonts.map(function(f){return document.fonts.load(f,'Aa')}).concat([imgP])).catch(function(){}).then(function(){
-      var cv=drawCard(guest||'Guest',img);
+      var cv=drawCard(guest||'Guest',imgs);
       cv.toBlob(function(b){
         btn.disabled=false;btn.textContent=label;
         if(!b)return;
