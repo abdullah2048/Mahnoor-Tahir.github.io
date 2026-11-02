@@ -6,7 +6,7 @@
 <meta name="theme-color" content="#fbf6ee" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#1d1517" media="(prefers-color-scheme: dark)">
 <title>Mahnoor &amp; Tahir – Wedding Invitation</title>
-<meta name="description" content="Mahnoor and Tahir invite you to their Barat on Sunday, 29 November 2026 at Devine Marque, East Canal, Lahore.">
+<meta name="description" content="Mahnoor and Tahir invite you to their Barat on Sunday, 29 November 2026 from 11:00 AM at Divine Marque, East Canal, Lahore.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Great+Vibes&family=Jost:wght@300;400&display=swap" rel="stylesheet">
@@ -119,6 +119,19 @@
   .event h3{font-family:'Cormorant Garamond',Georgia,serif;font-size:1.5rem;font-weight:600;color:var(--rose)}
   .event p{margin-top:6px;line-height:1.6;font-size:.95rem}
   .event .t{color:var(--muted);font-size:.8rem;letter-spacing:.2em;text-transform:uppercase;margin-top:8px}
+
+  .parents{display:grid;gap:18px;margin:6px auto 0;max-width:380px}
+  .parents p{font-family:'Cormorant Garamond',Georgia,serif;font-size:1.1rem;line-height:1.5;color:var(--muted)}
+  .parents em{display:block;font-size:1rem}
+  .parents b{display:block;font-weight:600;font-size:1.25rem;color:var(--ink);margin-top:2px}
+  .parents .who{font-family:'Jost',system-ui,sans-serif;font-weight:400;font-size:.7rem;letter-spacing:.3em;text-transform:uppercase;color:var(--gold);display:block;margin-bottom:4px}
+
+  .timeline{list-style:none;border:1px solid var(--gold-soft);text-align:left}
+  .timeline li{display:grid;grid-template-columns:7rem minmax(0,1fr);gap:12px;align-items:baseline;padding:15px 16px}
+  .timeline li+li{border-top:1px solid var(--gold-soft)}
+  .timeline time{font-family:'Cormorant Garamond',Georgia,serif;font-weight:600;font-size:1.25rem;color:var(--rose);font-variant-numeric:tabular-nums}
+  .timeline span{font-family:'Cormorant Garamond',Georgia,serif;font-size:1.35rem}
+  .tl-note{margin-top:12px;font-size:.72rem;letter-spacing:.25em;text-transform:uppercase;color:var(--muted)}
   .venue p{line-height:1.7}
 
   .closing{font-family:'Cormorant Garamond',Georgia,serif;font-style:italic;font-size:1.2rem;line-height:1.7;color:var(--muted);max-width:360px;margin:0 auto}
@@ -180,6 +193,11 @@
     <span class="n">Tahir</span>
   </h2>
 
+  <div class="parents">
+    <p><span class="who">The bride</span><em>Mahnoor, daughter of</em><b>Mr &amp; Mrs Sheikh Aurangzeb Iqbal</b></p>
+    <p><span class="who">The groom</span><em>Tahir, son of</em><b>Mr &amp; Mrs Gulam Muhammad Hussain</b></p>
+  </div>
+
   <div class="divider" aria-hidden="true">&#10086;</div>
 
   <p class="date">Sunday, 29 November 2026<small>Save the date</small></p>
@@ -194,20 +212,22 @@
   <div class="divider" aria-hidden="true">&#10086;</div>
 
   <section>
-    <h2>Function</h2>
-    <div class="event">
-      <h3>Barat</h3>
-      <p>Sunday, 29 November 2026</p>
-      <p class="t">2:00 PM · Devine Marque, Lahore</p>
-    </div>
+    <h2>Barat Programme</h2>
+    <ol class="timeline">
+      <li><time datetime="11:00">11:00 AM</time><span>Barat Arrival</span></li>
+      <li><time datetime="12:00">12:00 PM</time><span>Nikkah</span></li>
+      <li><time datetime="13:00">1:00 PM</time><span>Lunch</span></li>
+      <li><time datetime="14:00">2:00 PM</time><span>Ruqsati</span></li>
+    </ol>
+    <p class="tl-note">Concludes by 3:00 PM</p>
   </section>
 
   <div class="divider" aria-hidden="true">&#10086;</div>
 
   <section class="venue">
     <h2>Venue</h2>
-    <p>Devine Marque<br>East Canal, Lahore</p>
-    <a class="btn" href="https://www.google.com/maps/search/?api=1&query=Devine+Marque+East+Canal+Lahore" target="_blank" rel="noopener">View Map</a>
+    <p>Divine Marque<br>East Canal, Lahore</p>
+    <a class="btn" href="https://www.google.com/maps/search/?api=1&query=Divine+Marque+East+Canal+Lahore" target="_blank" rel="noopener">View Map</a>
   </section>
 
   <div class="divider" aria-hidden="true">&#10086;</div>
@@ -221,7 +241,7 @@
 <script>
 (function(){
   // Edit this to change the countdown target (local time).
-  var WEDDING = new Date('2026-11-29T14:00:00');
+  var WEDDING = new Date('2026-11-29T11:00:00');
   var KEY = 'wedding-guest-name';
   var $ = function(id){ return document.getElementById(id); };
   var gate=$('gate'), invite=$('invite'), form=$('nameForm'), input=$('guestName'), dear=$('dear');
