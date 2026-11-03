@@ -72,7 +72,7 @@
 
   .stage{
     position:fixed;inset:0;z-index:50;overflow:auto;display:flex;
-    background:radial-gradient(circle at 50% 38%,#7d1228,#2c0610 78%);
+    background:#e6d3cf url(assets/silk.webp) center/cover no-repeat;
     padding:max(24px,env(safe-area-inset-top)) max(14px,env(safe-area-inset-right)) max(24px,env(safe-area-inset-bottom)) max(14px,env(safe-area-inset-left));
   }
   .stage.leaving{animation:fade .45s ease forwards}
@@ -80,13 +80,14 @@
   .box{position:relative;width:clamp(300px,calc((100svh - 150px) / 1.75),440px);max-width:100%;aspect-ratio:1/1.75}
   .acts{display:none;gap:10px;flex-wrap:wrap;justify-content:center;width:100%}
   .stage.opening .acts{display:flex}
-  .acts .btn.primary{border-color:var(--gold)}
-  .acts .btn{color:var(--ivory);border-color:var(--gold);flex:1 1 150px;max-width:210px;font-size:.66rem;letter-spacing:.14em;padding:14px 10px;white-space:nowrap}
+  .acts .btn.primary{color:var(--ivory)}
+  .acts .btn:not(.primary){background:rgba(251,243,238,.75)}
+  .acts .btn{color:var(--ink);border-color:var(--gold);flex:1 1 150px;max-width:210px;font-size:.66rem;letter-spacing:.14em;padding:14px 10px;white-space:nowrap}
 
-  .doors{position:absolute;inset:0;z-index:2;border:2px solid var(--gold);border-radius:34px;overflow:hidden;background:#2a0610;box-shadow:0 20px 60px rgba(0,0,0,.5);--ink:#fbf1ea;--muted:#e2c6c6;--accent:#e6c98e;--line:#6e2a35}
+  .doors{position:absolute;inset:0;z-index:2;border:2px solid var(--gold);border-radius:34px;overflow:hidden;background:var(--panel);box-shadow:0 20px 60px var(--shadow)}
   .door{
     position:absolute;top:12px;bottom:12px;width:calc(50% - 18px);
-    background:radial-gradient(circle at 50% 30%,#7d1228,#33070f 75%);
+    background:radial-gradient(circle at 50% 28%,#fffaf6,#f0dfd8 85%);
     border:2px solid var(--gold);transition:transform .95s cubic-bezier(.7,0,.2,1) .2s;
   }
   .door::before{content:"";position:absolute;inset:14px;border:1px solid color-mix(in srgb,var(--gold) 55%,transparent);border-radius:20px}
@@ -102,8 +103,6 @@
   #nameForm{width:100%;max-width:330px;margin-top:30px;display:grid;gap:14px}
   #nameForm label{font:600 .64rem var(--sans);letter-spacing:.32em;text-transform:uppercase;color:var(--ink)}
   #guestName{text-align:center;font:400 1.15rem var(--serif);padding:16px}
-  .doors .field{background:rgba(0,0,0,.28);color:var(--ivory);border-color:var(--gold)}
-  .doors .btn.primary{border-color:var(--gold)}
   .ayah{font-family:'Amiri','Noto Naskh Arabic','Geeza Pro',serif;font-size:1.8rem;line-height:1.5;color:var(--accent);margin-top:30px;direction:rtl}
   .ayah-ref{font:400 .6rem var(--sans);letter-spacing:.28em;text-transform:uppercase;color:var(--muted);margin-top:4px}
   .stage.opening .door-content{opacity:0;pointer-events:none}
@@ -126,7 +125,7 @@
     --ec:#6a1424; --ec-soft:#8a4a52; --ec-gold:#b8924f;
     position:absolute;inset:0;z-index:1;container-type:inline-size;overflow:hidden;border-radius:4px;color:var(--ec);
     background:#e6d3cf url(assets/silk.webp) center/cover no-repeat;
-    box-shadow:0 20px 60px var(--shadow);
+    border:1px solid var(--gold);box-shadow:0 20px 60px var(--shadow);
     visibility:hidden;opacity:0;transition:opacity .7s ease .25s;
   }
   .stage.opening .cover{visibility:visible;opacity:1}
