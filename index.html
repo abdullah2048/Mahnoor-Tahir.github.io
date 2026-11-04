@@ -261,6 +261,21 @@
   .gallery img{display:block;width:100%;aspect-ratio:4/5;object-fit:cover}
   .gallery figcaption{position:absolute;inset:auto 0 0 0;padding:46px 16px 18px;font:400 1.35rem var(--serif);color:var(--ivory);background:linear-gradient(180deg,transparent,rgba(60,8,18,.85))}
   @media (min-width:640px){.gallery{grid-template-columns:repeat(3,1fr)}}
+  .ask{position:relative;margin-top:34px;padding:34px 22px 30px;text-align:center;background:linear-gradient(180deg,var(--panel-2),var(--panel));border:1px solid var(--line);border-radius:26px}
+  .ask h3{font:400 clamp(1.6rem,7vw,2.1rem)/1.25 var(--serif);text-wrap:balance}
+  .ask-hint{color:var(--muted);font-size:.9rem;margin-top:8px}
+  .ask-area{position:relative;height:150px;margin-top:22px;touch-action:manipulation}
+  .ask-area .btn{position:absolute;top:8px;min-width:120px;transition:left .28s cubic-bezier(.3,1.4,.5,1),top .28s cubic-bezier(.3,1.4,.5,1)}
+  #askYes{left:calc(50% - 134px)}
+  #askNo{left:calc(50% + 14px)}
+  .ask-note{min-height:1.4em;margin-top:12px;color:var(--accent);font:italic 1rem var(--serif)}
+  .ask-yes{display:none}
+  .ask.said-yes .ask-q{display:none}
+  .ask.said-yes .ask-yes{display:block}
+  .ask-yes h3{color:var(--accent)}
+  .ask-yes p{color:var(--muted);margin-top:12px}
+  .ask-yes .btn{margin-top:20px}
+  @media (max-width:360px){#askYes{left:calc(50% - 124px)}#askNo{left:calc(50% + 6px)}.ask-area .btn{min-width:112px;padding-inline:14px}}
   .tl-note{margin-top:16px;font:400 .7rem var(--sans);letter-spacing:.24em;text-transform:uppercase;color:var(--muted)}
 
   .palette{display:flex;flex-wrap:wrap;gap:12px 22px;justify-content:center;margin-top:20px;padding-top:22px;border-top:1px solid var(--line)}
@@ -457,6 +472,27 @@
         <div class="hero-actions">
           <a class="btn primary" href="#programme">Open Invitation</a>
           <a class="btn" href="#rsvp">RSVP</a>
+        </div>
+      </div>
+    </section>
+
+    <section id="celebrate" class="wrap" style="padding-top:8px">
+      <div class="ask" id="ask">
+        <div class="ask-q">
+          <p class="eyebrow">A little question</p>
+          <h3 style="margin-top:10px">Will you be part of our celebration?</h3>
+          <p class="ask-hint">Choose carefully…</p>
+          <div class="ask-area" id="askArea">
+            <button class="btn primary" id="askYes" type="button">Yes</button>
+            <button class="btn" id="askNo" type="button" aria-describedby="askNote">No</button>
+          </div>
+          <p class="ask-note" id="askNote" aria-live="polite"></p>
+        </div>
+        <div class="ask-yes" aria-live="polite">
+          <p class="eyebrow">Alhamdulillah</p>
+          <h3 id="yesTitle" style="margin-top:10px">Thank you!</h3>
+          <p>Your yes has made our hearts so happy. We can’t wait to celebrate this beautiful day with you, in shaa Allah.</p>
+          <a class="btn primary" href="#rsvp">Confirm my RSVP</a>
         </div>
       </div>
     </section>
@@ -868,6 +904,40 @@
   }
   $('dlCard').addEventListener('click',function(){saveCard(this)});
   $('dlCard2').addEventListener('click',function(){saveCard(this)});
+
+
+  /* "Will you be part of our celebration?" - the No button runs away */
+  (function(){
+    var area=$('askArea'),yes=$('askYes'),no=$('askNo'),note=$('askNote'),ask=$('ask'),n=0;
+    var lines=['Oops, too slow!','The button seems shy…','Nice try!','It does not want to be clicked 😄','Not today!','How about Yes?','Almost had it!','Please say yes 🥺'];
+    function dodge(e){
+      if(e){e.preventDefault&&e.preventDefault();e.stopPropagation&&e.stopPropagation()}
+      var A=area.getBoundingClientRect(),B=no.getBoundingClientRect(),Y=yes.getBoundingClientRect();
+      var maxL=A.width-B.width,maxT=A.height-B.height,tries=0,l,t,ok;
+      do{
+        l=Math.random()*maxL;t=Math.random()*maxT;
+        var cx=l+B.width/2,cy=t+B.height/2;
+        ok=Math.abs(l-(B.left-A.left))+Math.abs(t-(B.top-A.top))>80 &&
+           !(l<Y.right-A.left+10&&l+B.width>Y.left-A.left-10&&t<Y.bottom-A.top+10&&t+B.height>Y.top-A.top-10);
+        tries++;
+      }while(!ok&&tries<40);
+      no.style.left=l+'px';no.style.top=t+'px';
+      note.textContent=lines[n%lines.length];n++;
+    }
+    ['pointerenter','pointerdown','touchstart','mousedown','click','focus'].forEach(function(ev){no.addEventListener(ev,dodge,{passive:false})});
+    area.addEventListener('pointermove',function(e){
+      var B=no.getBoundingClientRect();
+      if(e.pointerType==='mouse'&&Math.hypot(e.clientX-(B.left+B.width/2),e.clientY-(B.top+B.height/2))<70)dodge();
+    });
+    yes.addEventListener('click',function(){
+      $('yesTitle').textContent='Thank you'+(guest?', '+guest:'')+'!';
+      ask.classList.add('said-yes');
+      var box=$('petals');
+      for(var i=0;i<14;i++){var p=document.createElement('i');p.textContent=['\u273F','\u2764'][i%2];
+        p.style.left=(4+i*7)+'%';p.style.fontSize=(14+(i%4)*6)+'px';p.style.animationDuration=(5+(i%5))+'s';p.style.animationDelay=(-i*.25)+'s';
+        box.appendChild(p);setTimeout(function(el){el.remove()}.bind(null,p),11000)}
+    });
+  })();
 
   /* RSVP -> WhatsApp message */
   var rForm=$('rsvpForm'), rErr=$('rErr'), rDone=$('rDone');
