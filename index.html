@@ -284,7 +284,6 @@
   .ask.said-yes .ask-yes{display:block}
   .ask-yes h3{color:var(--accent)}
   .ask-yes p{color:var(--muted);margin-top:12px}
-  .ask-yes .btn{margin-top:20px}
   @media (max-width:360px){#askYes{left:calc(50% - 124px)}#askNo{left:calc(50% + 6px)}.ask-area .btn{min-width:112px;padding-inline:14px}}
 
   /* wax seal on the doors */
@@ -386,9 +385,6 @@
   .music svg{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
   .music .x{display:none}.music.off .wave{display:none}.music.off .x{display:block}
 
-  .petals{position:fixed;inset:0;pointer-events:none;overflow:hidden;z-index:1}
-  .petals img{position:absolute;bottom:-60px;opacity:0;height:auto;animation:drift linear infinite;filter:drop-shadow(0 2px 3px rgba(90,20,30,.25))}
-  @keyframes drift{0%{transform:translateY(0) rotate(0);opacity:0}10%{opacity:.5}90%{opacity:.5}100%{transform:translateY(-110vh) rotate(260deg);opacity:0}}
   #invite>main,#invite>footer{position:relative;z-index:2}
 
   @media (max-width:420px){
@@ -398,7 +394,7 @@
   @media (min-width:640px){.opt{grid-template-columns:repeat(3,1fr)}.hero-actions{grid-template-columns:1fr 1fr}.share-actions{grid-template-columns:1fr 1fr}}
   @media (prefers-reduced-motion:reduce){
     .rv-on .rv{opacity:1;transform:none;transition:none}.stage.opening .seal{animation:none;opacity:0}
-    html{scroll-behavior:auto}.stage.leaving{animation:none}.door,.cover{transition:none}.petals{display:none}
+    html{scroll-behavior:auto}.stage.leaving{animation:none}.door,.cover{transition:none}
   }
 </style>
 </head>
@@ -477,7 +473,6 @@
 
 <!-- Step 2: the invitation -->
 <div id="invite" hidden>
-  <div class="petals" id="petals" aria-hidden="true"></div>
   <img class="h-rose tl" src="assets/rose-tl.webp" alt="" decoding="async">
   <img class="h-rose tr" src="assets/rose-tr.webp" alt="" decoding="async">
 
@@ -547,7 +542,6 @@
           <p class="eyebrow">Alhamdulillah</p>
           <h3 id="yesTitle" style="margin-top:10px">Thank you!</h3>
           <p>Your yes has made our hearts so happy. We can’t wait to celebrate this beautiful day with you, in shaa Allah.</p>
-          <a class="btn primary" href="#rsvp">Confirm my RSVP</a>
         </div>
       </div>
     </section>
@@ -832,17 +826,6 @@
     $('gallery').hidden=false;$('galleryLink').hidden=false;
   })();
 
-  /* real rose petals and rose heads drifting up */
-  var PETAL=['assets/petal-1.webp','assets/rose-head.webp'];
-  function floatPetal(i,big){
-    var p=document.createElement('img');p.src=PETAL[i%2];p.alt='';p.decoding='async';
-    var w=(big?26:16)+(i%4)*7;p.style.width=w+'px';
-    p.style.left=(3+(i*13)%92)+'%';
-    p.style.animationDuration=(big?5+(i%5):16+(i*3)%11)+'s';p.style.animationDelay=(big?-i*.25:-i*2.3)+'s';
-    $('petals').appendChild(p);return p;
-  }
-  for(var pi=0;pi<8;pi++)floatPetal(pi,false);
-
   /* opening sequence: doors -> cover -> invitation */
   function setGuest(name){
     guest=name;
@@ -1014,7 +997,6 @@
     yes.addEventListener('click',function(){
       $('yesTitle').textContent='Thank you'+(guest?', '+guest:'')+'!';
       ask.classList.add('said-yes');
-      for(var i=0;i<14;i++){var el=floatPetal(i,true);setTimeout(function(e){e.remove()}.bind(null,el),11000)}
     });
   })();
 
