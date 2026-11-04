@@ -4,6 +4,16 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#ecdcd7">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Mahnoor &amp; Tahir – Wedding Invitation">
+<meta property="og:description" content="You are invited to the Barat on Sunday, 29 November 2026 at Divine Marque, East Canal, Lahore.">
+<meta property="og:image" content="https://mahnoor-and-tahir.vercel.app/assets/og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://mahnoor-and-tahir.vercel.app/assets/og.jpg">
 <title>Mahnoor &amp; Tahir – Wedding Invitation</title>
 <meta name="description" content="Mahnoor and Tahir invite you to their Barat on Sunday, 29 November 2026 from 11:00 AM at Divine Marque, East Canal, Lahore.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -116,7 +126,7 @@
   }
   .stage.opening .cover{visibility:visible;opacity:1}
   @media (max-height:700px){
-    .monogram{font-size:3.4rem;margin:6px 0}
+    .seal{width:92px;height:92px;margin:4px auto}.seal b{font-size:1.7rem}
     .door-content{padding:22px 26px}#nameForm{margin-top:18px}.ayah{margin-top:16px;font-size:1.5rem}
   }
 
@@ -215,7 +225,7 @@
   .hero{padding-top:max(112px,calc(env(safe-area-inset-top,0px) + 104px));padding-bottom:30px;text-align:center}
   .hero-in{position:relative;overflow:hidden;padding:30px 0 10px}
   .watermark{position:absolute;left:50%;top:210px;transform:translateX(-50%);font-size:clamp(11rem,62vw,17rem);line-height:1;color:transparent;-webkit-text-stroke:1px color-mix(in srgb,var(--gold) 38%,transparent);white-space:nowrap;pointer-events:none;user-select:none}
-  .hero-in>*:not(.watermark){position:relative;z-index:1}
+  .hero-in>*:not(.watermark):not(.h-rose){position:relative;z-index:1}
   .h-welcome{font:600 .7rem var(--sans);letter-spacing:.4em;text-transform:uppercase;color:var(--accent)}
   .h-name{font:400 2.5rem/1.2 var(--serif);margin-top:6px;overflow-wrap:anywhere}
   .h-sub{color:var(--muted);font-size:.95rem;margin-top:8px}
@@ -276,6 +286,44 @@
   .ask-yes p{color:var(--muted);margin-top:12px}
   .ask-yes .btn{margin-top:20px}
   @media (max-width:360px){#askYes{left:calc(50% - 124px)}#askNo{left:calc(50% + 6px)}.ask-area .btn{min-width:112px;padding-inline:14px}}
+
+  /* wax seal on the doors */
+  .seal{width:112px;height:112px;margin:10px auto 8px;position:relative;display:grid;place-items:center;border-radius:47% 53% 51% 49% / 51% 47% 53% 49%;
+    background:radial-gradient(circle at 34% 28%,#b3263f,#7d1228 56%,#4a0917);
+    box-shadow:inset 0 0 0 3px rgba(255,255,255,.07),inset 0 -7px 12px rgba(0,0,0,.35),0 8px 16px rgba(70,8,20,.4)}
+  .seal::before{content:"";position:absolute;inset:11px;border-radius:50%;border:1.5px solid rgba(240,214,150,.75);box-shadow:inset 0 2px 5px rgba(0,0,0,.3)}
+  .seal b{font:400 2.1rem/1 'Satisfy','Snell Roundhand',cursive;color:#f3dfae;text-shadow:0 1px 0 rgba(0,0,0,.4),0 0 6px rgba(255,220,150,.25)}
+  .stage.opening .seal{animation:seal-crack .7s ease forwards}
+  @keyframes seal-crack{to{transform:scale(1.25) rotate(8deg);opacity:0}}
+  /* real roses framing the opening screen */
+  .st-rose{position:fixed;height:auto;pointer-events:none;z-index:0;width:min(44vw,240px);transition:opacity .6s}
+  .st-rose.tl{top:0;left:0}.st-rose.tr{top:0;right:0}
+  .st-rose.bl{bottom:0;left:0;width:min(34vw,190px)}
+  .st-rose.br{bottom:0;right:0;width:min(34vw,190px);transform:scaleX(-1)}
+  .stage.opening .st-rose{opacity:0}
+  .col{position:relative;z-index:1}
+  /* real roses in the invitation */
+  #invite{position:relative}
+  .h-rose{position:absolute;top:0;height:auto;width:min(34vw,240px);pointer-events:none;z-index:0}
+  .h-rose.tl{left:0}.h-rose.tr{right:0}
+  footer{position:relative;overflow:hidden}
+  .f-rose{position:absolute;bottom:0;width:27%;height:auto;pointer-events:none;z-index:0}
+  .f-rose.l{left:0}.f-rose.r{right:0;transform:scaleX(-1)}
+  footer>*:not(.f-rose){position:relative;z-index:1}
+  /* every section divider carries a real rose */
+  .rule{position:relative;overflow:visible}
+  .rule::after{content:"";position:absolute;left:50%;top:50%;width:30px;height:30px;transform:translate(-50%,-50%);border-radius:50%;background:url(assets/rose-head.webp) center/cover;border:1px solid var(--gold);box-shadow:0 1px 4px var(--shadow)}
+  .chap-in .rule::after{width:22px;height:22px}
+  /* scroll reveal */
+  .rv-on .rv{opacity:0;transform:translateY(22px);transition:opacity .8s ease,transform .8s ease}
+  .rv-on .rv.in{opacity:1;transform:none}
+  /* calendar + dress */
+  .btn-row{display:grid;gap:10px;margin-top:24px}
+  .btn-row .btn{width:100%}
+  .btn-row p{color:var(--muted);font-size:.8rem;margin-top:2px}
+  .palette .grp{flex-basis:100%;display:flex;flex-wrap:wrap;gap:10px 18px;justify-content:center;align-items:center}
+  .palette .grp>em{flex-basis:100%;font:600 .66rem var(--sans);letter-spacing:.3em;text-transform:uppercase;color:var(--muted);font-style:normal}
+  @media (min-width:640px){.btn-row{grid-template-columns:1fr 1fr}.btn-row .btn:first-child{grid-column:1/-1}}
   .tl-note{margin-top:16px;font:400 .7rem var(--sans);letter-spacing:.24em;text-transform:uppercase;color:var(--muted)}
 
   .palette{display:flex;flex-wrap:wrap;gap:12px 22px;justify-content:center;margin-top:20px;padding-top:22px;border-top:1px solid var(--line)}
@@ -339,8 +387,8 @@
   .music .x{display:none}.music.off .wave{display:none}.music.off .x{display:block}
 
   .petals{position:fixed;inset:0;pointer-events:none;overflow:hidden;z-index:1}
-  .petals i{position:absolute;bottom:-30px;color:var(--gold);opacity:0;font-style:normal;animation:drift linear infinite}
-  @keyframes drift{0%{transform:translateY(0) rotate(0);opacity:0}10%{opacity:.28}90%{opacity:.28}100%{transform:translateY(-110vh) rotate(260deg);opacity:0}}
+  .petals img{position:absolute;bottom:-60px;opacity:0;height:auto;animation:drift linear infinite;filter:drop-shadow(0 2px 3px rgba(90,20,30,.25))}
+  @keyframes drift{0%{transform:translateY(0) rotate(0);opacity:0}10%{opacity:.5}90%{opacity:.5}100%{transform:translateY(-110vh) rotate(260deg);opacity:0}}
   #invite>main,#invite>footer{position:relative;z-index:2}
 
   @media (max-width:420px){
@@ -349,6 +397,7 @@
   }
   @media (min-width:640px){.opt{grid-template-columns:repeat(3,1fr)}.hero-actions{grid-template-columns:1fr 1fr}.share-actions{grid-template-columns:1fr 1fr}}
   @media (prefers-reduced-motion:reduce){
+    .rv-on .rv{opacity:1;transform:none;transition:none}.stage.opening .seal{animation:none;opacity:0}
     html{scroll-behavior:auto}.stage.leaving{animation:none}.door,.cover{transition:none}.petals{display:none}
   }
 </style>
@@ -370,6 +419,10 @@
 
 <!-- Opening: closed doors ask for a name, then open onto the cover -->
 <div class="stage" id="stage">
+  <img class="st-rose tl" src="assets/rose-tl.webp" alt="" decoding="async">
+  <img class="st-rose tr" src="assets/rose-tr.webp" alt="" decoding="async">
+  <img class="st-rose bl" src="assets/rose-bl.webp" alt="" decoding="async">
+  <img class="st-rose br" src="assets/rose-bl.webp" alt="" decoding="async">
   <div class="col">
   <div class="box">
     <section class="cover" id="cover" aria-hidden="true">
@@ -377,7 +430,7 @@
       <img class="rc tr" src="assets/rose-tr.webp" alt="" width="888" height="1260" decoding="async">
       <img class="rc bl" src="assets/rose-bl.webp" alt="" width="690" height="1362" decoding="async">
 
-      <img class="couple" src="assets/couple.png" alt="" width="353" height="447" decoding="async">
+      <img class="couple" src="assets/couple.webp" alt="" width="353" height="447" decoding="async">
 
       <div class="ec-body">
         <div class="ec-top">
@@ -406,7 +459,7 @@
       <div class="door r" aria-hidden="true"></div>
       <div class="door-content">
         <p class="eyebrow">Wedding Invitation</p>
-        <p class="monogram serif" aria-label="Mahnoor and Tahir">M<i>&amp;</i>T</p>
+        <div class="seal" role="img" aria-label="Mahnoor and Tahir"><b>M&amp;T</b></div>
         <p class="tagline">A new beginning · A beautiful forever</p>
         <form id="nameForm" autocomplete="off">
           <label for="guestName">Enter your name</label>
@@ -425,6 +478,8 @@
 <!-- Step 2: the invitation -->
 <div id="invite" hidden>
   <div class="petals" id="petals" aria-hidden="true"></div>
+  <img class="h-rose tl" src="assets/rose-tl.webp" alt="" decoding="async">
+  <img class="h-rose tr" src="assets/rose-tr.webp" alt="" decoding="async">
 
   <header class="nav" id="nav">
     <div class="nav-bar">
@@ -477,7 +532,7 @@
     </section>
 
     <section id="celebrate" class="wrap" style="padding-top:8px">
-      <div class="ask" id="ask">
+      <div class="ask rv" id="ask">
         <div class="ask-q">
           <p class="eyebrow">A little question</p>
           <h3 style="margin-top:10px">Will you be part of our celebration?</h3>
@@ -497,7 +552,7 @@
       </div>
     </section>
 
-    <section id="programme" class="sec wrap">
+    <section id="programme" class="sec rv wrap">
       <p class="eyebrow">The day</p>
       <h2>Barat <em>Programme</em></h2>
       <div class="rule"></div>
@@ -513,7 +568,7 @@
       </div>
     </section>
 
-    <section id="countdown-sec" class="sec wrap">
+    <section id="countdown-sec" class="sec rv wrap">
       <p class="eyebrow">The countdown begins</p>
       <h2>Counting Down to <em>Forever</em></h2>
       <div class="rule"></div>
@@ -531,7 +586,7 @@
       </div>
     </section>
 
-    <section id="story" class="sec story wrap">
+    <section id="story" class="sec rv story wrap">
       <p class="eyebrow">Our love story</p>
       <h2>Written in the <em>Stars</em></h2>
       <div class="rule"></div>
@@ -540,7 +595,7 @@
       <p class="story-names">Mahnoor <i>&amp;</i> Tahir</p>
     </section>
 
-    <section id="journey" class="sec wrap">
+    <section id="journey" class="sec rv wrap">
       <p class="eyebrow">Our beautiful journey</p>
       <h2>From a Moment to <em>Forever</em></h2>
       <div class="rule"></div>
@@ -560,7 +615,7 @@
       <div class="gallery" id="galleryGrid"></div>
     </section>
 
-    <section id="venue" class="sec wrap">
+    <section id="venue" class="sec rv wrap">
       <p class="eyebrow">Celebrate with us</p>
       <h2>Wedding <em>Venue</em></h2>
       <div class="rule"></div>
@@ -570,11 +625,16 @@
         <h3>Divine Marque</h3>
         <p class="big">East Canal, Lahore</p>
         <p style="margin-top:6px">Sunday, 29 November 2026 · 11:00 AM</p>
-        <a class="btn primary" style="margin-top:26px" href="https://www.google.com/maps/search/?api=1&query=Divine+Marque+East+Canal+Lahore" target="_blank" rel="noopener">Open in Maps</a>
+        <div class="btn-row">
+          <a class="btn primary" id="dirBtn" href="https://www.google.com/maps/dir/?api=1&destination=Divine+Marque+East+Canal+Lahore" target="_blank" rel="noopener">Get directions</a>
+          <a class="btn" id="calGoogle" href="#" target="_blank" rel="noopener">Google Calendar</a>
+          <button class="btn" id="calIcs" type="button">Phone calendar</button>
+          <p>Adds the Barat to your calendar with a reminder.</p>
+        </div>
       </div>
     </section>
 
-    <section id="dress" class="sec wrap">
+    <section id="dress" class="sec rv wrap">
       <p class="eyebrow">What to wear</p>
       <h2>Dress <em>Code</em></h2>
       <div class="rule"></div>
@@ -583,27 +643,36 @@
         <h3>Formal &amp; Elegant</h3>
         <p class="big">Traditional formal attire. The bride and groom will be in maroon and black.</p>
         <div class="palette">
-          <small>Suggested palette</small>
-          <span class="sw"><i style="background:#7d1228"></i>Maroon</span>
-          <span class="sw"><i style="background:#0b0708"></i>Black</span>
-          <span class="sw"><i style="background:#efe3d3"></i>Ivory</span>
+          <small>Suggested colours</small>
+          <div class="grp"><em>Ladies</em>
+            <span class="sw"><i style="background:#7d1228"></i>Maroon</span>
+            <span class="sw"><i style="background:#e6c2c0"></i>Blush</span>
+            <span class="sw"><i style="background:#d8bd92"></i>Champagne</span>
+            <span class="sw"><i style="background:#efe3d3"></i>Ivory</span>
+          </div>
+          <div class="grp"><em>Gentlemen</em>
+            <span class="sw"><i style="background:#0b0708"></i>Black</span>
+            <span class="sw"><i style="background:#3d3538"></i>Charcoal</span>
+            <span class="sw"><i style="background:#7d1228"></i>Maroon</span>
+            <span class="sw"><i style="background:#efe3d3"></i>Ivory</span>
+          </div>
         </div>
       </div>
     </section>
 
-    <section id="faq" class="sec wrap">
+    <section id="faq" class="sec rv wrap">
       <p class="eyebrow">Everything you need to know</p>
       <h2>Frequently Asked <em>Questions</em></h2>
       <div class="rule"></div>
       <div class="faq">
         <details name="faq" open><summary>What time should we arrive?</summary><p>The Barat arrives at 11:00 AM. Please arrive a little earlier so you can be seated before the Nikkah at 12:00 PM.</p></details>
-        <details name="faq"><summary>Where is the wedding being held?</summary><p>At Divine Marque, East Canal, Lahore. Use the “Open in Maps” button in the venue section for directions.</p></details>
+        <details name="faq"><summary>Where is the wedding being held?</summary><p>At Divine Marque, East Canal, Lahore. Tap “Get directions” in the venue section to open it in Maps.</p></details>
         <details name="faq"><summary>What is the dress code?</summary><p>Elegant traditional formal attire. Maroon, black and ivory suit the occasion well.</p></details>
         <details name="faq"><summary>How do I confirm my attendance?</summary><p>Fill in the RSVP form below. It opens a WhatsApp message to send to the family.</p></details>
       </div>
     </section>
 
-    <section id="rsvp" class="sec wrap">
+    <section id="rsvp" class="sec rv wrap">
       <p class="eyebrow">RSVP</p>
       <h2>Will you celebrate <em>with us?</em></h2>
       <div class="rule"></div>
@@ -655,7 +724,7 @@
       </div>
     </section>
 
-    <section id="share" class="sec wrap">
+    <section id="share" class="sec rv wrap">
       <p class="eyebrow">Share the celebration</p>
       <h2>Share our <em>Invitation</em></h2>
       <div class="rule"></div>
@@ -668,15 +737,18 @@
         <p class="lead" style="margin-top:12px">Divine Marque, East Canal, Lahore</p>
         <div class="share-actions">
           <button class="btn primary" type="button" id="shareWa">Share on WhatsApp</button>
-          <button class="btn" type="button" id="shareAny">Share invitation</button>
-          <button class="btn" type="button" id="dlCard2" style="grid-column:1/-1">Download invitation card</button>
+          <button class="btn" type="button" id="shareAny">Share invitation link</button>
+          <button class="btn" type="button" id="shareImg">Share card as picture</button>
+          <button class="btn" type="button" id="dlCard2">Download card</button>
         </div>
         <p class="status" id="shareStatus" aria-live="polite"></p>
       </div>
     </section>
   </main>
 
-  <footer>
+  <footer class="rv">
+    <img class="f-rose l" src="assets/rose-bl.webp" alt="" decoding="async">
+    <img class="f-rose r" src="assets/rose-bl.webp" alt="" decoding="async">
     <p class="eyebrow">With love and gratitude</p>
     <h2>Thank you for being part of our story</h2>
     <p class="lead" style="margin-top:18px">Your love, blessings and presence will make our celebration even more beautiful.</p>
@@ -760,16 +832,16 @@
     $('gallery').hidden=false;$('galleryLink').hidden=false;
   })();
 
-  /* petals */
-  (function(){
-    var box=$('petals');
-    for(var i=0;i<9;i++){
-      var p=document.createElement('i');p.textContent='✿';
-      p.style.left=(5+i*11)+'%';p.style.fontSize=(10+(i%4)*5)+'px';
-      p.style.animationDuration=(16+(i*3)%11)+'s';p.style.animationDelay=(-i*2.3)+'s';
-      box.appendChild(p);
-    }
-  })();
+  /* real rose petals and rose heads drifting up */
+  var PETAL=['assets/petal-1.webp','assets/rose-head.webp'];
+  function floatPetal(i,big){
+    var p=document.createElement('img');p.src=PETAL[i%2];p.alt='';p.decoding='async';
+    var w=(big?26:16)+(i%4)*7;p.style.width=w+'px';
+    p.style.left=(3+(i*13)%92)+'%';
+    p.style.animationDuration=(big?5+(i%5):16+(i*3)%11)+'s';p.style.animationDelay=(big?-i*.25:-i*2.3)+'s';
+    $('petals').appendChild(p);return p;
+  }
+  for(var pi=0;pi<8;pi++)floatPetal(pi,false);
 
   /* opening sequence: doors -> cover -> invitation */
   function setGuest(name){
@@ -885,22 +957,33 @@
     CX=CX0;
     return cv;
   }
-  function saveCard(btn){
-    var label=btn.textContent;btn.disabled=true;btn.textContent='Preparing…';
+  function renderCard(){
     var fonts=['700 40px "Aref Ruqaa"','40px "Satisfy"','600 40px "Cormorant SC"','400 40px "Cormorant Garamond"','italic 400 40px "Cormorant Garamond"','600 40px "Cormorant Garamond"'];
-    var imgs={},srcs={silk:'assets/silk.webp',couple:'assets/couple.png',tl:'assets/rose-tl.webp',tr:'assets/rose-tr.webp',bl:'assets/rose-bl.webp'};
+    var imgs={},srcs={silk:'assets/silk.webp',couple:'assets/couple.webp',tl:'assets/rose-tl.webp',tr:'assets/rose-tr.webp',bl:'assets/rose-bl.webp'};
     var imgP=Promise.all(Object.keys(srcs).map(function(k){return new Promise(function(res){var im=new Image();im.onload=function(){imgs[k]=im;res()};im.onerror=function(){res()};im.src=srcs[k]})}));
-    Promise.all(fonts.map(function(f){return document.fonts.load(f,'Aa')}).concat([imgP])).catch(function(){}).then(function(){
+    return Promise.all(fonts.map(function(f){return document.fonts.load(f,'Aa')}).concat([imgP])).catch(function(){}).then(function(){
       var cv=drawCard(guest||'Guest',imgs);
-      cv.toBlob(function(b){
-        btn.disabled=false;btn.textContent=label;
-        if(!b)return;
-        var url=URL.createObjectURL(b),a=document.createElement('a');
-        a.href=url;a.download='Mahnoor-Tahir-Barat-'+(guest||'Invitation').replace(/[^\w-]+/g,'-')+'.png';
-        document.body.appendChild(a);a.click();a.remove();setTimeout(function(){URL.revokeObjectURL(url)},5000);
-      },'image/png');
+      return new Promise(function(res){cv.toBlob(res,'image/png')});
     });
   }
+  function cardName(){return 'Mahnoor-Tahir-Barat-'+(guest||'Invitation').replace(/[^\w-]+/g,'-')+'.png'}
+  function busy(btn,txt){var l=btn.textContent;btn.disabled=true;btn.textContent=txt;return function(){btn.disabled=false;btn.textContent=l}}
+  function saveBlob(b){
+    var url=URL.createObjectURL(b),a=document.createElement('a');
+    a.href=url;a.download=cardName();document.body.appendChild(a);a.click();a.remove();setTimeout(function(){URL.revokeObjectURL(url)},5000);
+  }
+  function saveCard(btn){var done=busy(btn,'Preparing…');renderCard().then(function(b){done();if(b)saveBlob(b)})}
+  function shareCard(btn){
+    var done=busy(btn,'Preparing…'),st=$('shareStatus');
+    renderCard().then(function(b){
+      done();if(!b)return;
+      var f=new File([b],cardName(),{type:'image/png'});
+      if(navigator.canShare&&navigator.canShare({files:[f]})){
+        navigator.share({files:[f],title:'Mahnoor & Tahir',text:'You are invited to the wedding of Mahnoor & Tahir.'}).catch(function(){});
+      }else{saveBlob(b);st.textContent='Card saved to your device. Attach it in WhatsApp to share.'}
+    });
+  }
+  $('shareImg').addEventListener('click',function(){shareCard(this)});
   $('dlCard').addEventListener('click',function(){saveCard(this)});
   $('dlCard2').addEventListener('click',function(){saveCard(this)});
 
@@ -931,11 +1014,33 @@
     yes.addEventListener('click',function(){
       $('yesTitle').textContent='Thank you'+(guest?', '+guest:'')+'!';
       ask.classList.add('said-yes');
-      var box=$('petals');
-      for(var i=0;i<14;i++){var p=document.createElement('i');p.textContent=['\u273F','\u2764'][i%2];
-        p.style.left=(4+i*7)+'%';p.style.fontSize=(14+(i%4)*6)+'px';p.style.animationDuration=(5+(i%5))+'s';p.style.animationDelay=(-i*.25)+'s';
-        box.appendChild(p);setTimeout(function(el){el.remove()}.bind(null,p),11000)}
+      for(var i=0;i<14;i++){var el=floatPetal(i,true);setTimeout(function(e){e.remove()}.bind(null,el),11000)}
     });
+  })();
+
+
+  /* add to calendar (11:00 AM to 3:00 PM Pakistan time = 06:00 to 10:00 UTC) */
+  (function(){
+    var T='Barat of Mahnoor & Tahir',L='Divine Marque, East Canal, Lahore',D='Barat Arrival 11:00 AM, Nikkah 12:00 PM, Lunch 1:00 PM, Ruqsati 2:00 PM.';
+    $('calGoogle').href='https://calendar.google.com/calendar/render?action=TEMPLATE&text='+encodeURIComponent(T)+'&dates=20261129T060000Z/20261129T100000Z&details='+encodeURIComponent(D)+'&location='+encodeURIComponent(L);
+    $('calIcs').addEventListener('click',function(){
+      var ics=['BEGIN:VCALENDAR','VERSION:2.0','PRODID:-//Mahnoor and Tahir//Invitation//EN','CALSCALE:GREGORIAN','BEGIN:VEVENT',
+        'UID:barat-20261129@mahnoor-and-tahir','DTSTAMP:20261101T000000Z','DTSTART:20261129T060000Z','DTEND:20261129T100000Z',
+        'SUMMARY:'+T.replace(/&/g,'and'),'LOCATION:'+L,'DESCRIPTION:'+D,
+        'BEGIN:VALARM','TRIGGER:-P1D','ACTION:DISPLAY','DESCRIPTION:Barat tomorrow','END:VALARM',
+        'BEGIN:VALARM','TRIGGER:-PT3H','ACTION:DISPLAY','DESCRIPTION:Barat today','END:VALARM',
+        'END:VEVENT','END:VCALENDAR'].join('\r\n');
+      var b=new Blob([ics],{type:'text/calendar;charset=utf-8'}),u=URL.createObjectURL(b),a=document.createElement('a');
+      a.href=u;a.download='Mahnoor-Tahir-Barat.ics';document.body.appendChild(a);a.click();a.remove();setTimeout(function(){URL.revokeObjectURL(u)},5000);
+    });
+  })();
+
+  /* scroll reveal */
+  (function(){
+    if(!('IntersectionObserver' in window)||reduce)return;
+    document.documentElement.classList.add('rv-on');
+    var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{rootMargin:'0px 0px -8% 0px',threshold:.08});
+    document.querySelectorAll('.rv').forEach(function(el){io.observe(el)});
   })();
 
   /* RSVP -> WhatsApp message */
