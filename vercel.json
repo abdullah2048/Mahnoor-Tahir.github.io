@@ -1,0 +1,6 @@
+{
+  "redirects": [
+    { "source": "/areeba-suleman", "destination": "https://areeba-suleman.vercel.app/", "permanent": false },
+    { "source": "/areeba-suleman/:path*", "destination": "https://areeba-suleman.vercel.app/", "permanent": false }
+  ]
+}
