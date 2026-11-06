@@ -154,7 +154,10 @@
   .ec-orn{width:32cqw;height:3.6cqw;color:var(--ec-gold);margin:1cqw 0 3.5cqw}
   .ec-caps{font:600 2.4cqw/1.85 'Cormorant SC','Cormorant Garamond',Georgia,serif;letter-spacing:.07em;text-transform:uppercase;color:var(--ec)}
   .ec-names{font-weight:400;font-family:'Satisfy','Snell Roundhand',cursive;color:var(--ec);line-height:1;margin:0}
-  .ec-names span{display:block;font-size:14cqw;line-height:1}
+  .ec-names span{display:block;font-size:12cqw;line-height:1.05}
+  .ec-couple{display:flex;flex-direction:column;align-items:center}
+  .ec-par{font:600 2.5cqw/1.4 'Cormorant SC','Cormorant Garamond',Georgia,serif;letter-spacing:.08em;text-transform:uppercase;color:var(--ec-soft);margin:1.2cqw 0 0}
+  .ec-and{font:400 7cqw/.9 'Satisfy','Snell Roundhand',cursive;color:var(--ec);margin:2.4cqw 0 1.6cqw}
   .ec-names i{display:block;font-family:'Satisfy','Snell Roundhand',cursive;font-style:normal;font-size:7cqw;line-height:.9;margin:.5cqw 0}
   .ec-date{display:grid;grid-template-columns:1fr 1.05fr 1fr;align-items:center;width:66cqw;margin:3.5cqw 0 0}
   .ec-date .dl,.ec-date .dr{font:600 3.2cqw 'Cormorant SC',Georgia,serif;letter-spacing:.1em;text-transform:uppercase;text-align:center;padding:1.8cqw 0;margin:0 1.6cqw;border-top:1px solid var(--ec-gold);border-bottom:1px solid var(--ec-gold)}
@@ -452,10 +455,15 @@
           <p class="ec-caps">With the blessings of Allah,<br>we joyfully invite you to the Barat ceremony of</p>
         </div>
 
-        <h1 class="ec-names"><span>Mahnoor</span><i>&amp;</i><span>Tahir</span></h1>
+        <div class="ec-couple">
+          <h1 class="ec-names"><span>Mahnoor</span></h1>
+          <p class="ec-par">D/o Mr. &amp; Mrs. Sheikh Aurangzeb Iqbal</p>
+          <p class="ec-and">&amp;</p>
+          <p class="ec-names"><span>Tahir</span></p>
+          <p class="ec-par">S/o Mr. &amp; Mrs. Hafiz Ghulam Hussain</p>
+        </div>
 
         <div class="ec-mid">
-          <p class="ec-caps">Your presence and blessings will make<br>this occasion even more special</p>
           <div class="ec-date"><span class="dl">Sunday</span><span class="dm"><b>29</b><em>November, 2026</em></span><span class="dr">At 11 AM</span></div>
         </div>
 
@@ -934,11 +942,11 @@
     caps('With the blessings of Allah,',33,2.4,.25);
     caps('we joyfully invite you to the Barat ceremony of',37.6,2.4,.17);
     var SC='"Satisfy","Snell Roundhand",cursive';
-    center('Mahnoor',55,px(14)+'px '+SC);
-    center('&',62,px(7)+'px '+SC);
-    center('Tahir',75,px(14)+'px '+SC);
-    caps('Your presence and blessings will make',83,2.5,.25);
-    caps('this occasion even more special',87.6,2.5,.25);
+    center('Mahnoor',55,px(12)+'px '+SC);
+    caps('D/o Mr. & Mrs. Sheikh Aurangzeb Iqbal',60.6,2.4,.16,SOFT);
+    center('&',69.5,px(7)+'px '+SC);
+    center('Tahir',80.5,px(12)+'px '+SC);
+    caps('S/o Mr. & Mrs. Hafiz Ghulam Hussain',86.2,2.4,.16,SOFT);
     /* date row */
     var yc=99;c.strokeStyle=GOLD;c.lineWidth=2;
     function hl(x1,x2,y){c.beginPath();c.moveTo(px(x1),px(y));c.lineTo(px(x2),px(y));c.stroke()}
