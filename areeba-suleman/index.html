@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="theme-color" content="#ecdcd7">
+<meta name="theme-color" content="#dbe7dd">
 <link rel="icon" href="/areeba-suleman/favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="/areeba-suleman/apple-touch-icon.png">
 <meta property="og:type" content="website">
@@ -23,18 +23,18 @@
   /* Layout: gate screen, then one long scrolling invitation with a floating bar, sections, RSVP and share. */
   :root{
     color-scheme:light;
-    --bg:#ecdcd7;          /* pearly satin */
-    --panel:#fbf3ee;       /* ivory */
-    --panel-2:#f5e7e1;
-    --ink:#5b1222;         /* deep maroon, as on the main card */
-    --muted:#8a4a52;
-    --line:#dcc6b3;        /* gold-tinted hairlines */
+    --bg:#dbe7dd;          /* pearly satin */
+    --panel:#f5f9f4;       /* ivory */
+    --panel-2:#ebf2ea;
+    --ink:#0f3d2e;         /* deep maroon, as on the main card */
+    --muted:#4f7766;
+    --line:#c9d6c3;        /* gold-tinted hairlines */
     --gold:#b8924f;        /* gold lines and ornaments */
-    --maroon:#7d1228;      /* fills */
-    --maroon-hi:#9b2036;
-    --accent:#8a1b33;      /* maroon accent text */
-    --ivory:#fbf1ea;       /* text on maroon */
-    --shadow:rgba(90,30,40,.22);
+    --maroon:#1d6a4f;      /* fills */
+    --maroon-hi:#2b8665;
+    --accent:#1b6b4d;      /* maroon accent text */
+    --ivory:#f4faf4;       /* text on maroon */
+    --shadow:rgba(15,60,45,.22);
     --serif:'Playfair Display',Georgia,serif;
     --sans:'Poppins',system-ui,sans-serif;
     --script:'Great Vibes','Snell Roundhand',cursive;
@@ -43,7 +43,7 @@
   [hidden]{display:none!important}
   html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
   body{
-    background:#e6d3cf url(/assets/silk.webp) center/cover fixed;
+    background:#d6e3d8 url(/areeba-suleman/assets/silk.webp) center/cover fixed;
     color:var(--ink);font-family:var(--sans);font-weight:300;line-height:1.6;
     min-height:100vh;min-height:100svh;
     padding-left:env(safe-area-inset-left,0px);padding-right:env(safe-area-inset-right,0px);
@@ -65,7 +65,7 @@
   }
   .btn:hover{background:color-mix(in srgb,var(--maroon) 9%,transparent)}
   .btn:active{transform:scale(.98)}
-  .btn.primary{background:linear-gradient(135deg,#9b2036,var(--maroon));border-color:var(--maroon);color:var(--ivory)}
+  .btn.primary{background:linear-gradient(135deg,#2b8665,var(--maroon));border-color:var(--maroon);color:var(--ivory)}
   .btn.primary:hover{filter:brightness(1.12)}
   .btn.block{width:100%}
 
@@ -82,7 +82,7 @@
 
   .stage{
     position:fixed;inset:0;z-index:50;overflow:auto;display:flex;
-    background:#e6d3cf url(/assets/silk.webp) center/cover no-repeat;
+    background:#d6e3d8 url(/areeba-suleman/assets/silk.webp) center/cover no-repeat;
     padding:max(24px,env(safe-area-inset-top)) max(14px,env(safe-area-inset-right)) max(24px,env(safe-area-inset-bottom)) max(14px,env(safe-area-inset-left));
   }
   .stage.leaving{animation:fade .45s ease forwards}
@@ -91,13 +91,13 @@
   .acts{display:none;gap:10px;flex-wrap:wrap;justify-content:center;width:100%}
   .stage.opening .acts{display:flex}
   .acts .btn.primary{color:var(--ivory)}
-  .acts .btn:not(.primary){background:rgba(251,243,238,.75)}
+  .acts .btn:not(.primary){background:rgba(245,249,244,.75)}
   .acts .btn{color:var(--ink);border-color:var(--gold);flex:1 1 150px;max-width:210px;font-size:.66rem;letter-spacing:.14em;padding:14px 10px;white-space:nowrap}
 
   .doors{position:absolute;inset:0;z-index:2;border:2px solid var(--gold);border-radius:34px;overflow:hidden;background:var(--panel);box-shadow:0 20px 60px var(--shadow)}
   .door{
     position:absolute;top:12px;bottom:12px;width:calc(50% - 18px);
-    background:radial-gradient(circle at 50% 28%,#fffaf6,#f0dfd8 85%);
+    background:radial-gradient(circle at 50% 28%,#fbfdf9,#dfeadf 85%);
     border:2px solid var(--gold);transition:transform .95s cubic-bezier(.7,0,.2,1) .2s;
   }
   .door::before{content:"";position:absolute;inset:14px;border:1px solid color-mix(in srgb,var(--gold) 55%,transparent);border-radius:20px}
@@ -132,9 +132,9 @@
 
   /* ---------- Main invitation card (ivory, roses, calligraphy) ---------- */
   .cover{
-    --ec:#6a1424; --ec-soft:#8a4a52; --ec-gold:#b8924f;
+    --ec:#0f4a36; --ec-soft:#4f7766; --ec-gold:#b8924f;
     position:absolute;inset:0;z-index:1;container-type:inline-size;overflow:hidden;border-radius:4px;color:var(--ec);
-    background:#e6d3cf url(/assets/silk.webp) center/cover no-repeat;
+    background:#d6e3d8 url(/areeba-suleman/assets/silk.webp) center/cover no-repeat;
     border:1px solid var(--gold);box-shadow:0 20px 60px var(--shadow);
     visibility:hidden;opacity:0;transition:opacity .7s ease .25s;
   }
@@ -269,7 +269,7 @@
   .gallery{display:grid;gap:16px;margin-top:34px}
   .gallery figure{position:relative;margin:0;overflow:hidden;border:1px solid var(--line);border-radius:6px;background:var(--panel)}
   .gallery img{display:block;width:100%;aspect-ratio:4/5;object-fit:cover}
-  .gallery figcaption{position:absolute;inset:auto 0 0 0;padding:46px 16px 18px;font:400 1.35rem var(--serif);color:var(--ivory);background:linear-gradient(180deg,transparent,rgba(60,8,18,.85))}
+  .gallery figcaption{position:absolute;inset:auto 0 0 0;padding:46px 16px 18px;font:400 1.35rem var(--serif);color:var(--ivory);background:linear-gradient(180deg,transparent,rgba(8,40,28,.85))}
   @media (min-width:640px){.gallery{grid-template-columns:repeat(3,1fr)}}
   .ask{position:relative;margin-top:34px;padding:34px 22px 30px;text-align:center;background:linear-gradient(180deg,var(--panel-2),var(--panel));border:1px solid var(--line);border-radius:26px}
   .ask h3{font:400 clamp(1.6rem,7vw,2.1rem)/1.25 var(--serif);text-wrap:balance}
@@ -288,8 +288,8 @@
 
   /* wax seal on the doors */
   .seal{width:112px;height:112px;margin:10px auto 8px;position:relative;display:grid;place-items:center;border-radius:47% 53% 51% 49% / 51% 47% 53% 49%;
-    background:radial-gradient(circle at 34% 28%,#b3263f,#7d1228 56%,#4a0917);
-    box-shadow:inset 0 0 0 3px rgba(255,255,255,.07),inset 0 -7px 12px rgba(0,0,0,.35),0 8px 16px rgba(70,8,20,.4)}
+    background:radial-gradient(circle at 34% 28%,#2f9a73,#1d6a4f 56%,#0d3326);
+    box-shadow:inset 0 0 0 3px rgba(255,255,255,.07),inset 0 -7px 12px rgba(0,0,0,.35),0 8px 16px rgba(10,50,35,.4)}
   .seal::before{content:"";position:absolute;inset:11px;border-radius:50%;border:1.5px solid rgba(240,214,150,.75);box-shadow:inset 0 2px 5px rgba(0,0,0,.3)}
   .seal b{font:400 2.1rem/1 'Satisfy','Snell Roundhand',cursive;color:#f3dfae;text-shadow:0 1px 0 rgba(0,0,0,.4),0 0 6px rgba(255,220,150,.25)}
   .stage.opening .seal{animation:seal-crack .7s ease forwards}
@@ -311,7 +311,7 @@
   footer>*:not(.f-rose){position:relative;z-index:1}
   /* every section divider carries a real rose */
   .rule{position:relative;overflow:visible}
-  .rule::after{content:"";position:absolute;left:50%;top:50%;width:30px;height:30px;transform:translate(-50%,-50%);border-radius:50%;background:url(/assets/rose-head.webp) center/cover;border:1px solid var(--gold);box-shadow:0 1px 4px var(--shadow)}
+  .rule::after{content:"";position:absolute;left:50%;top:50%;width:30px;height:30px;transform:translate(-50%,-50%);border-radius:50%;background:url(/areeba-suleman/assets/rose-head.webp) center/cover;border:1px solid var(--gold);box-shadow:0 1px 4px var(--shadow)}
   .chap-in .rule::after{width:22px;height:22px}
   /* scroll reveal */
   .rv-on .rv{opacity:0;transform:translateY(22px);transition:opacity .8s ease,transform .8s ease}
@@ -349,15 +349,15 @@
   .opt label{display:block;text-align:center;padding:18px 12px;border:1px solid var(--line);background:var(--panel);cursor:pointer;transition:background .2s,border-color .2s}
   .opt label b{display:block;font:400 1.15rem var(--serif);color:var(--ink)}
   .opt label span{font-size:.8rem;color:var(--muted)}
-  .opt input:checked+label{background:linear-gradient(135deg,#9b2036,var(--maroon));border-color:var(--maroon)}
+  .opt input:checked+label{background:linear-gradient(135deg,#2b8665,var(--maroon));border-color:var(--maroon)}
   .opt input:checked+label b,.opt input:checked+label span,.cnt input:checked+label{color:var(--ivory)}
   .opt input:focus-visible+label,.cnt input:focus-visible+label{outline:2px solid var(--accent);outline-offset:2px}
   .cnt{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:8px}
   .cnt label{display:grid;place-items:center;height:52px;border:1px solid var(--line);background:var(--panel);cursor:pointer;font:600 1rem var(--sans);transition:background .2s}
-  .cnt input:checked+label{background:linear-gradient(135deg,#9b2036,var(--maroon));border-color:var(--maroon)}
+  .cnt input:checked+label{background:linear-gradient(135deg,#2b8665,var(--maroon));border-color:var(--maroon)}
   textarea.field{min-height:110px;resize:vertical}
   .opt-note{float:right;font-weight:300;letter-spacing:.2em}
-  .err{margin-top:14px;color:#b3263f;font-size:.9rem;text-align:center}
+  .err{margin-top:14px;color:#2f9a73;font-size:.9rem;text-align:center}
   .done{margin-top:34px;padding:30px 22px;border:1px solid var(--gold);background:var(--panel);text-align:center}
   .done h3{font:400 1.7rem var(--serif)}
   .done p{color:var(--muted);margin-top:10px}
@@ -369,7 +369,7 @@
   .share-actions{display:grid;gap:12px;margin-top:24px}
   .status{margin-top:14px;color:var(--muted);font-size:.9rem;min-height:1.4em;overflow-wrap:anywhere}
 
-  footer{margin-top:90px;padding:80px 20px calc(110px + env(safe-area-inset-bottom,0px));text-align:center;background:linear-gradient(180deg,transparent,rgba(125,18,40,.13) 45%)}
+  footer{margin-top:90px;padding:80px 20px calc(110px + env(safe-area-inset-bottom,0px));text-align:center;background:linear-gradient(180deg,transparent,rgba(29,106,79,.13) 45%)}
   footer h2{font:400 clamp(2rem,8vw,2.6rem)/1.2 var(--serif);margin:14px auto 0;max-width:520px;text-wrap:balance}
   footer .fn{font-family:var(--script);font-size:clamp(3rem,13vw,4.4rem);color:var(--accent);margin-top:34px;line-height:1.1}
   .up{margin:34px auto 0;width:58px;height:58px;border-radius:50%;border:1px solid var(--gold);display:grid;place-items:center;color:var(--accent);background:none;cursor:pointer;font-size:1.5rem}
@@ -415,18 +415,18 @@
 
 <!-- Opening: closed doors ask for a name, then open onto the cover -->
 <div class="stage" id="stage">
-  <img class="st-rose tl" src="/assets/rose-tl.webp" alt="" decoding="async">
-  <img class="st-rose tr" src="/assets/rose-tr.webp" alt="" decoding="async">
-  <img class="st-rose bl" src="/assets/rose-bl.webp" alt="" decoding="async">
-  <img class="st-rose br" src="/assets/rose-bl.webp" alt="" decoding="async">
+  <img class="st-rose tl" src="/areeba-suleman/assets/rose-tl.webp" alt="" decoding="async">
+  <img class="st-rose tr" src="/areeba-suleman/assets/rose-tr.webp" alt="" decoding="async">
+  <img class="st-rose bl" src="/areeba-suleman/assets/rose-bl.webp" alt="" decoding="async">
+  <img class="st-rose br" src="/areeba-suleman/assets/rose-bl.webp" alt="" decoding="async">
   <div class="col">
   <div class="box">
     <section class="cover" id="cover" aria-hidden="true">
-      <img class="rc tl" src="/assets/rose-tl.webp" alt="" width="870" height="1050" decoding="async">
-      <img class="rc tr" src="/assets/rose-tr.webp" alt="" width="888" height="1260" decoding="async">
-      <img class="rc bl" src="/assets/rose-bl.webp" alt="" width="690" height="1362" decoding="async">
+      <img class="rc tl" src="/areeba-suleman/assets/rose-tl.webp" alt="" width="870" height="1050" decoding="async">
+      <img class="rc tr" src="/areeba-suleman/assets/rose-tr.webp" alt="" width="888" height="1260" decoding="async">
+      <img class="rc bl" src="/areeba-suleman/assets/rose-bl.webp" alt="" width="690" height="1362" decoding="async">
 
-      <img class="couple" src="/assets/couple.webp" alt="" width="353" height="447" decoding="async">
+      <img class="couple" src="/areeba-suleman/assets/couple.webp" alt="" width="353" height="447" decoding="async">
 
       <div class="ec-body">
         <div class="ec-top">
@@ -473,8 +473,8 @@
 
 <!-- Step 2: the invitation -->
 <div id="invite" hidden>
-  <img class="h-rose tl" src="/assets/rose-tl.webp" alt="" decoding="async">
-  <img class="h-rose tr" src="/assets/rose-tr.webp" alt="" decoding="async">
+  <img class="h-rose tl" src="/areeba-suleman/assets/rose-tl.webp" alt="" decoding="async">
+  <img class="h-rose tr" src="/areeba-suleman/assets/rose-tr.webp" alt="" decoding="async">
 
   <header class="nav" id="nav">
     <div class="nav-bar">
@@ -631,15 +631,15 @@
         <div class="palette">
           <small>Suggested colours</small>
           <div class="grp"><em>Ladies</em>
-            <span class="sw"><i style="background:#7d1228"></i>Maroon</span>
-            <span class="sw"><i style="background:#e6c2c0"></i>Blush</span>
+            <span class="sw"><i style="background:#1d6a4f"></i>Emerald</span>
+            <span class="sw"><i style="background:#b9d0bc"></i>Sage</span>
             <span class="sw"><i style="background:#d8bd92"></i>Champagne</span>
             <span class="sw"><i style="background:#efe3d3"></i>Ivory</span>
           </div>
           <div class="grp"><em>Gentlemen</em>
             <span class="sw"><i style="background:#0b0708"></i>Black</span>
             <span class="sw"><i style="background:#3d3538"></i>Charcoal</span>
-            <span class="sw"><i style="background:#7d1228"></i>Maroon</span>
+            <span class="sw"><i style="background:#1d6a4f"></i>Emerald</span>
             <span class="sw"><i style="background:#efe3d3"></i>Ivory</span>
           </div>
         </div>
@@ -653,7 +653,7 @@
       <div class="faq">
         <details name="faq" open><summary>What time should we arrive?</summary><p>The Walima runs from 1:00 PM to 4:00 PM. Please arrive a little early so you can be seated comfortably.</p></details>
         <details name="faq"><summary>Where is the wedding being held?</summary><p>At Hassan Banquet, Jauher. Tap “Get directions” in the venue section to open it in Maps.</p></details>
-        <details name="faq"><summary>What is the dress code?</summary><p>Elegant traditional formal attire. Maroon, black and ivory suit the occasion well.</p></details>
+        <details name="faq"><summary>What is the dress code?</summary><p>Elegant traditional formal attire. Emerald green, black and ivory suit the occasion well.</p></details>
         <details name="faq"><summary>How do I confirm my attendance?</summary><p>Fill in the RSVP form below. It opens a WhatsApp message to send to the family.</p></details>
       </div>
     </section>
@@ -733,8 +733,8 @@
   </main>
 
   <footer class="rv">
-    <img class="f-rose l" src="/assets/rose-bl.webp" alt="" decoding="async">
-    <img class="f-rose r" src="/assets/rose-bl.webp" alt="" decoding="async">
+    <img class="f-rose l" src="/areeba-suleman/assets/rose-bl.webp" alt="" decoding="async">
+    <img class="f-rose r" src="/areeba-suleman/assets/rose-bl.webp" alt="" decoding="async">
     <p class="eyebrow">With love and gratitude</p>
     <h2>Thank you for being part of our story</h2>
     <p class="lead" style="margin-top:18px">Your love, blessings and presence will make our celebration even more beautiful.</p>
@@ -875,10 +875,10 @@
   var guest='';
   function drawCard(name,imgs){var couple=imgs.couple;
     var W=1080,H=1620,U=W/100,cv=document.createElement('canvas');cv.width=W;cv.height=H;
-    var c=cv.getContext('2d'),RAD=Math.PI/180,INK='#6a1424',SOFT='#8a4a52',GOLD='#b8924f';
+    var c=cv.getContext('2d'),RAD=Math.PI/180,INK='#0f4a36',SOFT='#4f7766',GOLD='#b8924f';
     function px(n){return n*U}
     /* background: pearly satin (same picture as the card) */
-    c.fillStyle='#e6d3cf';c.fillRect(0,0,W,H);
+    c.fillStyle='#d6e3d8';c.fillRect(0,0,W,H);
     c.imageSmoothingEnabled=true;c.imageSmoothingQuality='high';
     if(imgs.silk){var sr=imgs.silk.naturalWidth/imgs.silk.naturalHeight,tr=W/H,sw=imgs.silk.naturalWidth,sh=imgs.silk.naturalHeight,sx=0,sy=0;
       if(sr>tr){sw=sh*tr;sx=(imgs.silk.naturalWidth-sw)/2}else{sh=sw/tr;sy=(imgs.silk.naturalHeight-sh)/2}
@@ -934,7 +934,7 @@
   }
   function renderCard(){
     var fonts=['700 40px "Aref Ruqaa"','40px "Satisfy"','600 40px "Cormorant SC"','400 40px "Cormorant Garamond"','italic 400 40px "Cormorant Garamond"','600 40px "Cormorant Garamond"'];
-    var imgs={},srcs={silk:'/assets/silk.webp',couple:'/assets/couple.webp',tl:'/assets/rose-tl.webp',tr:'/assets/rose-tr.webp',bl:'/assets/rose-bl.webp'};
+    var imgs={},srcs={silk:'/areeba-suleman/assets/silk.webp',couple:'/areeba-suleman/assets/couple.webp',tl:'/areeba-suleman/assets/rose-tl.webp',tr:'/areeba-suleman/assets/rose-tr.webp',bl:'/areeba-suleman/assets/rose-bl.webp'};
     var imgP=Promise.all(Object.keys(srcs).map(function(k){return new Promise(function(res){var im=new Image();im.onload=function(){imgs[k]=im;res()};im.onerror=function(){res()};im.src=srcs[k]})}));
     return Promise.all(fonts.map(function(f){return document.fonts.load(f,'Aa')}).concat([imgP])).catch(function(){}).then(function(){
       var cv=drawCard(guest||'Guest',imgs);
