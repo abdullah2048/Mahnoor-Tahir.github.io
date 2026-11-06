@@ -300,6 +300,22 @@
   .st-rose.bl{bottom:0;left:0;width:min(34vw,190px)}
   .st-rose.br{bottom:0;right:0;width:min(34vw,190px);transform:scaleX(-1)}
   .stage.opening .st-rose{opacity:0}
+  /* the card stays at the top of the page; the invitation continues right below it */
+  .stage.flow{position:relative;inset:auto;z-index:1;overflow:visible;min-height:0;background:transparent;padding-bottom:6px}
+  .stage.flow .st-rose{display:none}
+  .stage.flow .doors{display:none}
+  .stage.flow .col{margin:0 auto}
+  body.in-flow .h-rose,body.in-flow #home{display:none}
+  body.in-flow .nav{opacity:0;pointer-events:none;transition:opacity .3s}
+  body.in-flow.scrolled .nav{opacity:1;pointer-events:auto}
+  .more{display:none;flex-direction:column;align-items:center;gap:6px;margin-top:2px;text-align:center}
+  .stage.flow .more{display:flex;position:sticky;bottom:max(14px,env(safe-area-inset-bottom,0px));z-index:5;padding-bottom:2px}
+  .more .go{display:inline-flex;align-items:center;gap:12px;padding:16px 30px;min-height:56px;border-radius:999px;border:1px solid var(--maroon);cursor:pointer;
+    background:linear-gradient(135deg,#9b2036,var(--maroon));color:var(--ivory);font:600 .78rem var(--sans);letter-spacing:.2em;text-transform:uppercase;
+    box-shadow:0 10px 26px rgba(125,18,40,.35);animation:nudge 1.8s ease-in-out infinite}
+  .more .go svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
+  .more small{font:400 .68rem var(--sans);letter-spacing:.18em;text-transform:uppercase;color:var(--ink);background:rgba(251,243,238,.85);padding:3px 10px;border-radius:999px}
+  @keyframes nudge{0%,100%{transform:translateY(0)}50%{transform:translateY(5px)}}
   .col{position:relative;z-index:1}
   /* real roses in the invitation */
   #invite{position:relative}
@@ -393,6 +409,7 @@
   }
   @media (min-width:640px){.opt{grid-template-columns:repeat(3,1fr)}.hero-actions{grid-template-columns:1fr 1fr}.share-actions{grid-template-columns:1fr 1fr}}
   @media (prefers-reduced-motion:reduce){
+    .more .go{animation:none}
     .rv-on .rv{opacity:1;transform:none;transition:none}.stage.opening .seal{animation:none;opacity:0}
     html{scroll-behavior:auto}.stage.leaving{animation:none}.door,.cover{transition:none}
   }
@@ -467,7 +484,8 @@
       </div>
     </main>
   </div>
-  <div class="acts"><button class="btn primary" id="openInvite" type="button">View Event Details</button><button class="btn" id="dlCard" type="button">Download card</button></div>
+  <div class="acts"><button class="btn" id="dlCard" type="button">Download card</button></div>
+  <div class="more"><button class="go" id="openInvite" type="button">Event details &amp; RSVP <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></button><small>Scroll down for details</small></div>
   </div>
 </div>
 
@@ -478,7 +496,7 @@
 
   <header class="nav" id="nav">
     <div class="nav-bar">
-      <a class="mono" href="#home" aria-label="Mahnoor and Tahir, back to top">M<i>&amp;</i>T</a>
+      <a class="mono" href="#stage" aria-label="Mahnoor and Tahir, back to top">M<i>&amp;</i>T</a>
       <button class="burger" id="burger" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="menu">
         <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 7h18M3 12h18M3 17h18"/></svg>
       </button>
@@ -838,18 +856,19 @@
     setGuest(name);playMusic();
     stage.classList.add('opening');
     cover.removeAttribute('aria-hidden');
-    setTimeout(function(){stage.classList.add('opened');$('openInvite').focus({preventScroll:true})},reduce?0:1300);
-  });
-  $('openInvite').addEventListener('click',function(){
-    stage.classList.add('leaving');
     setTimeout(function(){
-      stage.hidden=true;stage.classList.remove('leaving');
+      stage.classList.add('opened','flow');document.body.classList.add('in-flow');
       invite.hidden=false;window.scrollTo(0,0);startTimer();
-    },reduce?0:450);
+    },reduce?0:1300);
+  });
+  addEventListener('scroll',function(){document.body.classList.toggle('scrolled',scrollY>innerHeight*.55)},{passive:true});
+  $('openInvite').addEventListener('click',function(){
+    var t=$('countdown-sec')||$('programme');
+    t.scrollIntoView({behavior:reduce?'auto':'smooth',block:'start'});
   });
   function back(){
     stopTimer();stopMusic();closeMenu();
-    invite.hidden=true;stage.hidden=false;stage.className='stage';
+    invite.hidden=true;stage.hidden=false;stage.className='stage';document.body.classList.remove('in-flow','scrolled');
     cover.setAttribute('aria-hidden','true');
     document.title='Mahnoor & Tahir – Wedding Invitation';
     input.select();window.scrollTo(0,0);
