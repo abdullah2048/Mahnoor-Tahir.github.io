@@ -94,15 +94,18 @@
   .acts .btn:not(.primary){background:rgba(251,243,238,.75)}
   .acts .btn{color:var(--ink);border-color:var(--gold);flex:1 1 150px;max-width:210px;font-size:.66rem;letter-spacing:.14em;padding:14px 10px;white-space:nowrap}
 
-  .doors{position:absolute;inset:0;z-index:2;border:2px solid var(--gold);border-radius:34px;overflow:hidden;background:var(--panel);box-shadow:0 20px 60px var(--shadow)}
+  .doors{position:absolute;inset:0;z-index:2;border:0;border-radius:0;overflow:visible;background:transparent;box-shadow:none}
+  /* two satin curtains that part from the middle; no outlines, only soft pleats */
   .door{
-    position:absolute;top:12px;bottom:12px;width:calc(50% - 18px);
-    background:radial-gradient(circle at 50% 28%,#fffaf6,#f0dfd8 85%);
-    border:2px solid var(--gold);transition:transform .95s cubic-bezier(.7,0,.2,1) .2s;
+    position:fixed;top:0;bottom:0;width:50%;
+    background:
+      repeating-linear-gradient(90deg,rgba(150,60,72,.11) 0,rgba(255,255,255,.18) 24px,rgba(150,60,72,.11) 48px),
+      linear-gradient(180deg,rgba(255,255,255,.28),rgba(255,255,255,0) 32%,rgba(120,30,42,.12)),
+      linear-gradient(90deg,#f1dfdb,#e8cfcb);
+    transition:transform 1.15s cubic-bezier(.65,0,.2,1) .15s;
   }
-  .door::before{content:"";position:absolute;inset:14px;border:1px solid color-mix(in srgb,var(--gold) 55%,transparent);border-radius:20px}
-  .door.l{left:12px;border-radius:24px 6px 6px 24px}
-  .door.r{right:12px;border-radius:6px 24px 24px 6px}
+  .door.l{left:0;transform-origin:0 50%;box-shadow:16px 0 46px rgba(90,20,36,.30)}
+  .door.r{right:0;transform-origin:100% 50%;box-shadow:-16px 0 46px rgba(90,20,36,.30)}
   .door-content{
     position:absolute;inset:0;z-index:3;display:flex;flex-direction:column;align-items:center;justify-content:center;
     padding:36px 30px;text-align:center;transition:opacity .3s;
@@ -116,8 +119,8 @@
   .ayah{font-family:'Amiri','Noto Naskh Arabic','Geeza Pro',serif;font-size:1.8rem;line-height:1.5;color:var(--accent);margin-top:30px;direction:rtl}
   .ayah-ref{font:400 .6rem var(--sans);letter-spacing:.28em;text-transform:uppercase;color:var(--muted);margin-top:4px}
   .stage.opening .door-content{opacity:0;pointer-events:none}
-  .stage.opening .door.l{transform:translateX(-112%)}
-  .stage.opening .door.r{transform:translateX(112%)}
+  .stage.opening .door.l{transform:translateX(-100%) scaleX(.55)}
+  .stage.opening .door.r{transform:translateX(100%) scaleX(.55)}
   .stage.opened .doors{visibility:hidden}
 
     position:absolute;inset:0;z-index:1;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;
@@ -298,7 +301,7 @@
   .stage.opening .seal{animation:seal-crack .7s ease forwards}
   @keyframes seal-crack{to{transform:scale(1.25) rotate(8deg);opacity:0}}
   /* real roses framing the opening screen */
-  .st-rose{position:fixed;height:auto;pointer-events:none;z-index:0;width:min(44vw,240px);transition:opacity .6s}
+  .st-rose{position:fixed;height:auto;pointer-events:none;z-index:3;width:min(44vw,240px);transition:opacity .6s}
   .st-rose.tl{top:0;left:0}.st-rose.tr{top:0;right:0}
   .st-rose.bl{bottom:0;left:0;width:min(34vw,190px)}
   .st-rose.br{bottom:0;right:0;width:min(34vw,190px);transform:scaleX(-1)}
