@@ -141,9 +141,9 @@
   .stage.opening .cover{visibility:visible;opacity:1}
   .rc{position:absolute;pointer-events:none;overflow:visible}
   .rc{height:auto}
-  .rc.tl{top:0;left:0;width:39.4cqw}
-  .rc.tr{top:0;right:0;width:40.2cqw}
-  .rc.bl{bottom:0;left:0;width:31.3cqw}
+  .rc.tl{top:0;left:0;width:34cqw}
+  .rc.tr{top:0;right:0;width:21cqw}
+  .rc.bl{bottom:0;left:0;width:30cqw}
   .couple{position:absolute;right:-1cqw;bottom:-1cqw;width:41cqw;height:auto;pointer-events:none;z-index:1}
   .ec-body{position:relative;z-index:2;height:100%;display:flex;flex-direction:column;justify-content:space-between;align-items:center;text-align:center;padding:9cqw 5cqw 7cqw}
   .ec-top,.ec-mid,.ec-low{display:flex;flex-direction:column;align-items:center;width:100%}
@@ -296,9 +296,9 @@
   @keyframes seal-crack{to{transform:scale(1.25) rotate(8deg);opacity:0}}
   /* real roses framing the opening screen */
   .st-rose{position:fixed;height:auto;pointer-events:none;z-index:0;width:min(44vw,240px);transition:opacity .6s}
-  .st-rose.tl{top:0;left:0}.st-rose.tr{top:0;right:0}
-  .st-rose.bl{bottom:0;left:0;width:min(34vw,190px)}
-  .st-rose.br{bottom:0;right:0;width:min(34vw,190px);transform:scaleX(-1)}
+  .st-rose.tl{top:0;left:0;width:min(38vw,190px)}.st-rose.tr{top:0;right:0;width:min(24vw,120px)}
+  .st-rose.bl{bottom:0;left:0;width:min(34vw,170px)}
+  .st-rose.br{bottom:0;right:0;width:min(34vw,170px);transform:scaleX(-1)}
   .stage.opening .st-rose{opacity:0}
   /* pink cosmos blossoms mixed into the green rose clusters */
   .cosm{position:absolute;height:auto;pointer-events:none;z-index:2;filter:drop-shadow(0 2px 4px rgba(10,50,35,.28))}
@@ -316,8 +316,8 @@
   .col{position:relative;z-index:1}
   /* real roses in the invitation */
   #invite{position:relative}
-  .h-rose{position:absolute;top:0;height:auto;width:min(34vw,240px);pointer-events:none;z-index:0}
-  .h-rose.tl{left:0}.h-rose.tr{right:0}
+  .h-rose{position:absolute;top:0;height:auto;pointer-events:none;z-index:0}
+  .h-rose.tl{left:0;width:min(30vw,200px)}.h-rose.tr{right:0;width:min(18vw,110px)}
   footer{position:relative;overflow:hidden}
   .f-rose{position:absolute;bottom:0;width:27%;height:auto;pointer-events:none;z-index:0}
   .f-rose.l{left:0}.f-rose.r{right:0;transform:scaleX(-1)}
@@ -432,22 +432,12 @@
   <img class="st-rose tr" src="assets/rose-tr.webp" alt="" decoding="async">
   <img class="st-rose bl" src="assets/rose-bl.webp" alt="" decoding="async">
   <img class="st-rose br" src="assets/rose-bl.webp" alt="" decoding="async">
-  <img class="st-cosm a" src="assets/cos1.webp" alt="" decoding="async">
-  <img class="st-cosm b" src="assets/cos2.webp" alt="" decoding="async">
-  <img class="st-cosm c" src="assets/cos2.webp" alt="" decoding="async">
-  <img class="st-cosm d" src="assets/cos1.webp" alt="" decoding="async">
   <div class="col">
   <div class="box">
     <section class="cover" id="cover" aria-hidden="true">
-      <img class="rc tl" src="assets/rose-tl.webp" alt="" width="870" height="1050" decoding="async">
-      <img class="rc tr" src="assets/rose-tr.webp" alt="" width="888" height="1260" decoding="async">
-      <img class="rc bl" src="assets/rose-bl.webp" alt="" width="690" height="1362" decoding="async">
-
-      <img class="cosm a" src="assets/cos1.webp" alt="" decoding="async">
-      <img class="cosm b" src="assets/cos2.webp" alt="" decoding="async">
-      <img class="cosm c" src="assets/cos2.webp" alt="" decoding="async">
-      <img class="cosm d" src="assets/cos1.webp" alt="" decoding="async">
-      <img class="cosm e" src="assets/cos2.webp" alt="" decoding="async">
+      <img class="rc tl" src="assets/rose-tl.webp" alt="" width="645" height="900" decoding="async">
+      <img class="rc tr" src="assets/rose-tr.webp" alt="" width="447" height="990" decoding="async">
+      <img class="rc bl" src="assets/rose-bl.webp" alt="" width="420" height="510" decoding="async">
       <img class="couple" src="assets/couple.webp" alt="" width="353" height="447" decoding="async">
 
       <div class="ec-body">
@@ -908,9 +898,9 @@
 
     /* real rose clusters, placed at the same proportions as on the card */
     function put(im,x,y,wu,fromRight,fromBottom){if(!im)return;var w=px(wu),h=w*im.naturalHeight/im.naturalWidth;c.drawImage(im,fromRight?W-w:x,fromBottom?H-h:y,w,h)}
-    put(imgs.tl,0,0,39.4);put(imgs.tr,0,0,40.2,true);put(imgs.bl,0,0,31.3,false,true);
+    put(imgs.tl,0,0,34);put(imgs.tr,0,0,21,true);put(imgs.bl,0,0,30,false,true);
     function bloom(im,wu,x,y,deg){if(!im)return;var w=px(wu),h=w*im.naturalHeight/im.naturalWidth;c.save();c.shadowColor='rgba(10,50,35,.28)';c.shadowBlur=px(1);c.shadowOffsetY=px(.4);c.translate(px(x)+w/2,y+h/2);c.rotate(deg*RAD);c.drawImage(im,-w/2,-h/2,w,h);c.restore()}
-    bloom(imgs.c1,13,5,px(30),-14);bloom(imgs.c2,10,23,px(9),10);bloom(imgs.c2,11,86,px(33),18);bloom(imgs.c1,12,2,H-px(25)-px(14),-8);
+
 
     /* bride and groom (cut-out picture) */
     if(couple){var cw=px(41),ch=cw*couple.naturalHeight/couple.naturalWidth;c.drawImage(couple,W-cw+px(1),H-ch+px(1),cw,ch)}
