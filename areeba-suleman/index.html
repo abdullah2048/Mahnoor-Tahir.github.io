@@ -300,6 +300,19 @@
   .st-rose.bl{bottom:0;left:0;width:min(34vw,190px)}
   .st-rose.br{bottom:0;right:0;width:min(34vw,190px);transform:scaleX(-1)}
   .stage.opening .st-rose{opacity:0}
+  /* pink cosmos blossoms mixed into the green rose clusters */
+  .cosm{position:absolute;height:auto;pointer-events:none;z-index:2;filter:drop-shadow(0 2px 4px rgba(10,50,35,.28))}
+  .cosm.a{width:13cqw;top:30cqw;left:5cqw;transform:rotate(-14deg)}
+  .cosm.b{width:10cqw;top:9cqw;left:23cqw;transform:rotate(10deg)}
+  .cosm.c{width:11cqw;top:33cqw;right:3cqw;transform:rotate(18deg)}
+  .cosm.d{width:12cqw;bottom:25cqw;left:2cqw;transform:rotate(-8deg)}
+  .cosm.e{display:none}
+  .st-cosm{position:fixed;height:auto;pointer-events:none;z-index:0;filter:drop-shadow(0 2px 4px rgba(10,50,35,.25));transition:opacity .6s}
+  .stage.opening .st-cosm{opacity:0}
+  .st-cosm.a{width:min(15vw,84px);top:min(21vw,118px);left:min(29vw,160px);transform:rotate(-12deg)}
+  .st-cosm.b{width:min(12vw,66px);top:min(9vw,50px);right:min(36vw,200px);transform:rotate(14deg)}
+  .st-cosm.c{width:min(13vw,72px);bottom:min(17vw,96px);left:min(25vw,140px);transform:rotate(10deg)}
+  .st-cosm.d{width:min(13vw,72px);bottom:min(12vw,68px);right:min(24vw,134px);transform:rotate(-14deg)}
   .col{position:relative;z-index:1}
   /* real roses in the invitation */
   #invite{position:relative}
@@ -311,7 +324,7 @@
   footer>*:not(.f-rose){position:relative;z-index:1}
   /* every section divider carries a real rose */
   .rule{position:relative;overflow:visible}
-  .rule::after{content:"";position:absolute;left:50%;top:50%;width:30px;height:30px;transform:translate(-50%,-50%);border-radius:50%;background:url(/areeba-suleman/assets/rose-head.webp) center/cover;border:1px solid var(--gold);box-shadow:0 1px 4px var(--shadow)}
+  .rule::after{content:"";position:absolute;left:50%;top:50%;width:30px;height:30px;transform:translate(-50%,-50%);border-radius:50%;background:url(/areeba-suleman/assets/cos2.webp) center/cover;border:1px solid var(--gold);box-shadow:0 1px 4px var(--shadow)}
   .chap-in .rule::after{width:22px;height:22px}
   /* scroll reveal */
   .rv-on .rv{opacity:0;transform:translateY(22px);transition:opacity .8s ease,transform .8s ease}
@@ -419,6 +432,10 @@
   <img class="st-rose tr" src="/areeba-suleman/assets/rose-tr.webp" alt="" decoding="async">
   <img class="st-rose bl" src="/areeba-suleman/assets/rose-bl.webp" alt="" decoding="async">
   <img class="st-rose br" src="/areeba-suleman/assets/rose-bl.webp" alt="" decoding="async">
+  <img class="st-cosm a" src="/areeba-suleman/assets/cos1.webp" alt="" decoding="async">
+  <img class="st-cosm b" src="/areeba-suleman/assets/cos2.webp" alt="" decoding="async">
+  <img class="st-cosm c" src="/areeba-suleman/assets/cos2.webp" alt="" decoding="async">
+  <img class="st-cosm d" src="/areeba-suleman/assets/cos1.webp" alt="" decoding="async">
   <div class="col">
   <div class="box">
     <section class="cover" id="cover" aria-hidden="true">
@@ -426,6 +443,11 @@
       <img class="rc tr" src="/areeba-suleman/assets/rose-tr.webp" alt="" width="888" height="1260" decoding="async">
       <img class="rc bl" src="/areeba-suleman/assets/rose-bl.webp" alt="" width="690" height="1362" decoding="async">
 
+      <img class="cosm a" src="/areeba-suleman/assets/cos1.webp" alt="" decoding="async">
+      <img class="cosm b" src="/areeba-suleman/assets/cos2.webp" alt="" decoding="async">
+      <img class="cosm c" src="/areeba-suleman/assets/cos2.webp" alt="" decoding="async">
+      <img class="cosm d" src="/areeba-suleman/assets/cos1.webp" alt="" decoding="async">
+      <img class="cosm e" src="/areeba-suleman/assets/cos2.webp" alt="" decoding="async">
       <img class="couple" src="/areeba-suleman/assets/couple.webp" alt="" width="353" height="447" decoding="async">
 
       <div class="ec-body">
@@ -887,6 +909,8 @@
     /* real rose clusters, placed at the same proportions as on the card */
     function put(im,x,y,wu,fromRight,fromBottom){if(!im)return;var w=px(wu),h=w*im.naturalHeight/im.naturalWidth;c.drawImage(im,fromRight?W-w:x,fromBottom?H-h:y,w,h)}
     put(imgs.tl,0,0,39.4);put(imgs.tr,0,0,40.2,true);put(imgs.bl,0,0,31.3,false,true);
+    function bloom(im,wu,x,y,deg){if(!im)return;var w=px(wu),h=w*im.naturalHeight/im.naturalWidth;c.save();c.shadowColor='rgba(10,50,35,.28)';c.shadowBlur=px(1);c.shadowOffsetY=px(.4);c.translate(px(x)+w/2,y+h/2);c.rotate(deg*RAD);c.drawImage(im,-w/2,-h/2,w,h);c.restore()}
+    bloom(imgs.c1,13,5,px(30),-14);bloom(imgs.c2,10,23,px(9),10);bloom(imgs.c2,11,86,px(33),18);bloom(imgs.c1,12,2,H-px(25)-px(14),-8);
 
     /* bride and groom (cut-out picture) */
     if(couple){var cw=px(41),ch=cw*couple.naturalHeight/couple.naturalWidth;c.drawImage(couple,W-cw+px(1),H-ch+px(1),cw,ch)}
@@ -934,7 +958,7 @@
   }
   function renderCard(){
     var fonts=['700 40px "Aref Ruqaa"','40px "Satisfy"','600 40px "Cormorant SC"','400 40px "Cormorant Garamond"','italic 400 40px "Cormorant Garamond"','600 40px "Cormorant Garamond"'];
-    var imgs={},srcs={silk:'/areeba-suleman/assets/silk.webp',couple:'/areeba-suleman/assets/couple.webp',tl:'/areeba-suleman/assets/rose-tl.webp',tr:'/areeba-suleman/assets/rose-tr.webp',bl:'/areeba-suleman/assets/rose-bl.webp'};
+    var imgs={},srcs={c1:'/areeba-suleman/assets/cos1.webp',c2:'/areeba-suleman/assets/cos2.webp',silk:'/areeba-suleman/assets/silk.webp',couple:'/areeba-suleman/assets/couple.webp',tl:'/areeba-suleman/assets/rose-tl.webp',tr:'/areeba-suleman/assets/rose-tr.webp',bl:'/areeba-suleman/assets/rose-bl.webp'};
     var imgP=Promise.all(Object.keys(srcs).map(function(k){return new Promise(function(res){var im=new Image();im.onload=function(){imgs[k]=im;res()};im.onerror=function(){res()};im.src=srcs[k]})}));
     return Promise.all(fonts.map(function(f){return document.fonts.load(f,'Aa')}).concat([imgP])).catch(function(){}).then(function(){
       var cv=drawCard(guest||'Guest',imgs);
