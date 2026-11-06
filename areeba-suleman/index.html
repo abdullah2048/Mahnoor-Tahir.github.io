@@ -94,7 +94,8 @@
   .acts .btn:not(.primary){background:rgba(245,249,244,.75)}
   .acts .btn{color:var(--ink);border-color:var(--gold);flex:1 1 150px;max-width:210px;font-size:.66rem;letter-spacing:.14em;padding:14px 10px;white-space:nowrap}
 
-  .doors{position:absolute;inset:0;z-index:2;border:2px solid var(--gold);border-radius:34px;overflow:hidden;background:var(--panel);box-shadow:0 20px 60px var(--shadow)}
+  .doors{position:absolute;inset:0;z-index:2;border:0;border-radius:0;overflow:visible;background:transparent;box-shadow:none}
+  .door{display:none}
   .door{
     position:absolute;top:12px;bottom:12px;width:calc(50% - 18px);
     background:radial-gradient(circle at 50% 28%,#fbfdf9,#dfeadf 85%);
