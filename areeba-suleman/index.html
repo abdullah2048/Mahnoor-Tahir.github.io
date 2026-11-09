@@ -524,15 +524,12 @@
       </button>
     </div>
     <nav class="menu" id="menu" aria-label="Sections" hidden>
-      <a href="#home">Home</a>
+      <a href="#stage">Home</a>
       <a href="#programme">Programme</a>
       <a href="#story">Our story</a>
-      <a href="#journey">Journey</a>
       <a href="#gallery" id="galleryLink" hidden>Gallery</a>
       <a href="#venue">Venue</a>
-      <a href="#dress">Dress code</a>
       <a href="#celebrate">RSVP</a>
-      <a href="#share">Share</a>
       <div class="sep"></div>
       <button type="button" id="changeName">Change name</button>
     </nav>
@@ -621,18 +618,6 @@
       <p class="story-names">Areeba Sultan <i>&amp;</i> Suleman Aziz</p>
     </section>
 
-    <section id="journey" class="sec rv wrap">
-      <p class="eyebrow">Our beautiful journey</p>
-      <h2>From a Moment to <em>Forever</em></h2>
-      <div class="rule"></div>
-      <p class="lead">Every chapter brought us closer to this beautiful beginning.</p>
-      <div class="chapters">
-        <article class="chap"><div class="chap-in"><p class="eyebrow">Chapter 1</p><h3>The Beginning</h3><div class="rule"></div><p>Every beautiful story begins with a moment that quietly changes everything.</p></div></article>
-        <article class="chap"><div class="chap-in"><p class="eyebrow">Chapter 2</p><h3>The Promise</h3><div class="rule"></div><p>Trust, kindness and prayer grew into a promise to walk through life together.</p></div></article>
-        <article class="chap"><div class="chap-in"><p class="eyebrow">Chapter 3</p><h3>The Celebration</h3><div class="rule"></div><p>Now we celebrate the beginning of our forever with the people we love.</p></div></article>
-      </div>
-    </section>
-
     <section id="gallery" class="sec wrap" hidden>
       <p class="eyebrow">Moments to remember</p>
       <h2>Memories We Will <em>Cherish</em></h2>
@@ -660,52 +645,6 @@
       </div>
     </section>
 
-    <section id="dress" class="sec rv wrap">
-      <p class="eyebrow">What to wear</p>
-      <h2>Dress <em>Code</em></h2>
-      <div class="rule"></div>
-      <div class="card">
-        <span class="tag"><span class="ico" aria-hidden="true">&#10022;</span>Valima</span>
-        <h3>Formal &amp; Elegant</h3>
-        <p class="big">Traditional formal attire.</p>
-        <div class="palette">
-          <small>Suggested colours</small>
-          <div class="grp"><em>Ladies</em>
-            <span class="sw"><i style="background:#1d6a4f"></i>Emerald</span>
-            <span class="sw"><i style="background:#b9d0bc"></i>Sage</span>
-            <span class="sw"><i style="background:#d8bd92"></i>Champagne</span>
-            <span class="sw"><i style="background:#efe3d3"></i>Ivory</span>
-          </div>
-          <div class="grp"><em>Gentlemen</em>
-            <span class="sw"><i style="background:#0b0708"></i>Black</span>
-            <span class="sw"><i style="background:#3d3538"></i>Charcoal</span>
-            <span class="sw"><i style="background:#1d6a4f"></i>Emerald</span>
-            <span class="sw"><i style="background:#efe3d3"></i>Ivory</span>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="share" class="sec rv wrap">
-      <p class="eyebrow">Share the celebration</p>
-      <h2>Share our <em>Invitation</em></h2>
-      <div class="rule"></div>
-      <p class="lead">Share our wedding invitation with your family and loved ones.</p>
-      <div class="share-card">
-        <svg class="rings" viewBox="0 0 62 34" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><circle cx="21" cy="17" r="14"/><circle cx="41" cy="17" r="14"/></svg>
-        <p class="eyebrow">You are invited</p>
-        <p class="names2">Areeba Sultan <i>&amp;</i> Suleman Aziz</p>
-        <p class="date">20 December 2026</p>
-        <p class="lead" style="margin-top:12px">Hassan Banquet, Block-15 Gulistan-e-Jauher, Karachi</p>
-        <div class="share-actions">
-          <button class="btn primary" type="button" id="shareWa">Share on WhatsApp</button>
-          <button class="btn" type="button" id="shareAny">Share invitation link</button>
-          <button class="btn" type="button" id="shareImg">Share card as picture</button>
-          <button class="btn" type="button" id="dlCard2">Download card</button>
-        </div>
-        <p class="status" id="shareStatus" aria-live="polite"></p>
-      </div>
-    </section>
   </main>
 
   <footer class="rv">
@@ -927,19 +866,7 @@
     a.href=url;a.download=cardName();document.body.appendChild(a);a.click();a.remove();setTimeout(function(){URL.revokeObjectURL(url)},5000);
   }
   function saveCard(btn){var done=busy(btn,'Preparing…');renderCard().then(function(b){done();if(b)saveBlob(b)})}
-  function shareCard(btn){
-    var done=busy(btn,'Preparing…'),st=$('shareStatus');
-    renderCard().then(function(b){
-      done();if(!b)return;
-      var f=new File([b],cardName(),{type:'image/png'});
-      if(navigator.canShare&&navigator.canShare({files:[f]})){
-        navigator.share({files:[f],title:'Areeba Sultan & Suleman Aziz',text:'You are invited to the Valima of Areeba Sultan & Suleman Aziz.'}).catch(function(){});
-      }else{saveBlob(b);st.textContent='Card saved to your device. Attach it in WhatsApp to share.'}
-    });
-  }
-  $('shareImg').addEventListener('click',function(){shareCard(this)});
   $('dlCard').addEventListener('click',function(){saveCard(this)});
-  $('dlCard2').addEventListener('click',function(){saveCard(this)});
 
 
   /* "Will you be part of our celebration?" - the No button runs away */
@@ -996,23 +923,6 @@
     document.querySelectorAll('.rv').forEach(function(el){io.observe(el)});
   })();
 
-  function openLink(url){
-    var a=document.createElement('a');a.href=url;a.target='_blank';a.rel='noopener';
-    document.body.appendChild(a);a.click();a.remove();
-  }
-
-  /* share */
-  var status=$('shareStatus');
-  function pageUrl(){try{return location.origin+location.pathname}catch(_){return location.href}}
-  var shareText='You are invited to the Valima of Areeba Sultan & Suleman Aziz — Sunday, 20 December 2026, from 1:00 PM, Hassan Banquet, Block-15 Gulistan-e-Jauher, Karachi.';
-  $('shareWa').addEventListener('click',function(){openLink('https://wa.me/?text='+encodeURIComponent(shareText+'\n'+pageUrl()))});
-  $('shareAny').addEventListener('click',function(){
-    var url=pageUrl();
-    if(navigator.share){navigator.share({title:'Areeba Sultan & Suleman Aziz',text:shareText,url:url}).catch(function(){})}
-    else if(navigator.clipboard&&navigator.clipboard.writeText){
-      navigator.clipboard.writeText(url).then(function(){status.textContent='Link copied.'},function(){status.textContent='Copy this link: '+url});
-    } else status.textContent='Copy this link: '+url;
-  });
 })();
 </script>
 </body>
