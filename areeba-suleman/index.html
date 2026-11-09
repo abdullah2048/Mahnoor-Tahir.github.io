@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="theme-color" content="#dbe7dd">
+<meta name="theme-color" content="#f8e8ee">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <meta property="og:type" content="website">
@@ -23,18 +23,18 @@
   /* Layout: gate screen, then one long scrolling invitation with a floating bar, sections, RSVP and share. */
   :root{
     color-scheme:light;
-    --bg:#dbe7dd;          /* pearly satin */
-    --panel:#f5f9f4;       /* ivory */
-    --panel-2:#ebf2ea;
-    --ink:#0f3d2e;         /* deep maroon, as on the main card */
-    --muted:#4f7766;
-    --line:#c9d6c3;        /* gold-tinted hairlines */
+    --bg:#f8e8ee;          /* pearly satin */
+    --panel:#fffafc;       /* ivory */
+    --panel-2:#fbeef2;
+    --ink:#5d2038;         /* deep maroon, as on the main card */
+    --muted:#a0627a;
+    --line:#ecd2db;        /* gold-tinted hairlines */
     --gold:#b8924f;        /* gold lines and ornaments */
-    --maroon:#1d6a4f;      /* fills */
-    --maroon-hi:#2b8665;
-    --accent:#1b6b4d;      /* maroon accent text */
-    --ivory:#f4faf4;       /* text on maroon */
-    --shadow:rgba(15,60,45,.22);
+    --maroon:#c24e73;      /* fills */
+    --maroon-hi:#d9708f;
+    --accent:#b8456a;      /* maroon accent text */
+    --ivory:#fffafc;       /* text on maroon */
+    --shadow:rgba(120,40,70,.20);
     --serif:'Playfair Display',Georgia,serif;
     --sans:'Poppins',system-ui,sans-serif;
     --script:'Great Vibes','Snell Roundhand',cursive;
@@ -43,7 +43,7 @@
   [hidden]{display:none!important}
   html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
   body{
-    background:#d6e3d8 url(assets/silk.webp) center/cover fixed;
+    background:#f6e3e9 url(assets/silk.webp) center/cover fixed;
     color:var(--ink);font-family:var(--sans);font-weight:300;line-height:1.6;
     min-height:100vh;min-height:100svh;
     padding-left:env(safe-area-inset-left,0px);padding-right:env(safe-area-inset-right,0px);
@@ -65,7 +65,7 @@
   }
   .btn:hover{background:color-mix(in srgb,var(--maroon) 9%,transparent)}
   .btn:active{transform:scale(.98)}
-  .btn.primary{background:linear-gradient(135deg,#2b8665,var(--maroon));border-color:var(--maroon);color:var(--ivory)}
+  .btn.primary{background:linear-gradient(135deg,#d9708f,var(--maroon));border-color:var(--maroon);color:var(--ivory)}
   .btn.primary:hover{filter:brightness(1.12)}
   .btn.block{width:100%}
 
@@ -82,7 +82,7 @@
 
   .stage{
     position:fixed;inset:0;z-index:50;overflow:auto;display:flex;
-    background:#d6e3d8 url(assets/silk.webp) center/cover no-repeat;
+    background:#f6e3e9 url(assets/silk.webp) center/cover no-repeat;
     padding:max(24px,env(safe-area-inset-top)) max(14px,env(safe-area-inset-right)) max(24px,env(safe-area-inset-bottom)) max(14px,env(safe-area-inset-left));
   }
   .stage.leaving{animation:fade .45s ease forwards}
@@ -91,7 +91,7 @@
   .acts{display:none;gap:10px;flex-wrap:wrap;justify-content:center;width:100%}
   .stage.opening .acts{display:flex}
   .acts .btn.primary{color:var(--ivory)}
-  .acts .btn:not(.primary){background:rgba(245,249,244,.75)}
+  .acts .btn:not(.primary){background:rgba(255,250,252,.78)}
   .acts .btn{color:var(--ink);border-color:var(--gold);flex:1 1 150px;max-width:210px;font-size:.66rem;letter-spacing:.14em;padding:14px 10px;white-space:nowrap}
 
   .doors{position:absolute;inset:0;z-index:2;border:0;border-radius:0;overflow:visible;background:transparent;box-shadow:none}
@@ -99,13 +99,13 @@
   .door{
     position:fixed;top:0;bottom:0;width:50%;
     background:
-      repeating-linear-gradient(90deg,rgba(30,110,80,.12) 0,rgba(255,255,255,.2) 24px,rgba(30,110,80,.12) 48px),
-      linear-gradient(180deg,rgba(255,255,255,.30),rgba(255,255,255,0) 32%,rgba(15,74,54,.14)),
-      linear-gradient(90deg,#d9e8de,#c8dccf);
+      repeating-linear-gradient(90deg,rgba(194,78,115,.10) 0,rgba(255,255,255,.2) 24px,rgba(194,78,115,.10) 48px),
+      linear-gradient(180deg,rgba(255,255,255,.30),rgba(255,255,255,0) 32%,rgba(194,78,115,.12)),
+      linear-gradient(90deg,#fbeaf0,#f3d9e2);
     transition:transform 1.15s cubic-bezier(.65,0,.2,1) .15s;
   }
-  .door.l{left:0;transform-origin:0 50%;box-shadow:16px 0 46px rgba(15,60,45,.30)}
-  .door.r{right:0;transform-origin:100% 50%;box-shadow:-16px 0 46px rgba(15,60,45,.30)}
+  .door.l{left:0;transform-origin:0 50%;box-shadow:16px 0 46px rgba(120,40,70,.22)}
+  .door.r{right:0;transform-origin:100% 50%;box-shadow:-16px 0 46px rgba(120,40,70,.22)}
   .door-content{
     position:absolute;inset:0;z-index:3;display:flex;flex-direction:column;align-items:center;justify-content:center;
     padding:36px 30px;text-align:center;transition:opacity .3s;
@@ -124,7 +124,7 @@
   .stage.opened .doors{visibility:hidden}
 
     position:absolute;inset:0;z-index:1;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;
-    padding:40px 26px;border:1px solid var(--gold);background:linear-gradient(180deg,rgba(20,10,13,.94),rgba(8,5,6,.97));
+    padding:40px 26px;border:1px solid var(--gold);background:linear-gradient(180deg,rgba(255,250,252,.94),rgba(8,5,6,.97));
     visibility:hidden;opacity:0;transition:opacity .7s ease .25s;
   }
   .stage.opening .cover{visibility:visible;opacity:1}
@@ -135,9 +135,9 @@
 
   /* ---------- Main invitation card (ivory, roses, calligraphy) ---------- */
   .cover{
-    --ec:#0f4a36; --ec-soft:#4f7766; --ec-gold:#b8924f;
+    --ec:#7a2a47; --ec-soft:#a0627a; --ec-gold:#b8924f;
     position:absolute;inset:0;z-index:1;container-type:inline-size;overflow:hidden;border-radius:4px;color:var(--ec);
-    background:#d6e3d8 url(assets/silk.webp) center/cover no-repeat;
+    background:#f6e3e9 url(assets/silk.webp) center/cover no-repeat;
     border:1px solid var(--gold);box-shadow:0 20px 60px var(--shadow);
     visibility:hidden;opacity:0;transition:opacity .7s ease .25s;
   }
@@ -276,7 +276,7 @@
   .gallery{display:grid;gap:16px;margin-top:34px}
   .gallery figure{position:relative;margin:0;overflow:hidden;border:1px solid var(--line);border-radius:6px;background:var(--panel)}
   .gallery img{display:block;width:100%;aspect-ratio:4/5;object-fit:cover}
-  .gallery figcaption{position:absolute;inset:auto 0 0 0;padding:46px 16px 18px;font:400 1.35rem var(--serif);color:var(--ivory);background:linear-gradient(180deg,transparent,rgba(8,40,28,.85))}
+  .gallery figcaption{position:absolute;inset:auto 0 0 0;padding:46px 16px 18px;font:400 1.35rem var(--serif);color:var(--ivory);background:linear-gradient(180deg,transparent,rgba(70,20,40,.85))}
   @media (min-width:640px){.gallery{grid-template-columns:repeat(3,1fr)}}
   .ask{position:relative;margin-top:34px;padding:34px 22px 30px;text-align:center;background:linear-gradient(180deg,var(--panel-2),var(--panel));border:1px solid var(--line);border-radius:26px}
   .ask h3{font:400 clamp(1.6rem,7vw,2.1rem)/1.25 var(--serif);text-wrap:balance}
@@ -295,10 +295,10 @@
 
   /* wax seal on the doors */
   .seal{width:112px;height:112px;margin:10px auto 8px;position:relative;display:grid;place-items:center;border-radius:47% 53% 51% 49% / 51% 47% 53% 49%;
-    background:radial-gradient(circle at 34% 28%,#2f9a73,#1d6a4f 56%,#0d3326);
-    box-shadow:inset 0 0 0 3px rgba(255,255,255,.07),inset 0 -7px 12px rgba(0,0,0,.35),0 8px 16px rgba(10,50,35,.4)}
+    background:radial-gradient(circle at 34% 28%,#e386a1,#c24e73 56%,#4a1a2d);
+    box-shadow:inset 0 0 0 3px rgba(255,255,255,.07),inset 0 -7px 12px rgba(0,0,0,.35),0 8px 16px rgba(120,40,70,.35)}
   .seal::before{content:"";position:absolute;inset:11px;border-radius:50%;border:1.5px solid rgba(240,214,150,.75);box-shadow:inset 0 2px 5px rgba(0,0,0,.3)}
-  .seal b{font:400 2.1rem/1 'Satisfy','Snell Roundhand',cursive;color:#f3dfae;text-shadow:0 1px 0 rgba(0,0,0,.4),0 0 6px rgba(255,220,150,.25)}
+  .seal b{font:400 2.1rem/1 'Satisfy','Snell Roundhand',cursive;color:#f6e3b6;text-shadow:0 1px 0 rgba(0,0,0,.4),0 0 6px rgba(255,220,150,.25)}
   .stage.opening .seal{animation:seal-crack .7s ease forwards}
   @keyframes seal-crack{to{transform:scale(1.25) rotate(8deg);opacity:0}}
   /* real roses framing the opening screen */
@@ -318,19 +318,19 @@
   .more{display:none;flex-direction:column;align-items:center;gap:6px;margin-top:2px;text-align:center}
   .stage.flow .more{display:flex;position:sticky;bottom:max(14px,env(safe-area-inset-bottom,0px));z-index:5;padding-bottom:2px}
   .more .go{display:inline-flex;align-items:center;gap:12px;padding:16px 30px;min-height:56px;border-radius:999px;border:1px solid var(--maroon);cursor:pointer;
-    background:linear-gradient(135deg,#2b8665,var(--maroon));color:var(--ivory);font:600 .78rem var(--sans);letter-spacing:.2em;text-transform:uppercase;
-    box-shadow:0 10px 26px rgba(15,74,54,.35);animation:nudge 1.8s ease-in-out infinite}
+    background:linear-gradient(135deg,#d9708f,var(--maroon));color:var(--ivory);font:600 .78rem var(--sans);letter-spacing:.2em;text-transform:uppercase;
+    box-shadow:0 10px 26px rgba(194,78,115,.35);animation:nudge 1.8s ease-in-out infinite}
   .more .go svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
-  .more small{font:400 .68rem var(--sans);letter-spacing:.18em;text-transform:uppercase;color:var(--ink);background:rgba(245,249,244,.82);padding:3px 10px;border-radius:999px}
+  .more small{font:400 .68rem var(--sans);letter-spacing:.18em;text-transform:uppercase;color:var(--ink);background:rgba(255,250,252,.85);padding:3px 10px;border-radius:999px}
   @keyframes nudge{0%,100%{transform:translateY(0)}50%{transform:translateY(5px)}}
   /* pink cosmos blossoms mixed into the green rose clusters */
-  .cosm{position:absolute;height:auto;pointer-events:none;z-index:2;filter:drop-shadow(0 2px 4px rgba(10,50,35,.28))}
+  .cosm{position:absolute;height:auto;pointer-events:none;z-index:2;filter:drop-shadow(0 2px 4px rgba(120,40,70,.25))}
   .cosm.a{width:13cqw;top:30cqw;left:5cqw;transform:rotate(-14deg)}
   .cosm.b{width:10cqw;top:9cqw;left:23cqw;transform:rotate(10deg)}
   .cosm.c{width:11cqw;top:33cqw;right:3cqw;transform:rotate(18deg)}
   .cosm.d{width:12cqw;bottom:25cqw;left:2cqw;transform:rotate(-8deg)}
   .cosm.e{display:none}
-  .st-cosm{position:fixed;height:auto;pointer-events:none;z-index:0;filter:drop-shadow(0 2px 4px rgba(10,50,35,.25));transition:opacity .6s}
+  .st-cosm{position:fixed;height:auto;pointer-events:none;z-index:0;filter:drop-shadow(0 2px 4px rgba(120,40,70,.22));transition:opacity .6s}
   .stage.opening .st-cosm{opacity:0}
   .st-cosm.a{width:min(15vw,84px);top:min(21vw,118px);left:min(29vw,160px);transform:rotate(-12deg)}
   .st-cosm.b{width:min(12vw,66px);top:min(9vw,50px);right:min(36vw,200px);transform:rotate(14deg)}
@@ -385,15 +385,15 @@
   .opt label{display:block;text-align:center;padding:18px 12px;border:1px solid var(--line);background:var(--panel);cursor:pointer;transition:background .2s,border-color .2s}
   .opt label b{display:block;font:400 1.15rem var(--serif);color:var(--ink)}
   .opt label span{font-size:.8rem;color:var(--muted)}
-  .opt input:checked+label{background:linear-gradient(135deg,#2b8665,var(--maroon));border-color:var(--maroon)}
+  .opt input:checked+label{background:linear-gradient(135deg,#d9708f,var(--maroon));border-color:var(--maroon)}
   .opt input:checked+label b,.opt input:checked+label span,.cnt input:checked+label{color:var(--ivory)}
   .opt input:focus-visible+label,.cnt input:focus-visible+label{outline:2px solid var(--accent);outline-offset:2px}
   .cnt{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:8px}
   .cnt label{display:grid;place-items:center;height:52px;border:1px solid var(--line);background:var(--panel);cursor:pointer;font:600 1rem var(--sans);transition:background .2s}
-  .cnt input:checked+label{background:linear-gradient(135deg,#2b8665,var(--maroon));border-color:var(--maroon)}
+  .cnt input:checked+label{background:linear-gradient(135deg,#d9708f,var(--maroon));border-color:var(--maroon)}
   textarea.field{min-height:110px;resize:vertical}
   .opt-note{float:right;font-weight:300;letter-spacing:.2em}
-  .err{margin-top:14px;color:#2f9a73;font-size:.9rem;text-align:center}
+  .err{margin-top:14px;color:#e386a1;font-size:.9rem;text-align:center}
   .done{margin-top:34px;padding:30px 22px;border:1px solid var(--gold);background:var(--panel);text-align:center}
   .done h3{font:400 1.7rem var(--serif)}
   .done p{color:var(--muted);margin-top:10px}
@@ -405,7 +405,7 @@
   .share-actions{display:grid;gap:12px;margin-top:24px}
   .status{margin-top:14px;color:var(--muted);font-size:.9rem;min-height:1.4em;overflow-wrap:anywhere}
 
-  footer{margin-top:90px;padding:80px 20px calc(110px + env(safe-area-inset-bottom,0px));text-align:center;background:linear-gradient(180deg,transparent,rgba(29,106,79,.13) 45%)}
+  footer{margin-top:90px;padding:80px 20px calc(110px + env(safe-area-inset-bottom,0px));text-align:center;background:linear-gradient(180deg,transparent,rgba(194,78,115,.12) 45%)}
   footer h2{font:400 clamp(2rem,8vw,2.6rem)/1.2 var(--serif);margin:14px auto 0;max-width:520px;text-wrap:balance}
   footer .fn{font-family:var(--script);font-size:clamp(3rem,13vw,4.4rem);color:var(--accent);margin-top:34px;line-height:1.1}
   .up{margin:34px auto 0;width:58px;height:58px;border-radius:50%;border:1px solid var(--gold);display:grid;place-items:center;color:var(--accent);background:none;cursor:pointer;font-size:1.5rem}
@@ -781,10 +781,10 @@
   var guest='';
   function drawCard(name,imgs){var couple=imgs.couple;
     var W=1080,H=1620,U=W/100,cv=document.createElement('canvas');cv.width=W;cv.height=H;
-    var c=cv.getContext('2d'),RAD=Math.PI/180,INK='#0f4a36',SOFT='#4f7766',GOLD='#b8924f';
+    var c=cv.getContext('2d'),RAD=Math.PI/180,INK='#7a2a47',SOFT='#a0627a',GOLD='#b8924f';
     function px(n){return n*U}
     /* background: pearly satin (same picture as the card) */
-    c.fillStyle='#d6e3d8';c.fillRect(0,0,W,H);
+    c.fillStyle='#f6e3e9';c.fillRect(0,0,W,H);
     c.imageSmoothingEnabled=true;c.imageSmoothingQuality='high';
     if(imgs.silk){var sr=imgs.silk.naturalWidth/imgs.silk.naturalHeight,tr=W/H,sw=imgs.silk.naturalWidth,sh=imgs.silk.naturalHeight,sx=0,sy=0;
       if(sr>tr){sw=sh*tr;sx=(imgs.silk.naturalWidth-sw)/2}else{sh=sw/tr;sy=(imgs.silk.naturalHeight-sh)/2}
@@ -793,7 +793,7 @@
     /* real rose clusters, placed at the same proportions as on the card */
     function put(im,x,y,wu,fromRight,fromBottom){if(!im)return;var w=px(wu),h=w*im.naturalHeight/im.naturalWidth;c.drawImage(im,fromRight?W-w:x,fromBottom?H-h:y,w,h)}
     put(imgs.tl,0,0,40);put(imgs.tr,0,0,40,true);put(imgs.bl,0,0,30,false,true);
-    function bloom(im,wu,x,y,deg){if(!im)return;var w=px(wu),h=w*im.naturalHeight/im.naturalWidth;c.save();c.shadowColor='rgba(10,50,35,.28)';c.shadowBlur=px(1);c.shadowOffsetY=px(.4);c.translate(px(x)+w/2,y+h/2);c.rotate(deg*RAD);c.drawImage(im,-w/2,-h/2,w,h);c.restore()}
+    function bloom(im,wu,x,y,deg){if(!im)return;var w=px(wu),h=w*im.naturalHeight/im.naturalWidth;c.save();c.shadowColor='rgba(120,40,70,.25)';c.shadowBlur=px(1);c.shadowOffsetY=px(.4);c.translate(px(x)+w/2,y+h/2);c.rotate(deg*RAD);c.drawImage(im,-w/2,-h/2,w,h);c.restore()}
 
 
     /* bride and groom (cut-out picture) */
