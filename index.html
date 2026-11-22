@@ -860,9 +860,17 @@
     $('rName').value=name;
     document.title=name+', you are invited – Mahnoor & Tahir';
   }
+  /* push notification (ntfy.sh) to the hosts when a guest opens the card */
+  var NTFY_TOPIC='mt-96493827ec79';
+  function notifyOpen(name){
+    try{
+      if(/^(localhost|127\.|0\.0\.0\.0)/.test(location.hostname)||location.protocol==='file:')return;
+      fetch('https://ntfy.sh',{method:'POST',keepalive:true,body:JSON.stringify({topic:NTFY_TOPIC,title:'Mahnoor & Tahir: card opened',message:name+' just opened the invitation',tags:['love_letter']})}).catch(function(){});
+    }catch(_){}
+  }
   form.addEventListener('submit',function(e){
     e.preventDefault();var name=clean(input.value);if(!name)return;
-    setGuest(name);playMusic();
+    setGuest(name);playMusic();notifyOpen(name);
     stage.classList.add('opening');
     cover.removeAttribute('aria-hidden');
     setTimeout(function(){
